@@ -15,7 +15,8 @@ doggy.doggyAjax = function() {
 			key: doggy.apiKey,
 			location: 'Toronto, On',
 			animal: 'dog',
-			format: 'json'
+			format: 'json',
+			age: 'Senior'
 		}  
 	}).then(function(results){
 		console.log(results);
