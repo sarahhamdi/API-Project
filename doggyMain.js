@@ -13,3 +13,7 @@ petfinderAPI.url = "****need to find the petfinderAPI URL****"
 
 // 	})
 // };
+
+$(document).ready(function() {
+	
+});
