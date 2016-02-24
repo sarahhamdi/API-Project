@@ -80,7 +80,7 @@ doggy.dogLocationsForMap = function(filteredDogResults) {
 	for (var i = 0; i < pets.length; i++) {
 		dogLocationsArray.push(pets[i].contact.zip['$t'])
 	}; 
-	dogLocationsArray = dogLocationsArray.join('" | "');
+	dogLocationsArray = dogLocationsArray.join('|');
 	console.log(dogLocationsArray);
 
 };
