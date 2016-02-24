@@ -11,7 +11,7 @@ doggy.form = function() {
 		e.preventDefault();
 		 var userLocation = $('.currentLocation').val();
 		console.log(userLocation);
-		doggy.doggyAjax = (userLocation);
+		doggy.doggyAjax(userLocation);
 	});
 }
 
@@ -52,7 +52,8 @@ doggy.doggyAjax = function(userLocation) {
 			animal: 'dog',
 			format: 'json',
 			age: 'Senior',
-			status: A
+			status: 'A'
+			// count: 10
 		}  
 	}).then(function(results){
 		console.log(results);
