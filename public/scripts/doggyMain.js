@@ -55,7 +55,10 @@ doggy.doggyAjax = function (userLocation) {
 			format: 'json',
 			age: 'Senior',
 			status: 'A'
+<<<<<<< HEAD
 			// count: 10
+=======
+>>>>>>> cb407d03b68095ed9bce0ce5049aa9e786eddfe2
 		}
 	}).then(function (results) {
 		console.log(results);
