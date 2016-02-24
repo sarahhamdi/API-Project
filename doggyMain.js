@@ -6,7 +6,7 @@ doggy.apiToken ="8463c41dbe3965fc6b42c2794511969d"
 doggy.doggyUrl = "http://api.petfinder.com/pet.find"
 
 
-
+// GOOGLE MAP
 doggy.getCurrentLocation = function() {
 		$.ajax({
 			url: "https://maps.googleapis.com/maps/api/geocode/json",
@@ -32,7 +32,7 @@ doggy.getCurrentLocation = function() {
 		});
 	}
 
-
+// PETFINDER API
 doggy.doggyAjax = function() {
 	$.ajax({
 		url: doggy.doggyUrl,
@@ -42,7 +42,11 @@ doggy.doggyAjax = function() {
 			key: doggy.apiKey,
 			location: 'Toronto, On',
 			animal: 'dog',
-			format: 'json'
+			format: 'json',
+			breed: 'pug',
+			count: 10,
+			age: 'Senior',
+			status: 'A'
 		}  
 	}).then(function(results){
 		console.log(results);
