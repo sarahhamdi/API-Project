@@ -12,6 +12,7 @@ doggy.form = function () {
 	$('#dogForm').on('submit', function (e) {
 		e.preventDefault();
 		var userLocation = $('.currentLocation').val();
+<<<<<<< HEAD
 		console.log(userLocation);
 		doggy.doggyAjax = userLocation;
 	});
@@ -44,6 +45,40 @@ doggy.getCurrentLocation = function () {
 };
 
 doggy.doggyAjax = function (userLocation) {
+=======
+		var sizeOfDog = $('#dogSize option:selected').val();
+		console.log(userLocation, sizeOfDog);
+		doggy.doggyAjax(userLocation, sizeOfDog);
+	});
+};
+
+// doggy.getCurrentLocation = function() {
+// 		$.ajax({
+// 			url: "https://maps.googleapis.com/maps/api/geocode/json",
+// 			method: 'GET',
+// 			dataType: 'json',
+// 			data: {
+// 				address: 'L4J5X4'
+// 			}
+// 		}).then(function(result){
+// 			var lat = (result.results[0].geometry.location.lat);
+// 			var lng= (result.results[0].geometry.location.lng);
+// 			var latLng = lat + "," + lng;
+// 			console.log(latLng)
+
+// 			// doggy.myLatLng = {lat: lat, lng: lng}
+
+// 			// var marker = new google.maps.Marker ({
+// 			// 	position: searchApp.myLatLng,
+// 			// 	map: searchApp.map,
+// 			// 	title: "You Are Here!"
+
+// })
+// 	});
+// }
+
+doggy.doggyAjax = function (userLocation, sizeOfDog) {
+>>>>>>> 38c9345b35a1958ba67a20749f0769c6a423b075
 	console.log(userLocation);
 	$.ajax({
 		url: doggy.doggyUrl,
@@ -54,11 +89,16 @@ doggy.doggyAjax = function (userLocation) {
 			location: userLocation,
 			animal: 'dog',
 			format: 'json',
+			size: sizeOfDog,
 			age: 'Senior',
-			status: A
+			status: 'A'
 		}
 	}).then(function (results) {
-		console.log(results);
+		var pets = results.petfinder.pets.pet;
+		console.log(pets);
+		for (var i = 0; i < pets.length; i++) {
+			console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].contact.zip['$t'] + pets[i].description['$t']);
+		}
 	});
 };
 
