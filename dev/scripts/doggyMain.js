@@ -9,6 +9,7 @@ doggy.doggyUrl = "http://api.petfinder.com/pet.find"
 
 
 google.getCurrentLocation = function() {
+
 		$.ajax({
 			url: "https://maps.googleapis.com/maps/api/geocode/json",
 			method: 'GET',
@@ -33,7 +34,7 @@ google.getCurrentLocation = function() {
 		});
 	}
 
-
+// PETFINDER API
 doggy.doggyAjax = function() {
 	$.ajax({
 		url: doggy.doggyUrl,
