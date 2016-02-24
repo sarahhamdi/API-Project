@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var doggy = {};
 var google = {};
@@ -61,6 +61,7 @@ doggy.doggyAjax = function (userLocation, sizeOfDog) {
 	}).then(function (results) {
 		console.log(results);
 		doggy.printDogsToPage(results);
+		doggy.dogLocationsForMap(results);
 	});
 };
 
@@ -70,6 +71,16 @@ doggy.printDogsToPage = function (filteredDogResults) {
 		$('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t'] + pets[i].contact.zip['$t'] + pets[i].description['$t'] + '</p>');
 		console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t'] + pets[i].contact.zip['$t'] + pets[i].description['$t']);
 	}
+};
+
+doggy.dogLocationsForMap = function (filteredDogResults) {
+	var pets = filteredDogResults.petfinder.pets.pet;
+	var dogLocationsArray = [];
+	for (var i = 0; i < pets.length; i++) {
+		dogLocationsArray.push(pets[i].contact.zip['$t']);
+	};
+	dogLocationsArray = dogLocationsArray.join('" | "');
+	console.log(dogLocationsArray);
 };
 
 doggy.init = function () {
