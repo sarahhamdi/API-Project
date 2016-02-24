@@ -13,28 +13,30 @@ doggy.form = function() {
 		 var sizeOfDog = $('#dogSize option:selected').val();
 		console.log(userLocation, sizeOfDog);
 		doggy.doggyAjax(userLocation, sizeOfDog);
+		doggy.getCurrentLocation(userLocation);
 	});
 }
 
 // ****************POSSIBLE GOOGLE API FUNCTION****************************
-// var userInput = "toronto, On";
-// doggy.googleAPI = "https://maps.googleapis.com/maps/api/distancematrix/";
-// doggy.googleKEY = "AIzaSyDNFi-ralR7UhZuTx56jU0FEqxa50uxK6U";
+var userInput = "toronto, On";
+doggy.googleAPI = "https://maps.googleapis.com/maps/api/distancematrix/json";
+doggy.googleKEY = "AIzaSyDNFi-ralR7UhZuTx56jU0FEqxa50uxK6U";
 
-// doggy.getCurrentLocation = function(userLocation) {
-// 		$.ajax({
-// 			url: "https://maps.googleapis.com/maps/api/distancematrix/"
-// 			method: 'GET',
-// 			dataType: 'json',
-// 			data: {
-// 				key: doggy.googleKEY,
-// 				origins: userLocation,
-// 				destinations: "M2M1P2" | "M8Z4L5" | "L3T3R8"  
-// 			}
-// 		}).then(function(result){
-// 				console.log(result)
-// 		});
-// }
+doggy.getCurrentLocation = function(userLocation) {
+		$.ajax({
+			url: "http://proxy.hackeryou.com",
+			method: 'GET',
+			dataType: 'json',
+			data: {
+				key: doggy.googleKEY,
+				origins: userLocation,
+				destinations: "M8Z 4L5|L3T3R8",
+				reqUrl: doggy.googleAPI
+			}
+		}).then(function(result){
+				console.log(result)
+		});
+};
 // ********************END OF POSSIBLE GOOGLE API FUNCTION*******************
 
 
