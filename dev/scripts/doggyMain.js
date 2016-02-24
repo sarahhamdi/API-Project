@@ -10,8 +10,9 @@ doggy.form = function() {
 	$('#dogForm').on('submit', function(e){
 		e.preventDefault();
 		 var userLocation = $('.currentLocation').val();
-		console.log(userLocation);
-		doggy.doggyAjax(userLocation);
+		 var sizeOfDog = $('#dogSize option:selected').val();
+		console.log(userLocation, sizeOfDog);
+		doggy.doggyAjax(userLocation, sizeOfDog);
 	});
 }
 
@@ -40,7 +41,7 @@ doggy.form = function() {
 	// 	});
 	// }
 
-doggy.doggyAjax = function(userLocation) {
+doggy.doggyAjax = function(userLocation, sizeOfDog) {
 	console.log(userLocation);
 	$.ajax({
 		url: doggy.doggyUrl,
@@ -51,21 +52,36 @@ doggy.doggyAjax = function(userLocation) {
 			location: userLocation,
 			animal: 'dog',
 			format: 'json',
+			size: sizeOfDog,
 			age: 'Senior',
 			status: 'A'
 		}  
 	}).then(function(results){
-		var pets = results.petfinder.pets.pet;
-		console.log(pets);
-		for (var i = 0; i < pets.length; i++) {
-			console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].contact.zip['$t'] + pets[i].description['$t'])
-		}
+		console.log(results);
+		doggy.printDogsToPage(results)
 	});
 };
 
+doggy.printDogsToPage = function(filteredDogResults) {
+	var pets = filteredDogResults.petfinder.pets.pet;
+	for (var i = 0; i < pets.length; i++) {
+		$('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'] + '</p>');
+		console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
+	}
+};
+
+doggy.init = function(){
+	doggy.form();
+};
+
+
+
+
+
+
 $(document).ready(function() {
 	// doggy.doggyAjax();
-	doggy.form();
+	doggy.init();
 
 });
 
