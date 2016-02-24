@@ -15,18 +15,33 @@ doggy.form = function() {
 		 var sizeOfDog = $('#dogSize option:selected').val();
 		console.log(userLocation, sizeOfDog);
 		doggy.doggyAjax(userLocation, sizeOfDog);
+		doggy.getCurrentLocation(userLocation);
 	});
 }
 
-// doggy.getCurrentLocation = function() {
-// 		$.ajax({
-// 			url: "https://maps.googleapis.com/maps/api/geocode/json",
-// 			method: 'GET',
-// 			dataType: 'json',
-// 			data: {
-// 				address: 'L4J5X4'
-// 			}
-// 		}).then(function(result){
+// ****************POSSIBLE GOOGLE API FUNCTION****************************
+var userInput = "toronto, On";
+doggy.googleAPI = "https://maps.googleapis.com/maps/api/distancematrix/json";
+doggy.googleKEY = "AIzaSyDNFi-ralR7UhZuTx56jU0FEqxa50uxK6U";
+
+doggy.getCurrentLocation = function(userLocation) {
+		$.ajax({
+			url: "http://proxy.hackeryou.com",
+			method: 'GET',
+			dataType: 'json',
+			data: {
+				key: doggy.googleKEY,
+				origins: userLocation,
+				destinations: "M8Z 4L5|L3T3R8",
+				reqUrl: doggy.googleAPI
+			}
+		}).then(function(result){
+				console.log(result)
+		});
+};
+// ********************END OF POSSIBLE GOOGLE API FUNCTION*******************
+
+
 // 			var lat = (result.results[0].geometry.location.lat);
 // 			var lng= (result.results[0].geometry.location.lng);
 // 			var latLng = lat + "," + lng;
