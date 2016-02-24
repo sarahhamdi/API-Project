@@ -6,9 +6,18 @@ doggy.apiToken ="8463c41dbe3965fc6b42c2794511969d"
 	//we can add our individual keys in here if you like 
 doggy.doggyUrl = "http://api.petfinder.com/pet.find"
 
+doggy.form = function() {
+	$('#dogForm').on('submit', function(e){
+		e.preventDefault();
+		 var userLocation = $('.currentLocation').val();
+		console.log(userLocation);
+		doggy.doggyAjax = (userLocation);
+	});
+}
 
 
-google.getCurrentLocation = function() {
+
+doggy.getCurrentLocation = function() {
 
 		$.ajax({
 			url: "https://maps.googleapis.com/maps/api/geocode/json",
@@ -23,26 +32,26 @@ google.getCurrentLocation = function() {
 			var latLng = lat + "," + lng;
 			console.log(latLng)
 
-			// doggy.myLatLng = {lat: lat, lng: lng}
+// 			// doggy.myLatLng = {lat: lat, lng: lng}
 			
-			// var marker = new google.maps.Marker ({
-			// 	position: searchApp.myLatLng,
-			// 	map: searchApp.map,
-			// 	title: "You Are Here!"
+// 			// var marker = new google.maps.Marker ({
+// 			// 	position: searchApp.myLatLng,
+// 			// 	map: searchApp.map,
+// 			// 	title: "You Are Here!"
 				
 			// })
 		});
 	}
 
-// PETFINDER API
-doggy.doggyAjax = function() {
+doggy.doggyAjax = function(userLocation) {
+	console.log(userLocation);
 	$.ajax({
 		url: doggy.doggyUrl,
 		method: 'GET',
 		dataType: 'jsonp',
 		data : {
 			key: doggy.apiKey,
-			location: 'Toronto, On',
+			location: userLocation,
 			animal: 'dog',
 			format: 'json',
 			age: 'Senior',
@@ -54,8 +63,9 @@ doggy.doggyAjax = function() {
 };
 
 $(document).ready(function() {
-	doggy.doggyAjax();
-	doggy.getCurrentLocation();
+	// doggy.doggyAjax();
+	doggy.form();
+
 });
 
 
