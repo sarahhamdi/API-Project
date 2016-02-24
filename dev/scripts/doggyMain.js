@@ -55,7 +55,11 @@ doggy.doggyAjax = function(userLocation) {
 			status: 'A'
 		}  
 	}).then(function(results){
-		console.log(results);
+		var pets = results.petfinder.pets.pet;
+		console.log(pets);
+		for (var i = 0; i < pets.length; i++) {
+			console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].contact.zip['$t'] + pets[i].description['$t'])
+		}
 	});
 };
 
