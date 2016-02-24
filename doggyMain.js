@@ -1,4 +1,5 @@
 var doggy = {};
+var google = {};
 
 doggy.apiKey ="290f422c91ecdc030991bbc422712f64"
 doggy.apiToken ="8463c41dbe3965fc6b42c2794511969d"
@@ -43,7 +44,8 @@ doggy.doggyAjax = function() {
 			location: 'Toronto, On',
 			animal: 'dog',
 			format: 'json',
-			age: 'Senior'
+			age: 'Senior',
+			status: A
 		}  
 	}).then(function(results){
 		console.log(results);
@@ -61,7 +63,8 @@ $(document).ready(function() {
 // on submit, push info to Petfinder to find dogs (requires location field to work)
 // get results from Petfinder on dogs
 // see exclusions below
-// get postal code from dogs
+// filter postal code from dogs
+
 // plot location of dogs on google maps based on postal code
 // display Pic, Name, Location, Description of dog
 
