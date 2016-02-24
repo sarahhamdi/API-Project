@@ -57,17 +57,31 @@ doggy.doggyAjax = function(userLocation, sizeOfDog) {
 			status: 'A'
 		}  
 	}).then(function(results){
-		var pets = results.petfinder.pets.pet;
-		console.log(pets);
-		for (var i = 0; i < pets.length; i++) {
-			console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].contact.zip['$t'] + pets[i].description['$t'])
-		}
+		console.log(results);
+		doggy.printDogsToPage(results)
 	});
 };
 
+doggy.printDogsToPage = function(filteredDogResults) {
+	var pets = filteredDogResults.petfinder.pets.pet;
+	for (var i = 0; i < pets.length; i++) {
+		$('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'] + '</p>');
+		console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
+	}
+};
+
+doggy.init = function(){
+	doggy.form();
+};
+
+
+
+
+
+
 $(document).ready(function() {
 	// doggy.doggyAjax();
-	doggy.form();
+	doggy.init();
 
 });
 
