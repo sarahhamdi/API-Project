@@ -1,5 +1,4 @@
 var doggy = {};
-var google = {};
 
 doggy.apiKey ="290f422c91ecdc030991bbc422712f64"
 doggy.apiToken ="8463c41dbe3965fc6b42c2794511969d"
@@ -51,8 +50,10 @@ doggy.doggyAjax = function(userLocation) {
 			location: userLocation,
 			animal: 'dog',
 			format: 'json',
+			breed: 'pug',
+			count: 10,
 			age: 'Senior',
-			status: A
+			status: 'A'
 		}  
 	}).then(function(results){
 		console.log(results);
@@ -71,26 +72,7 @@ $(document).ready(function() {
 // on submit, push info to Petfinder to find dogs (requires location field to work)
 // get results from Petfinder on dogs
 // see exclusions below
-// filter postal code from dogs
-
-// ********POSSIBLE Filter Function: NEEDS TO BE LOOKED OVER? *********
-
-// doggy.filterdoggy = function(AJAXresults) {
-//  var displayDogs = [];
-//  for (i = 0; i < AJAXresults.petfinder.pets.pet.length; i += 1;) {
-// 		var checkPostal = AJAXresults.petfinder.pets.pet[i].contact
-// 		if (checkPostal = 'undefined') {
-
-// 			console.log('no postal');
-// 		} else {
-// 		displayDogs.push(AJAX.petfinder.pets.pet[i]);
-// 		}
-// 		console.log(displayDogs)
-// 		***then use the "filtered" array in next function****
-// 	}
-// }
-// ********************************************************************
-
+// get postal code from dogs
 // plot location of dogs on google maps based on postal code
 // display Pic, Name, Location, Description of dog
 
