@@ -11,19 +11,33 @@ doggy.form = function() {
 		e.preventDefault();
 		 var userLocation = $('.currentLocation').val();
 		console.log(userLocation);
-		doggy.doggyAjax = (userLocation);
+		doggy.doggyAjax(userLocation);
+		// doggy.getCurrentLocation(userLocation);
 	});
 }
 
-// doggy.getCurrentLocation = function() {
+// ****************POSSIBLE GOOGLE API FUNCTION****************************
+// var userInput = "toronto, On";
+// doggy.googleAPI = "https://maps.googleapis.com/maps/api/distancematrix/";
+// doggy.googleKEY = "AIzaSyDNFi-ralR7UhZuTx56jU0FEqxa50uxK6U";
+
+// doggy.getCurrentLocation = function(userLocation) {
 // 		$.ajax({
-// 			url: "https://maps.googleapis.com/maps/api/geocode/json",
+// 			url: "https://maps.googleapis.com/maps/api/distancematrix/"
 // 			method: 'GET',
 // 			dataType: 'json',
 // 			data: {
-// 				address: 'L4J5X4'
+// 				key: doggy.googleKEY,
+// 				origins: userLocation,
+// 				destinations: "M2M1P2" | "M8Z4L5" | "L3T3R8"  
 // 			}
 // 		}).then(function(result){
+// 				console.log(result)
+// 		});
+// }
+// ********************END OF POSSIBLE GOOGLE API FUNCTION*******************
+
+
 // 			var lat = (result.results[0].geometry.location.lat);
 // 			var lng= (result.results[0].geometry.location.lng);
 // 			var latLng = lat + "," + lng;
