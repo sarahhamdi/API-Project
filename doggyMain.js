@@ -15,19 +15,20 @@ doggy.form = function() {
 }
 
 
-// doggy.getCurrentLocation = function() {
-// 		$.ajax({
-// 			url: "https://maps.googleapis.com/maps/api/geocode/json",
-// 			method: 'GET',
-// 			dataType: 'json',
-// 			data: {
-// 				address: 'L4J5X4'
-// 			}
-// 		}).then(function(result){
-// 			var lat = (result.results[0].geometry.location.lat);
-// 			var lng= (result.results[0].geometry.location.lng);
-// 			var latLng = lat + "," + lng;
-// 			// console.log(latLng)
+
+doggy.getCurrentLocation = function() {
+		$.ajax({
+			url: "https://maps.googleapis.com/maps/api/geocode/json",
+			method: 'GET',
+			dataType: 'json',
+			data: {
+				address: 'L4J5X4'
+			}
+		}).then(function(result){
+			var lat = (result.results[0].geometry.location.lat);
+			var lng= (result.results[0].geometry.location.lng);
+			var latLng = lat + "," + lng;
+			console.log(latLng)
 
 // 			// doggy.myLatLng = {lat: lat, lng: lng}
 			
@@ -36,9 +37,9 @@ doggy.form = function() {
 // 			// 	map: searchApp.map,
 // 			// 	title: "You Are Here!"
 				
-// 			// })
-// 		});
-// 	}
+			// })
+		});
+	}
 
 doggy.doggyAjax = function(userLocation) {
 	console.log(userLocation);
@@ -50,7 +51,11 @@ doggy.doggyAjax = function(userLocation) {
 			key: doggy.apiKey,
 			location: userLocation,
 			animal: 'dog',
-			format: 'json'
+			format: 'json',
+			breed: 'pug',
+			count: 10,
+			age: 'Senior',
+			status: 'A'
 		}  
 	}).then(function(results){
 		console.log(results);
