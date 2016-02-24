@@ -8,7 +8,7 @@ doggy.doggyUrl = "http://api.petfinder.com/pet.find"
 
 
 
-doggy.getCurrentLocation = function() {
+google.getCurrentLocation = function() {
 		$.ajax({
 			url: "https://maps.googleapis.com/maps/api/geocode/json",
 			method: 'GET',
@@ -64,6 +64,24 @@ $(document).ready(function() {
 // get results from Petfinder on dogs
 // see exclusions below
 // filter postal code from dogs
+
+// ********POSSIBLE Filter Function: NEEDS TO BE LOOKED OVER? *********
+
+// doggy.filterdoggy = function(AJAXresults) {
+//  var displayDogs = [];
+//  for (i = 0; i < AJAXresults.petfinder.pets.pet.length; i += 1;) {
+// 		var checkPostal = AJAXresults.petfinder.pets.pet[i].contact
+// 		if (checkPostal = 'undefined') {
+
+// 			console.log('no postal');
+// 		} else {
+// 		displayDogs.push(AJAX.petfinder.pets.pet[i]);
+// 		}
+// 		console.log(displayDogs)
+// 		***then use the "filtered" array in next function****
+// 	}
+// }
+// ********************************************************************
 
 // plot location of dogs on google maps based on postal code
 // display Pic, Name, Location, Description of dog
