@@ -36,7 +36,7 @@ doggy.doggyAjax = function (userLocation, sizeOfDog) {
 			status: 'A'
 		}
 	}).then(function (results) {
-		console.log(results);
+		// console.log(results);
 		doggy.printDogsToPage(results);
 		doggy.dogLocationsForMap(results);
 	});
@@ -62,9 +62,10 @@ doggy.dogLocationsForMap = function (filteredDogResults) {
 	for (var i = 0; i < pets.length; i++) {
 		dogLocationsArray.push(pets[i].contact.zip['$t']);
 	};
-	console.log("is this what we want? " + dogLocationsArray)
-	dogLocationsArray = dogLocationsArray.join('|');
-	doggy.getCurrentLocation(doggy.userLocation, dogLocationsArray);
+	var newdogLocationsArray = dogLocationsArray.join('|');
+	doggy.getCurrentLocation(doggy.userLocation, newdogLocationsArray);
+	doggy.convertLatLng(dogLocationsArray);
+	console.log(newdogLocationsArray);
 	console.log(dogLocationsArray);
 };
 
@@ -72,7 +73,7 @@ doggy.dogLocationsForMap = function (filteredDogResults) {
 doggy.googleAPI = "https://maps.googleapis.com/maps/api/distancematrix/json";
 doggy.googleKEY = "AIzaSyDNFi-ralR7UhZuTx56jU0FEqxa50uxK6U";
 
-doggy.getCurrentLocation = function (userLocation, dogLocationsArray) {
+doggy.getCurrentLocation = function (userLocation, newdogLocationsArray) {
 	$.ajax({
 		url: "http://proxy.hackeryou.com",
 		method: 'GET',
@@ -80,28 +81,108 @@ doggy.getCurrentLocation = function (userLocation, dogLocationsArray) {
 		data: {
 			key: doggy.googleKEY,
 			origins: userLocation,
-			destinations: dogLocationsArray,
+			destinations: newdogLocationsArray,
 			reqUrl: doggy.googleAPI
 		}
 	}).then(function (result) {
-		console.log(result);
+		// console.log(result)
 	});
 };
 
 // +++++++++ GOOGLE MAPS - PLACES MAP ON PAGE +++++++++++++++++++++++++++++++++++ //
+// doggy.map;
+// function initMap() {
+//   doggy.map = new google.maps.Map(document.getElementById('map'), {
+//     center: {lat: 43.7, lng: -79.4},
+//     zoom: 10
+//   });
+
+// var marker = new google.maps.Marker({
+//     position: myLatLng,
+//     map: map,
+//     title: 'Hello World!'
+//   });
+
+// var doggy = {}
+// dogLocationsArray = ['M2K 2K7','M3A 2S1', 'M3A 2S2']
+doggy.lngArray = [];
+doggy.latArray = [];
+
+// +++++++++++ TO DISPLAY THE ACTUAL MAP ON THE PAGE +++++++++++++
+
+// +++++++++++ TO CONVERT POSTAL CODES INTO LAT/LNG +++++++
+doggy.convertLatLng = function (dogLocationsArray) {
+	var counter = 0;
+	for (var i = 0; i < dogLocationsArray.length; i++) {
+		var dogLocationsArray2 = dogLocationsArray[i];
+		console.log(dogLocationsArray2);
+		$.ajax({
+			url: "https://maps.googleapis.com/maps/api/geocode/json",
+			method: 'GET',
+			dataType: 'json',
+			data: {
+				address: dogLocationsArray2
+			}
+		}).then(function (result) {
+			doggy.latArray.push(result.results[0].geometry.location.lat);
+			doggy.lngArray.push(result.results[0].geometry.location.lng);
+			counter++;
+
+			console.log(counter);
+			if (counter === dogLocationsArray.length) {
+				console.log(doggy.lngArray);
+				console.log(doggy.latArray);
+				// call function that plots things out here
+				doggy.plotOnMap(doggy.latArray, doggy.lngArray);
+			}
+		});
+	}
+};
+
+// +++++++++++ PLOTS THE ICONS ON THE MAP BASED ON LNG/LAT ++++++++
+doggy.plotOnMap = function (latArray, lngArray) {
+
+	for (var i = 0; i < dogLocationsArray.length; i++) {
+		var singleLat = latArray[i];
+		var singleLng = lngArray[i];
+		doggy.myLatLng = { lng: 43.7921395, lat: -79.386151 };
+		// doggy.map.setCenter(doggy.myLatLng);
+		var image = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+		var marker = new google.maps.Marker({
+			position: {
+				lat: singleLat,
+				lng: singleLng
+			},
+			map: doggy.map,
+			image: image
+		});
+		// console.log(marker);
+	}
+	// google.maps.event.trigger(doggy.map, 'resize');
+	// ++++++++ POTENTIAL USE LATER - MARKERS FOR DOG LOCATIONS
+	// var infowindow = new google.maps.InfoWindow({
+	//     content: '<h2>'+ title.text() +'</h2>' + '<h4>' + location.text() + '</h4>' + '<h5>' + website.text() + '</h5>'
+	// });
+
+	// marker.addListener('click', function() {
+	// infowindow.open(doggy.map, marker);
+};
+
+// ++++++ THE ACTUAL MAP ++++++++++
 doggy.map;
 function initMap() {
 	doggy.map = new google.maps.Map(document.getElementById('map'), {
 		center: { lat: 43.7, lng: -79.4 },
 		zoom: 10
 	});
-
-	var marker = new google.maps.Marker({
-		position: myLatLng,
-		map: map,
-		title: 'Hello World!'
-	});
 };
+
+// // function = plots out stuff on a map
+
+// $(document).ready(function() {
+// 	// initMap()
+// 	doggy.convertLatLng();
+// });
 
 doggy.init = function () {
 	doggy.form();
@@ -152,6 +233,3 @@ $(document).ready(function () {
 // EXCLUDE (in an if/else statement):
 // if no zip code (undefined)
 // if animal is adopted (regex /adopted/ in 'petfinder.pets.pet[name]' field)
-
-// MOBILE EXTRAS
-// slide scroll on dynamic content
