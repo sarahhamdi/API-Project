@@ -96,6 +96,12 @@ function initMap() {
 		center: { lat: 43.7, lng: -79.4 },
 		zoom: 10
 	});
+
+	var marker = new google.maps.Marker({
+		position: myLatLng,
+		map: map,
+		title: 'Hello World!'
+	});
 };
 
 doggy.init = function () {
