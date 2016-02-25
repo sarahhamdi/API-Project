@@ -34,7 +34,8 @@ doggy.doggyAjax = function(userLocation, sizeOfDog) {
 			format: 'json',
 			size: sizeOfDog,
 			age: 'Senior',
-			status: 'A'
+			status: 'A',
+			count: 10
 		}  
 	}).then(function(results){
 		// console.log(results);
@@ -134,6 +135,7 @@ doggy.getCurrentLocation = function(userLocation, newdogLocationsArray) {
 				console.log(counter)
 				if (counter === dogLocationsArray.length) {
 					console.log(doggy.lngArray);
+					console.log(doggy.lngArray.length)
 					console.log(doggy.latArray);
 					// call function that plots things out here
 					 doggy.plotOnMap(doggy.latArray, doggy.lngArray);
