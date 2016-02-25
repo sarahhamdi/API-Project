@@ -62,10 +62,11 @@ doggy.dogLocationsForMap = function (filteredDogResults) {
 	for (var i = 0; i < pets.length; i++) {
 		dogLocationsArray.push(pets[i].contact.zip['$t']);
 	};
+	console.log("is this what we want? " + dogLocationsArray)
 	dogLocationsArray = dogLocationsArray.join('|');
 	doggy.getCurrentLocation(doggy.userLocation, dogLocationsArray);
 	console.log(dogLocationsArray);
-}
+};
 
 // **************** GOOGLE MAPS - FINDS LOCATIONS (USER + DOGS) FOR MAP  **********************
 doggy.googleAPI = "https://maps.googleapis.com/maps/api/distancematrix/json";
@@ -94,6 +95,7 @@ function initMap() {
 		center: { lat: 43.7, lng: -79.4 },
 		zoom: 10
 	});
+
 	var marker = new google.maps.Marker({
 		position: myLatLng,
 		map: map,
