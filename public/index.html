@@ -7,12 +7,10 @@
 </head>
 <body>
 
-	<h1>Senior Dogs are cool</h1>
+	<h1>Senior Dog Finder</h1>
 
 	<h3>There will be dogs here!</h3>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse quae consectetur eligendi ipsam culpa! Minus molestiae sunt beatae praesentium harum explicabo culpa et amet deserunt, aperiam fuga officia nam earum!</p>
-
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas officiis quos ab doloribus modi corporis veritatis sequi odit, excepturi consequatur culpa adipisci accusamus id eius molestiae dignissimos recusandae eum libero.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 	
 	<form id="dogForm">
 		<input type="text" class="currentLocation" placeholder="Your Location">
@@ -23,21 +21,26 @@
 		 	<option value="M">Medium</option>
 		 	<option value="L">Large</option>
 		 </select>
-
 		<input type="submit" name="submit">
-		 
 	</form>
 	
-	<main class="results">
-		
-	</main>
+	<aside class="results">
+		<ul class="resultsList"></ul>
+	</aside>
+	
+	<div id="map"></div>
 
 	<footer>
 		<p>copyright 2016</p>
 	</footer>
+
+
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+ <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkB9y214WJgC8b0Y01ABS1jNOx4elPeeE&callback=initMap"></script>
+
 <script src="scripts/doggyMain.js"></script>
 
 </html>
