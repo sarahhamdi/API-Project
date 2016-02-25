@@ -49,8 +49,6 @@ doggy.printDogsToPage = function(filteredDogResults) {
 	}
 };
 
-
-
 doggy.dogLocationsForMap = function(filteredDogResults) {
 	var pets = filteredDogResults.petfinder.pets.pet;
 	var dogLocationsArray = [];
@@ -63,21 +61,7 @@ doggy.dogLocationsForMap = function(filteredDogResults) {
 }.then(function(dogLocationsArray){
 	doggy.getCurrentLocation(userLocation, dogLocationsArray);
 });
-// .then(function(userLocation, dogLocationsArray) {
-// 		$.ajax({
-// 			url: "http://proxy.hackeryou.com",
-// 			method: 'GET',
-// 			dataType: 'json',
-// 			data: {
-// 				key: doggy.googleKEY,
-// 				origins: userLocation,
-// 				destinations: dogLocationsArray,
-// 				reqUrl: doggy.googleAPI
-// 			}
-// 		}).then(function(result){
-// 				console.log(result)
-// 		});
-// 	});
+
 
 	doggy.map;
 	function initMap() {
