@@ -9,7 +9,11 @@ doggy.apiToken = "8463c41dbe3965fc6b42c2794511969d";
 doggy.doggyUrl = "http://api.petfinder.com/pet.find";
 
 doggy.form = function () {
+
 	$('#dogForm').on('submit', function (e) {
+		doggy.originaldogLocationsArray = [];
+		doggy.latArray = [];
+		doggy.lngArray = [];
 		e.preventDefault();
 		doggy.userLocation = $('.currentLocation').val();
 		var sizeOfDog = $('#dogSize option:selected').val();
@@ -33,7 +37,8 @@ doggy.doggyAjax = function (userLocation, sizeOfDog) {
 			format: 'json',
 			size: sizeOfDog,
 			age: 'Senior',
-			status: 'A'
+			status: 'A',
+			count: 10
 		}
 	}).then(function (results) {
 		// console.log(results);
@@ -56,18 +61,19 @@ doggy.printDogsToPage = function (filteredDogResults) {
 	}
 };
 
+doggy.originaldogLocationsArray = [];
 // +++++++++ AFTER PETFINDER AJAX CALL, SAVES DOG POSTAL CODES ++++++++++++++++++++++++++++++ //
 doggy.dogLocationsForMap = function (filteredDogResults) {
 	var pets = filteredDogResults.petfinder.pets.pet;
-	var dogLocationsArray = [];
+
 	for (var i = 0; i < pets.length; i++) {
-		dogLocationsArray.push(pets[i].contact.zip['$t']);
+		doggy.originaldogLocationsArray.push(pets[i].contact.zip['$t']);
 	};
-	var newdogLocationsArray = dogLocationsArray.join('|');
+	var newdogLocationsArray = doggy.originaldogLocationsArray.join('|');
 	doggy.getCurrentLocation(doggy.userLocation, newdogLocationsArray);
-	doggy.convertLatLng(dogLocationsArray);
+	doggy.convertLatLng(doggy.originaldogLocationsArray);
 	console.log(newdogLocationsArray);
-	console.log(dogLocationsArray);
+	console.log(doggy.originaldogLocationsArray);
 	// doggy.getCurrentLocation(dogLocationsArray);
 };
 
@@ -85,6 +91,7 @@ doggy.getCurrentLocation = function (userLocation, newdogLocationsArray) {
 			origins: userLocation,
 			destinations: newdogLocationsArray,
 			reqUrl: doggy.googleAPI
+
 		}
 	}).then(function (result) {
 		// console.log(result)
@@ -113,10 +120,11 @@ doggy.latArray = [];
 // +++++++++++ TO DISPLAY THE ACTUAL MAP ON THE PAGE +++++++++++++
 
 // +++++++++++ TO CONVERT POSTAL CODES INTO LAT/LNG +++++++
-doggy.convertLatLng = function (dogLocationsArray) {
+doggy.convertLatLng = function (originaldogLocationsArray) {
+
 	var counter = 0;
-	for (var i = 0; i < dogLocationsArray.length; i++) {
-		var dogLocationsArray2 = dogLocationsArray[i];
+	for (var i = 0; i < originaldogLocationsArray.length; i++) {
+		var dogLocationsArray2 = originaldogLocationsArray[i];
 		console.log(dogLocationsArray2);
 		$.ajax({
 			url: "https://maps.googleapis.com/maps/api/geocode/json",
@@ -131,7 +139,7 @@ doggy.convertLatLng = function (dogLocationsArray) {
 			counter++;
 
 			console.log(counter);
-			if (counter === dogLocationsArray.length) {
+			if (counter === originaldogLocationsArray.length) {
 				console.log(doggy.lngArray);
 				console.log(doggy.latArray);
 				// call function that plots things out here
@@ -144,7 +152,7 @@ doggy.convertLatLng = function (dogLocationsArray) {
 // +++++++++++ PLOTS THE ICONS ON THE MAP BASED ON LNG/LAT ++++++++
 doggy.plotOnMap = function (latArray, lngArray) {
 
-	for (var i = 0; i < dogLocationsArray.length; i++) {
+	for (var i = 0; i < originaldogLocationsArray.length; i++) {
 		var singleLat = latArray[i];
 		var singleLng = lngArray[i];
 		doggy.myLatLng = { lng: 43.7921395, lat: -79.386151 };
