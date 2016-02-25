@@ -7,6 +7,7 @@
 </head>
 <body>
 
+
 	<h1>Petfinder</h1>
 
 	<h3>Find Senior Dogs to Adopt Near You</h3>
@@ -20,21 +21,26 @@
 		 	<option value="M">Medium</option>
 		 	<option value="L">Large</option>
 		 </select>
-
 		<input type="submit" name="submit">
-		 
 	</form>
 	
-	<main class="results">
-		
-	</main>
+	<aside class="results">
+		<ul class="resultsList"></ul>
+	</aside>
+	
+	<div id="map"></div>
 
 	<footer>
 		<p>Footer - copyright 2016</p>
 	</footer>
+
+
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+ <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkB9y214WJgC8b0Y01ABS1jNOx4elPeeE&callback=initMap"></script>
+
 <script src="scripts/doggyMain.js"></script>
 
 </html>

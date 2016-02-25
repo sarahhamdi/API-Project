@@ -60,6 +60,7 @@ doggy.dogLocationsForMap = function (filteredDogResults) {
 		dogLocationsArray.push(pets[i].contact.zip['$t']);
 	};
 	dogLocationsArray = dogLocationsArray.join('|');
+<<<<<<< HEAD
 	doggy.getCurrentLocation(dogLocationsArray);
 	console.log(dogLocationsArray);
 };
@@ -87,13 +88,24 @@ doggy.getCurrentLocation = function (userLocation, dogLocationsArray) {
 	});
 };
 // ********************END OF POSSIBLE GOOGLE API FUNCTION*******************
+=======
+	console.log(dogLocationsArray);
+};
+
+doggy.map;
+function initMap() {
+	doggy.map = new google.maps.Map(document.getElementById('map'), {
+		center: { lat: 43.7, lng: -79.4 },
+		zoom: 10
+	});
+};
+>>>>>>> b55f9798cd1a4069107b5a4774d0b644c971ce0d
 
 doggy.init = function () {
 	doggy.form();
 };
 
 $(document).ready(function () {
-	// doggy.doggyAjax();
 	doggy.init();
 });
 
