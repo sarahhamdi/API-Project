@@ -90,13 +90,19 @@ doggy.getCurrentLocation = function(userLocation, dogLocationsArray) {
 };
 
 // +++++++++ GOOGLE MAPS - PLACES MAP ON PAGE +++++++++++++++++++++++++++++++++++ //
-	doggy.map;
-	function initMap() {
-	  doggy.map = new google.maps.Map(document.getElementById('map'), {
-	    center: {lat: 43.7, lng: -79.4},
-	    zoom: 10
-	  });
-	};
+doggy.map;
+function initMap() {
+  doggy.map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 43.7, lng: -79.4},
+    zoom: 10
+  });
+
+  var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Hello World!'
+    });
+};
 
 doggy.init = function(){
 	doggy.form();

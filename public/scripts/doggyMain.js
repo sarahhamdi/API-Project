@@ -65,7 +65,7 @@ doggy.dogLocationsForMap = function (filteredDogResults) {
 	dogLocationsArray = dogLocationsArray.join('|');
 	doggy.getCurrentLocation(doggy.userLocation, dogLocationsArray);
 	console.log(dogLocationsArray);
-};
+}
 
 // **************** GOOGLE MAPS - FINDS LOCATIONS (USER + DOGS) FOR MAP  **********************
 doggy.googleAPI = "https://maps.googleapis.com/maps/api/distancematrix/json";
@@ -93,6 +93,11 @@ function initMap() {
 	doggy.map = new google.maps.Map(document.getElementById('map'), {
 		center: { lat: 43.7, lng: -79.4 },
 		zoom: 10
+	});
+	var marker = new google.maps.Marker({
+		position: myLatLng,
+		map: map,
+		title: 'Hello World!'
 	});
 };
 
