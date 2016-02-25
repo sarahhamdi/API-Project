@@ -3,24 +3,28 @@
 var doggy = {};
 var google = {};
 
+// +++++++++ ON SUBMIT +++++++++++++++++++++++++++++++++++ //
 doggy.apiKey = "290f422c91ecdc030991bbc422712f64";
 doggy.apiToken = "8463c41dbe3965fc6b42c2794511969d";
-//we can add our individual keys in here if you like
 doggy.doggyUrl = "http://api.petfinder.com/pet.find";
 
 doggy.form = function () {
 	$('#dogForm').on('submit', function (e) {
 		e.preventDefault();
-		var userLocation = $('.currentLocation').val();
+		doggy.userLocation = $('.currentLocation').val();
 		var sizeOfDog = $('#dogSize option:selected').val();
-		console.log(userLocation, sizeOfDog);
-		doggy.doggyAjax(userLocation, sizeOfDog);
-		doggy.getCurrentLocation(userLocation);
+		// console.log(userLocation, sizeOfDog);
+		doggy.doggyAjax(doggy.userLocation, sizeOfDog);
+		// doggy.getCurrentLocation(userLocation);
 	});
 };
 
+<<<<<<< HEAD
+=======
+// +++++++++ PETFINDER AJAX CALL - FINDS DOGS +++++++++++++++++++++++++++++++++++ //
+>>>>>>> 0a2ec1268cfff8951684aba8cbcabd0b02207baf
 doggy.doggyAjax = function (userLocation, sizeOfDog) {
-	console.log(userLocation);
+	// console.log(userLocation);
 	$.ajax({
 		url: doggy.doggyUrl,
 		method: 'GET',
@@ -41,14 +45,21 @@ doggy.doggyAjax = function (userLocation, sizeOfDog) {
 	});
 };
 
+// +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
 doggy.printDogsToPage = function (filteredDogResults) {
+
+	var cleanup = function cleanup(string) {
+		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
+	};
+
 	var pets = filteredDogResults.petfinder.pets.pet;
 	for (var i = 0; i < pets.length; i++) {
-		$('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t'] + pets[i].contact.zip['$t'] + pets[i].description['$t'] + '</p>');
+		$('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t'] + pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
 		console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t'] + pets[i].contact.zip['$t'] + pets[i].description['$t']);
 	}
 };
 
+// +++++++++ AFTER PETFINDER AJAX CALL, SAVES DOG POSTAL CODES ++++++++++++++++++++++++++++++ //
 doggy.dogLocationsForMap = function (filteredDogResults) {
 	var pets = filteredDogResults.petfinder.pets.pet;
 	var dogLocationsArray = [];
@@ -56,7 +67,9 @@ doggy.dogLocationsForMap = function (filteredDogResults) {
 		dogLocationsArray.push(pets[i].contact.zip['$t']);
 	};
 	dogLocationsArray = dogLocationsArray.join('|');
+	doggy.getCurrentLocation(doggy.userLocation, dogLocationsArray);
 	console.log(dogLocationsArray);
+<<<<<<< HEAD
 	doggy.getCurrentLocation(dogLocationsArray);
 }.then(function (dogLocationsArray) {
 	doggy.getCurrentLocation(userLocation, dogLocationsArray);
@@ -76,7 +89,32 @@ doggy.dogLocationsForMap = function (filteredDogResults) {
 // 				console.log(result)
 // 		});
 // 	});
+=======
+	// doggy.getCurrentLocation(dogLocationsArray);
+};
 
+// **************** GOOGLE MAPS - FINDS LOCATIONS (USER + DOGS) FOR MAP  **********************
+doggy.googleAPI = "https://maps.googleapis.com/maps/api/distancematrix/json";
+doggy.googleKEY = "AIzaSyDNFi-ralR7UhZuTx56jU0FEqxa50uxK6U";
+
+doggy.getCurrentLocation = function (userLocation, dogLocationsArray) {
+	$.ajax({
+		url: "http://proxy.hackeryou.com",
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			key: doggy.googleKEY,
+			origins: userLocation,
+			destinations: dogLocationsArray,
+			reqUrl: doggy.googleAPI
+		}
+	}).then(function (result) {
+		console.log(result);
+	});
+};
+>>>>>>> 0a2ec1268cfff8951684aba8cbcabd0b02207baf
+
+// +++++++++ GOOGLE MAPS - PLACES MAP ON PAGE +++++++++++++++++++++++++++++++++++ //
 doggy.map;
 function initMap() {
 	doggy.map = new google.maps.Map(document.getElementById('map'), {
