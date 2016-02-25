@@ -58,8 +58,9 @@ doggy.dogLocationsForMap = function (filteredDogResults) {
 	dogLocationsArray = dogLocationsArray.join('|');
 	console.log(dogLocationsArray);
 	doggy.getCurrentLocation(dogLocationsArray);
-};
-
+}.then(function (dogLocationsArray) {
+	doggy.getCurrentLocation(userLocation, dogLocationsArray);
+});
 // .then(function(userLocation, dogLocationsArray) {
 // 		$.ajax({
 // 			url: "http://proxy.hackeryou.com",
@@ -80,15 +81,15 @@ var userInput = "toronto, On";
 doggy.googleAPI = "https://maps.googleapis.com/maps/api/distancematrix/json";
 doggy.googleKEY = "AIzaSyDNFi-ralR7UhZuTx56jU0FEqxa50uxK6U";
 
-doggy.getCurrentLocation = function (userLocation) {
+doggy.getCurrentLocation = function (userLocation, dogLocationsArray) {
 	$.ajax({
 		url: "http://proxy.hackeryou.com",
 		method: 'GET',
 		dataType: 'json',
 		data: {
 			key: doggy.googleKEY,
-			origins: userLocation,
-			destinations: "B4H 3Y4|04841|04011|04103|04038|04046|04037|03247|02066|02066|03811|02632|02045|02045|02045|01864|01864|02532|02113|02111|02111|01876|01876|03224|03224",
+			origins: "toronto, On",
+			destinations: dogLocationsArray,
 			reqUrl: doggy.googleAPI
 		}
 	}).then(function (result) {
