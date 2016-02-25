@@ -93,8 +93,16 @@ doggy.dogLocationsForMap = function (filteredDogResults) {
 	for (var i = 0; i < pets.length; i++) {
 		dogLocationsArray.push(pets[i].contact.zip['$t']);
 	};
-	dogLocationsArray = dogLocationsArray.join('" | "');
+	dogLocationsArray = dogLocationsArray.join('|');
 	console.log(dogLocationsArray);
+};
+
+doggy.map;
+function initMap() {
+	doggy.map = new google.maps.Map(document.getElementById('map'), {
+		center: { lat: 43.7, lng: -79.4 },
+		zoom: 10
+	});
 };
 
 doggy.init = function () {
@@ -102,7 +110,6 @@ doggy.init = function () {
 };
 
 $(document).ready(function () {
-	// doggy.doggyAjax();
 	doggy.init();
 });
 
