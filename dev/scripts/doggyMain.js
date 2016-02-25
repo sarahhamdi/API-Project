@@ -106,11 +106,9 @@ doggy.init = function(){
 
 };
 
-=======
 var userInput = "toronto, On";
 doggy.googleAPI = "https://maps.googleapis.com/maps/api/distancematrix/json";
 doggy.googleKEY = "AIzaSyDNFi-ralR7UhZuTx56jU0FEqxa50uxK6U";
->>>>>>> b55f9798cd1a4069107b5a4774d0b644c971ce0d
 
 doggy.getCurrentLocation = function(userLocation) {
 		$.ajax({
