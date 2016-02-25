@@ -77,7 +77,6 @@ doggy.dogLocationsForMap = function(filteredDogResults) {
 	};
 
 // ****************POSSIBLE GOOGLE API FUNCTION****************************
-<<<<<<< HEAD
 // var userInput = "toronto, On";
 doggy.googleAPI = "https://maps.googleapis.com/maps/api/distancematrix/json";
 doggy.googleKEY = "AIzaSyDNFi-ralR7UhZuTx56jU0FEqxa50uxK6U";
