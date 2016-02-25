@@ -77,6 +77,15 @@ doggy.dogLocationsForMap = function (filteredDogResults) {
 // 		});
 // 	});
 
+doggy.map;
+function initMap() {
+	doggy.map = new google.maps.Map(document.getElementById('map'), {
+		center: { lat: 43.7, lng: -79.4 },
+		zoom: 10
+	});
+};
+
+// ****************POSSIBLE GOOGLE API FUNCTION****************************
 var userInput = "toronto, On";
 doggy.googleAPI = "https://maps.googleapis.com/maps/api/distancematrix/json";
 doggy.googleKEY = "AIzaSyDNFi-ralR7UhZuTx56jU0FEqxa50uxK6U";
@@ -94,14 +103,6 @@ doggy.getCurrentLocation = function (userLocation, dogLocationsArray) {
 		}
 	}).then(function (result) {
 		console.log(result);
-	});
-};
-
-doggy.map;
-function initMap() {
-	doggy.map = new google.maps.Map(document.getElementById('map'), {
-		center: { lat: 43.7, lng: -79.4 },
-		zoom: 10
 	});
 };
 
