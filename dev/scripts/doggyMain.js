@@ -107,6 +107,14 @@ doggy.init = function(){
 
 $(document).ready(function() {
 	doggy.init();
+	// doggy.map;
+	// function initMap() {
+	//   doggy.map = new google.maps.Map(document.getElementById('map'), {
+	//     center: {lat: 43.7, lng: -79.4},
+	//     zoom: 10
+	//   });
+	// };
+	// initMap();
 });
 
 
