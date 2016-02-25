@@ -71,6 +71,7 @@ doggy.dogLocationsForMap = function (filteredDogResults) {
 	console.log(dogLocationsArray);
 <<<<<<< HEAD
 	doggy.getCurrentLocation(dogLocationsArray);
+<<<<<<< HEAD
 }.then(function (dogLocationsArray) {
 	doggy.getCurrentLocation(userLocation, dogLocationsArray);
 });
@@ -89,6 +90,8 @@ doggy.dogLocationsForMap = function (filteredDogResults) {
 // 				console.log(result)
 // 		});
 // 	});
+=======
+>>>>>>> ebb21987a420e8606ce6fce9295f8e94215da696
 =======
 	// doggy.getCurrentLocation(dogLocationsArray);
 };
@@ -111,6 +114,7 @@ doggy.getCurrentLocation = function (userLocation, dogLocationsArray) {
 	}).then(function (result) {
 		console.log(result);
 	});
+>>>>>>> 0a2ec1268cfff8951684aba8cbcabd0b02207baf
 };
 >>>>>>> 0a2ec1268cfff8951684aba8cbcabd0b02207baf
 
@@ -128,21 +132,34 @@ var userInput = "toronto, On";
 doggy.googleAPI = "https://maps.googleapis.com/maps/api/distancematrix/json";
 doggy.googleKEY = "AIzaSyDNFi-ralR7UhZuTx56jU0FEqxa50uxK6U";
 
+<<<<<<< HEAD
 doggy.getCurrentLocation = function (userLocation, dogLocationsArray) {
+=======
+doggy.getCurrentLocation = function (userLocation) {
+>>>>>>> ebb21987a420e8606ce6fce9295f8e94215da696
 	$.ajax({
 		url: "http://proxy.hackeryou.com",
 		method: 'GET',
 		dataType: 'json',
 		data: {
 			key: doggy.googleKEY,
+<<<<<<< HEAD
 			origins: "toronto, On",
 			destinations: dogLocationsArray,
+=======
+			origins: userLocation,
+			destinations: "M8Z 4L5|L3T3R8",
+>>>>>>> ebb21987a420e8606ce6fce9295f8e94215da696
 			reqUrl: doggy.googleAPI
 		}
 	}).then(function (result) {
 		console.log(result);
 	});
 };
+<<<<<<< HEAD
+=======
+// ********************END OF POSSIBLE GOOGLE API FUNCTION*******************
+>>>>>>> ebb21987a420e8606ce6fce9295f8e94215da696
 
 doggy.init = function () {
 	doggy.form();
@@ -150,6 +167,14 @@ doggy.init = function () {
 
 $(document).ready(function () {
 	doggy.init();
+	// doggy.map;
+	// function initMap() {
+	//   doggy.map = new google.maps.Map(document.getElementById('map'), {
+	//     center: {lat: 43.7, lng: -79.4},
+	//     zoom: 10
+	//   });
+	// };
+	// initMap();
 });
 
 // get user information (location + breeds)
