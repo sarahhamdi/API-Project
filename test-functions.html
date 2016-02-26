@@ -13,7 +13,7 @@
 	<script>
 	'use strict'
 	var searchApp = {}
-	searchApp.postal = ['M2K 2K7','M3A 2S1', 'M3A 2S2']
+	searchApp.postal = ['M2K 2K7', 'M3A 2S1', 'M3A 2S1', 'M3A 2S1', 'M4C 1H0', 'M4C 5B2', 'M4C 5B2', 'M4C 5B2', 'M8Z 4L5', 'M8Z 4L5', 'L6A 1T1', 'L5B 0H5', 'L5B 0H5', 'L0G 1A0', 'L0G 1A0', 'L8G 3H1', 'N1R 8J6']
 	searchApp.lngArray = [];
 	searchApp.latArray = [];
 
@@ -21,7 +21,7 @@
 
 
 	// +++++++++++ TO CONVERT POSTAL CODES INTO LAT/LNG +++++++
-	searchApp.getCurrentLocation = function(postal) {
+	searchApp.convertLatLng = function(postal) {
 		var counter = 0;
 		for (let i = 0; i < searchApp.postal.length; i++) {
 			var postal2 = searchApp.postal[i];
@@ -97,7 +97,7 @@
 
 	$(document).ready(function() {
 		// initMap()
-		searchApp.getCurrentLocation();
+		searchApp.convertLatLng();
 	});
 
 	</script>

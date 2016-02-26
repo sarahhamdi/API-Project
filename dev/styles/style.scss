@@ -1,3 +1,4 @@
+
 @import "setup";
 @import "branding";
 @import "forms";
@@ -9,16 +10,10 @@ body {
 	font-family: $font-family--primary;
 }
 
-h1,
-h2 {
-	@include font-properties ($font-family--primary, $font-weight--bold , center);
-	text-transform: uppercase;
-	@include padding-margin (0, 10px 0 0 0); 
-	
-}
-
-h1 {
-	@include fontSize(34);
+.siteWrapper {
+	padding: 5%;
+	max-width: 1080px;
+	margin: 0 auto;
 }
 
 header {
@@ -34,4 +29,73 @@ header {
 	height: 500px;
 	width: 50%;
 	float: right;
+}
+
+h1,
+h2 {
+	@include font-properties ($font-family--primary, $font-weight--bold , center);
+	text-transform: uppercase;
+	@include padding-margin (0, 10px 0 0 0); 
+	
+}
+
+h1 {
+	@include fontSize(34);
+}
+
+
+h3 {
+	@include fontSize(20);
+	color: $purple;
+	font-family: $mont;
+	font-weight: $weightBold;
+}
+h4 {
+	@include fontSize(16);
+	font-weight: $weightBold;
+}
+
+p {
+	@include fontSize(14);
+}
+
+ul {
+	padding-left: 0;
+}
+
+li {
+	@include fontSize(14);
+	list-style-type: none;
+
+}
+
+.flexContainer {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-content: center;
+	width: 100%;
+	padding-top: 40px;
+
+	aside.results {
+		width: 49%;
+		height: 500px;
+		// display: block;
+		overflow: auto;
+	}
+	.dogListItem {
+		.summaryContainer {
+			
+		}
+	}
+	.mapContainer {
+		width: 49%;
+		height: 500px;
+		// display: block;
+		#map {
+			height: 500px;
+			width: 100%;
+			// display: block;
+		}
+	}
 }

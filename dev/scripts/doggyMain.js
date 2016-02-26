@@ -113,9 +113,15 @@ doggy.customerLocation = function(userFullLocation) {
 // +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
 doggy.printDogsToPage = function(filteredDogResults) {
 
+
 	// var cleanup = function(string) { 
 	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
 	// 	}
+
+	// var cleanup = function(string) { 
+	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
+	// 	}
+
 
 	var pets = filteredDogResults.petfinder.pets.pet;
 	for (var i = 0; i < pets.length; i++) {
@@ -141,8 +147,8 @@ doggy.dogLocationsForMap = function(filteredDogResults) {
 	console.log(doggy.originaldogLocationsArray);
 
 	// doggy.getCurrentLocation(dogLocationsArray);
-
 };
+
 
 // **************** GOOGLE MAPS - FINDS LOCATIONS (USER + DOGS) FOR MAP  **********************
 doggy.googleAPI = "https://maps.googleapis.com/maps/api/distancematrix/json";
@@ -208,6 +214,7 @@ doggy.getCurrentLocation = function(userFullLocation, newdogLocationsArray) {
 				console.log(counter)
 				if (counter === originaldogLocationsArray.length) {
 					console.log(doggy.lngArray);
+					console.log(doggy.lngArray.length)
 					console.log(doggy.latArray);
 					// call function that plots things out here
 					 doggy.plotOnMap(doggy.latArray, doggy.lngArray);
@@ -323,7 +330,10 @@ doggy.getCurrentLocation = function(userFullLocation, newdogLocationsArray) {
         "elementType": "geometry.fill",
         "stylers": [
             {
-                "color": "#cccccc"
+                "lightness": "-5"
+            },
+            {
+                "color": "#98d5ea"
             }
         ]
     }

@@ -4,8 +4,11 @@ $font-family--primary	: "Montserrat", sans-serif;
 // $font-family--secondary	: "Roboto", sans-serif;
 
 // Font Weights
-$font-weight--medium 	: 300;
-$font-weight--bold 		: 700;
+// $font-weight--medium 	: 300;
+// $font-weight--bold 		: 700;
+
+$weightMedium 		: 300;
+$weightBold 		: 700;
 
 // Descriptive Base Colours
 
@@ -14,7 +17,6 @@ $white			: rgba(253, 253, 253, 1);
 $beige			: rgba(237, 227, 222, 1);
 $grey			: rgba(204, 204, 204, 1);
 $black			: rgba(0, 0, 0, 1);
-
 
 // Color Usage
 
@@ -56,5 +58,8 @@ $box-shadow 	: -7px 7px 25px -12px $color-shadow;
 	justify-content: $justify-content;
 	align-content: $align-content
 }
+
+
+
 
 
