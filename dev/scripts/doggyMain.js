@@ -113,16 +113,16 @@ doggy.customerLocation = function(userFullLocation) {
 // +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
 doggy.printDogsToPage = function(filteredDogResults) {
 
-<<<<<<< HEAD
-	var cleanup = function(string) { 
-			return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
-		}
-=======
+
 	// var cleanup = function(string) { 
 	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
 	// 	}
 
->>>>>>> a8833ad531b9bdfa964038041b2edcf06a3bf652
+	// var cleanup = function(string) { 
+	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
+	// 	}
+
+
 	var pets = filteredDogResults.petfinder.pets.pet;
 	for (var i = 0; i < pets.length; i++) {
 
@@ -144,14 +144,9 @@ doggy.dogLocationsForMap = function(filteredDogResults) {
 	doggy.getCurrentLocation(doggy.userFullLocation, newdogLocationsArray);
 	doggy.convertLatLng(doggy.originaldogLocationsArray);
 	console.log(newdogLocationsArray);
-<<<<<<< HEAD
-	console.log(dogLocationsArray);
-=======
 	console.log(doggy.originaldogLocationsArray);
 
 	// doggy.getCurrentLocation(dogLocationsArray);
-
->>>>>>> 8c46923e22c1a2aab6c503ecf6293b24155b10c1
 };
 
 
