@@ -8,12 +8,12 @@
 	<div id="map" style="height: 500px">
 		
 	</div>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkB9y214WJgC8b0Y01ABS1jNOx4elPeeE&callback=initMap"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkB9y214WJgC8b0Y01ABS1jNOx4elPeeE&callback=initMap"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
 	<script>
 	'use strict'
 	var searchApp = {}
-	searchApp.postal = ['M2K 2K7', 'M3A 2S1', 'M3A 2S1', 'M3A 2S1', 'M4C 1H0', 'M4C 5B2', 'M4C 5B2', 'M4C 5B2', 'M8Z 4L5', 'M8Z 4L5', 'L6A 1T1', 'L5B 0H5', 'L5B 0H5', 'L0G 1A0', 'L0G 1A0', 'L8G 3H1', 'N1R 8J6']
+	searchApp.postal = ['M2K 2K7','M3A 2S1', 'M3A 2S2']
 	searchApp.lngArray = [];
 	searchApp.latArray = [];
 
@@ -21,7 +21,7 @@
 
 
 	// +++++++++++ TO CONVERT POSTAL CODES INTO LAT/LNG +++++++
-	searchApp.convertLatLng = function(postal) {
+	searchApp.getCurrentLocation = function(postal) {
 		var counter = 0;
 		for (let i = 0; i < searchApp.postal.length; i++) {
 			var postal2 = searchApp.postal[i];
@@ -53,23 +53,38 @@
 
  	// +++++++++++ PLOTS THE ICONS ON THE MAP BASED ON LNG/LAT ++++++++
  	searchApp.plotOnMap = function(latArray, lngArray){
-
+ 			// searchApp.dogLatLng = [];
  		for (let i = 0; i < searchApp.postal.length; i++) {
+ 			
  			var singleLat = latArray[i]
  			var singleLng = lngArray[i]
- 			searchApp.myLatLng = {lng: 43.7921395, lat: -79.386151};
+ 			var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+ 			// var dogLocation = {
+ 			// 	lat: singleLat,
+ 			// 	lng: singleLng 
+ 			// }
+ 			// searchApp.dogLatLng.push(dogLocation)
+ 			// searchApp.myLatLng = {lng: 43.7921395, lat: -79.386151};
 	 		// searchApp.map.setCenter(searchApp.myLatLng);
-	 		var image = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+	 	
 			var marker = new google.maps.Marker({
 			   position: {
 	 		 		lat: singleLat,
 	 		 		lng: singleLng
 	 		 	},
 			   map: searchApp.map,
-			   image: image
+			   label: labels[i]
 			 });
-			// console.log(marker);
  		}
+
+ 	};
+			// var marker2 = new google.maps.Marker({
+			//   position: {lat: 43.7, lng: -79.4},
+			//   label: searchApp.labels[searchApp.labelIndex++ % searchApp.labels.length],
+			//   map: searchApp.map
+			// });
+			// console.log(marker);
+ 			console.log(searchApp.dogLatLng)
  		// google.maps.event.trigger(searchApp.map, 'resize');
 		// ++++++++ POTENTIAL USE LATER - MARKERS FOR DOG LOCATIONS
  		// var infowindow = new google.maps.InfoWindow({
@@ -79,25 +94,53 @@
 		// marker.addListener('click', function() {
 		// infowindow.open(searchApp.map, marker);
 
- 	};
 
- 	// ++++++ THE ACTUAL MAP ++++++++++
- 	searchApp.map;
- 	function initMap() {
- 	  searchApp.map = new google.maps.Map(document.getElementById('map'), {
- 	    center: {lat: 43.7, lng: -79.4},
- 	    zoom: 10
- 	  });
+ 
+  //     searchApp.newMarkers = function (){
+		// searchApp.map;
+		// initMap();
+	 	function initMap() {
+	 	  searchApp.map = new google.maps.Map(document.getElementById('map'), {
+	 	    center: {lat: 43.7, lng: -79.4},
+	 	    zoom: 10
+	 	  });
+	 	 };
 
- 	};
+       // function initialize() {
+       //   var bangalore = { lat: 12.97, lng: 77.59 };
+       //   var map = new google.maps.Map(document.getElementById('map'), {
+//        //     zoom: 12,
+//        //     center: bangalore
+//        //   });
 
+//          google.maps.event.addListener(map, 'click', function(event) {
+//            addMarker(event.latLng, map);
+//          });
 
+// ///adding dog location markers 
+//        function addMarker(dogLatLng) {
+//        	// for (var i = 0, i < searchApp.dogLatLng, i++){
+//        	// 	console.log(i)
+//        	console.log(dogLatLng)
 
-	// function = plots out stuff on a map
+//          // var marker = new google.maps.Marker({
+//          //   position: searchApp.dogLatLng,
+//          //   label: searchApp.labels[searchApp.labelIndex++ % searchApp.labels.length],
+//          //   map: searchApp.map
+//          // });
+//          	// console.log(marker)
+//        }
+//  	 addMarker(searchApp.dogLatLng);
+         
+
+       // google.maps.event.addDomListener(window, 'load', initialize);
+	// }
+
 
 	$(document).ready(function() {
-		// initMap()
-		searchApp.convertLatLng();
+		initMap();
+		// searchApp.newMarkers();
+		searchApp.getCurrentLocation();
 	});
 
 	</script>
