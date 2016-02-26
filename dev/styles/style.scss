@@ -17,7 +17,7 @@ body {
 }
 
 header {
-	@include padding-margin (0, 75px 0 0 0); 
+	@include padding-margin (0, 20px 0 0 0); 
 	text-align: center;
 	svg {
 		fill: $color-primary;
@@ -25,11 +25,11 @@ header {
 	}
 }
 
-#map {
-	height: 500px;
-	width: 50%;
-	float: right;
-}
+// #map {
+// 	height: 500px;
+// 	width: 50%;
+// 	float: right;
+// }
 
 h1,
 h2 {
@@ -90,10 +90,10 @@ li {
 	}
 	.mapContainer {
 		width: 49%;
-		height: 500px;
+		height: 100vh;
 		// display: block;
 		#map {
-			height: 500px;
+			height: 100vh;
 			width: 100%;
 			// display: block;
 		}
