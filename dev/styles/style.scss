@@ -45,29 +45,24 @@ h1 {
 
 
 h3 {
-	@include fontSize(20);
+	@include fontSize(14);
 	color: $purple;
 	font-weight: $weightBold;
 
 }
 h4 {
-	@include fontSize(16);
+	@include fontSize(12);
 	font-weight: $weightBold;
 }
 
 p {
-	@include fontSize(14);
+	@include fontSize(10);
 }
 
 ul {
 	padding-left: 0;
 }
 
-li {
-	@include fontSize(14);
-	list-style-type: none;
-
-}
 
 .flexContainer {
 	display: flex;
@@ -77,12 +72,46 @@ li {
 	width: 100%;
 	padding-top: 40px;
 
+
 	aside.results {
 		width: 49%;
 		height: 500px;
 		// display: block;
 		overflow: auto;
 	}
+
+	.dogListItem {
+		summary::-webkit-details-marker {
+		  display: none;
+		}
+		summary {
+			outline: none;
+		}
+		.summaryContainer {
+			.summaryImageContainer {
+				float: left;
+				width: 50%;
+				img {
+					width: 100%;
+				}
+			}
+			.summaryTextContainer {
+				float: left;
+				width: 50%;
+				h3 {
+					margin-top: 0;
+					text-transform: uppercase;
+				}
+				h4.dogDistance, h4.dogAge {
+					color: $black;
+				}
+				img {
+					width: 15px;
+				}
+			}
+		}
+	}
+
 	.mapContainer {
 		width: 49%;
 		height: 500px;
