@@ -264,7 +264,82 @@ doggy.getCurrentLocation = function(userFullLocation, newdogLocationsArray) {
  	function initMap() {
  	  doggy.map = new google.maps.Map(document.getElementById('map'), {
  	    center: {lat: 43.7, lng: -79.4},
- 	    zoom: 8
+ 	    zoom: 8,
+ 	    sensor: false,
+ 	    styles: [
+    {
+        "featureType": "all",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#ede3de"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.park",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#252628"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "lightness": "58"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#7426d9"
+            },
+            {
+                "lightness": "58"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#cccccc"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "hue": "#6f00ff"
+            },
+            {
+                "lightness": "43"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#cccccc"
+            }
+        ]
+    }
+]
  	  });
  	  var marker = new google.maps.Marker({
       position: doggy.myLatLng,
