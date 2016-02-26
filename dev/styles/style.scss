@@ -54,6 +54,10 @@ body {
 	max-width: 1080px;
 	margin: 0 auto;
 }
+h1, h2, h3, h4, h5, p {
+	font-family: $mont;
+}
+
 h1 {
 	color:$purple;
 }
@@ -97,7 +101,7 @@ li {
 	}
 	.dogListItem {
 		.summaryContainer {
-			
+
 		}
 	}
 	.mapContainer {
