@@ -47,17 +47,12 @@ h1 {
 h3 {
 	@include fontSize(20);
 	color: $purple;
-<<<<<<< HEAD
-	font-family: $mont;
-	font-weight: $font-weight--bold;
-=======
-	font-family: $weightBold;
 	font-weight: $weightBold;
->>>>>>> 4cbb78da0dc0a347a479f0168dac28a9e912caf7
+
 }
 h4 {
 	@include fontSize(16);
-	font-weight: $font-weight--bold;
+	font-weight: $weightBold;
 }
 
 p {
@@ -87,11 +82,6 @@ li {
 		height: 500px;
 		// display: block;
 		overflow: auto;
-	}
-	.dogListItem {
-		.summaryContainer {
-
-		}
 	}
 	.mapContainer {
 		width: 49%;
