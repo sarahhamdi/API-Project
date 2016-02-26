@@ -7,64 +7,177 @@
 </head>
 <body>
 
+<div class="siteWrapper">
 
-<header>
-	<img src="logo" alt="">
-	<h1>Petfinder</h1>
+	<header>
+		<img src="assets/logo.svg" alt="Oh so Doge">
+		<h1>Petfinder</h1>
 
-	<h3>Find Senior Dogs to Adopt Near You</h3>
-	
-	<form id="dogForm">
-		<input type="text" class="currentLocation" placeholder="Your City">
-
-		 <select name="province" id="province">
-		 	<option value="ontario">Ontario</option>
-		 	<option value="quebec">Quebec</option>
-		 	<option value="nova scotia">Nova Scotia</option>
-		 	<option value="new brunswick">New Brunswick</option>
-		 	<option value="manitoba">Manitoba</option>
-		 	<option value="british columbia">British Columbia</option>
-		 	<option value="prince edward island">Prince Edward Island</option>
-		 	<option value="saskatchewan">Saskatchewan</option>
-		 	<option value="alberta">Alberta</option>
-		 	<option value="newfoundland and labrador">Newfoundland and Labrador</option>
-		 </select>
-
-		<label for="sizeOfDog">Size of Dog</label>
-		<select name="sizeOfDog" id="dogSize">
-		 	<option value="S">Small</option>
-		 	<option value="M">Medium</option>
-		 	<option value="L">Large</option>
-		 </select>
-		 
-		<input type="submit" name="submit">
-	</form>
-</header>
-	
-	
-	<aside class="results">
-		<ul class="resultsList">
-			<!-- <li>
-				
-				<details>
-					<summary>
-						image + info 
-					</summary>
-					<p>details - full description</p>
-				</details>
-			</li> -->
-		</ul>
-	</aside>
-	
-	<div id="map">
+		<h3>Find Senior Dogs to Adopt Near You</h3>
 		
-	</div>
+		<form id="dogForm">
+			<input type="text" class="currentLocation" placeholder="Your City">
 
-	<footer>
-		<p>Footer - copyright 2016</p>
-	</footer>
+			 <select name="province" id="province">
+			 	<option value="ontario">Ontario</option>
+			 	<option value="quebec">Quebec</option>
+			 	<option value="nova scotia">Nova Scotia</option>
+			 	<option value="new brunswick">New Brunswick</option>
+			 	<option value="manitoba">Manitoba</option>
+			 	<option value="british columbia">British Columbia</option>
+			 	<option value="prince edward island">Prince Edward Island</option>
+			 	<option value="saskatchewan">Saskatchewan</option>
+			 	<option value="alberta">Alberta</option>
+			 	<option value="newfoundland and labrador">Newfoundland and Labrador</option>
+			 </select>
 
+			<label for="sizeOfDog">Size of Dog</label>
+			<select name="sizeOfDog" id="dogSize">
+			 	<option value="S">Small</option>
+			 	<option value="M">Medium</option>
+			 	<option value="L">Large</option>
+			 </select>
+			 
+			<input type="submit" name="submit">
+		</form>
+	</header>
+		
+	<div class="flexContainer">
+		<aside class="results">
+			<ul class="resultsList">	
+				<li class="dogListItem">
+					<div class="summaryContainer">
+						<div class="summaryImageContainer">
+							<img src="assets/twitter.svg" alt="">
+						</div>
+						<div class="summaryTextContainer">
+							<h3>Doge</h3>
+							<h4>Age: 100</h4>
+							<h4>How Far Away?</h4> 
+							<summary>
+								<h4>description</h4>
+							</summary>
+						</div>
+					</div>
+					<div class="detailsContainer">
+						<details>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse beatae sit excepturi nulla obcaecati totam debitis, ipsam tenetur deleniti eveniet.</p>
+						</details>
+					</div>
+				</li>
+				<li class="dogListItem">
+					<div class="summaryContainer">
+						<div class="summaryImageContainer">
+							<img src="assets/twitter.svg" alt="">
+						</div>
+						<div class="summaryTextContainer">
+							<h3>Doge</h3>
+							<h4>Age: 100</h4>
+							<h4>How Far Away?</h4> 
+							<summary>
+								<h4>description</h4>
+							</summary>
+						</div>
+					</div>
+					<div class="detailsContainer">
+						<details>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse beatae sit excepturi nulla obcaecati totam debitis, ipsam tenetur deleniti eveniet.</p>
+						</details>
+					</div>
+				</li>		
+				<li class="dogListItem">
+					<div class="summaryContainer">
+						<div class="summaryImageContainer">
+							<img src="assets/twitter.svg" alt="">
+						</div>
+						<div class="summaryTextContainer">
+							<h3>Doge</h3>
+							<h4>Age: 100</h4>
+							<h4>How Far Away?</h4> 
+							<summary>
+								<h4>description</h4>
+							</summary>
+						</div>
+					</div>
+					<div class="detailsContainer">
+						<details>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse beatae sit excepturi nulla obcaecati totam debitis, ipsam tenetur deleniti eveniet.</p>
+						</details>
+					</div>
+				</li>		
+				<li class="dogListItem">
+					<div class="summaryContainer">
+						<div class="summaryImageContainer">
+							<img src="assets/twitter.svg" alt="">
+						</div>
+						<div class="summaryTextContainer">
+							<h3>Doge</h3>
+							<h4>Age: 100</h4>
+							<h4>How Far Away?</h4> 
+							<summary>
+								<h4>description</h4>
+							</summary>
+						</div>
+					</div>
+					<div class="detailsContainer">
+						<details>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse beatae sit excepturi nulla obcaecati totam debitis, ipsam tenetur deleniti eveniet.</p>
+						</details>
+					</div>
+				</li>		
+				<li class="dogListItem">
+					<div class="summaryContainer">
+						<div class="summaryImageContainer">
+							<img src="assets/twitter.svg" alt="">
+						</div>
+						<div class="summaryTextContainer">
+							<h3>Doge</h3>
+							<h4>Age: 100</h4>
+							<h4>How Far Away?</h4> 
+							<summary>
+								<h4>description</h4>
+							</summary>
+						</div>
+					</div>
+					<div class="detailsContainer">
+						<details>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse beatae sit excepturi nulla obcaecati totam debitis, ipsam tenetur deleniti eveniet.</p>
+						</details>
+					</div>
+				</li>		
+				<li class="dogListItem">
+					<div class="summaryContainer clearfix">
+						<div class="summaryImageContainer">
+							<img src="assets/twitter.svg" alt="">
+						</div>
+						<div class="summaryTextContainer">
+							<h3>Doge</h3>
+							<h4>Age: 100</h4>
+							<h4>How Far Away?</h4> 
+							<summary>
+								<h4>description</h4>
+							</summary>
+						</div>
+					</div>
+					<div class="detailsContainer">
+						<details>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse beatae sit excepturi nulla obcaecati totam debitis, ipsam tenetur deleniti eveniet.</p>
+						</details>
+					</div>
+				</li>						
+			</ul>
+		</aside>
+		<div class="mapContainer">
+			<div id="map">
+			</div>
+		</div>
+</div>	
+	
+<footer>
+	<p>Footer - copyright 2016</p>
+</footer>
 
+</div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

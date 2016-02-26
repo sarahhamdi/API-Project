@@ -1,14 +1,114 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+$mont: "Montserrat", sans-serif;
+// $font-family--secondary	: "Roboto", sans-serif;
+
+// Font Weights
+$weightMedium 	: 300;
+$weightBold 		: 700;
+
+// Color Variables
+$purple			: rgba(118, 0, 225, 1);
+$white			: rgba(253, 253, 253, 1);
+$beige			: rgba(237, 227, 222, 1);
+$grey			: rgba(204, 204, 204, 1);
+$black			: rgba(0, 0, 0, 1);
+
+// Mixins 
+@mixin fontSize($sizeValue){
+    font-size: $sizeValue * 1px;
+    font-size: ($sizeValue/10) * 1rem;
+}
+
+@mixin font-properties ($family, $weight, $align) {
+	font-family: $family;
+	font-weight: $weight;
+	text-align: $align;
+}
+
+@mixin padding-margin ($padding, $margin) {
+	padding: $padding;
+	margin: $margin;
+}
+
+@mixin colors ($background, $color) {
+	background: $background;
+	color: $color;
+}
+
+@mixin flex ($flexflow, $justify-content, $align-content) {
+	flex-flow: $flexflow;
+	justify-content: $justify-content;
+	align-content: $align-content
+}
+
+html {
+	font-size: 62.5%
+}
 
 body {
-	background: tomato;
+	background: $white;
 }
-
-#map {
-	height: 500px;
-	width: 50%;
-	float: right;
+.siteWrapper {
+	padding: 5%;
+	max-width: 1080px;
+	margin: 0 auto;
 }
-
 h1 {
-	color: blue;
+	color:$purple;
 }
+
+h3 {
+	@include fontSize(20);
+	color: $purple;
+	font-family: $mont;
+	font-weight: $weightBold;
+}
+h4 {
+	@include fontSize(16);
+	font-weight: $weightBold;
+}
+
+p {
+	@include fontSize(14);
+}
+ul {
+	padding-left: 0;
+}
+li {
+	@include fontSize(14);
+	list-style-type: none;
+
+}
+
+.flexContainer {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-content: center;
+	width: 100%;
+	padding-top: 40px;
+
+	aside.results {
+		width: 49%;
+		height: 500px;
+		// display: block;
+		overflow: auto;
+	}
+	.dogListItem {
+		.summaryContainer {
+			
+		}
+	}
+	.mapContainer {
+		width: 49%;
+		height: 500px;
+		// display: block;
+		#map {
+			height: 500px;
+			width: 100%;
+			// display: block;
+		}
+	}
+}
+
