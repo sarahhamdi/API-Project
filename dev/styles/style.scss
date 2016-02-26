@@ -1,14 +1,37 @@
+@import "setup";
+@import "branding";
+@import "forms";
+
 
 body {
-	background: tomato;
+	@include colors ($color-accent-light, $color-primary)
+	@include padding-margin (0, 0)
+	font-family: $font-family--primary;
+}
+
+h1,
+h2 {
+	@include font-properties ($font-family--primary, $font-weight--bold , center);
+	text-transform: uppercase;
+	@include padding-margin (0, 10px 0 0 0); 
+	
+}
+
+h1 {
+	@include fontSize(34);
+}
+
+header {
+	@include padding-margin (0, 75px 0 0 0); 
+	text-align: center;
+	svg {
+		fill: $color-primary;
+		width: 200px;
+	}
 }
 
 #map {
 	height: 500px;
 	width: 50%;
 	float: right;
-}
-
-h1 {
-	color: blue;
 }

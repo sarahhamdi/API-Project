@@ -1,0 +1,72 @@
+form {
+	display: flex;
+	@include flex (row wrap, space-around, flex-start);
+	@include padding-margin (0, 100px 0 75px 0);
+
+	// margin-bottom: 50px;
+	text-transform: uppercase;
+	@include fontSize(11);
+
+	label {
+		align-self: center;
+	}
+	input[type=submit] {
+		@include font-properties ($font-family--primary, $font-weight--medium , center);
+		@include padding-margin (5px, 0 0 0 0);
+		@include fontSize(11);
+		@include colors ($color-primary, $color-accent-light);
+		border: 1px solid $color-primary;
+		width: 25%;
+		text-transform: uppercase;
+		border-radius: 3px;
+		cursor: pointer;
+		font-weight: 700;
+		box-shadow: $box-shadow;
+		&:active {
+			box-shadow: none;
+		}
+		&:focus {
+			outline: none;
+		}
+	}
+}
+
+select#dogSize,
+select#province {
+	appearance: none;
+	@include font-properties ($font-family--primary, $font-weight--medium , center);
+	text-transform: uppercase;
+	@include padding-margin (2px 10px 2px 10px, 0 0 0 0);
+	@include fontSize(9);
+	border: 1px solid $color-shadow2;
+	@include colors ($color-accent-light, $color-shadow);
+	border-radius: 3px;
+	background: url(../assets/formarrows.png) 96% / 15px no-repeat;
+	width: 200px;
+	box-shadow: $box-shadow;
+	&:active {
+		box-shadow: none;
+	}
+	&:focus {
+		outline: none;
+	}
+
+}
+	input[type=text] {
+		margin: 10px;
+		background: transparent;
+		border: none;
+		border: 1px solid $color-shadow2;
+		border-radius: 3px;
+		@include padding-margin (5px 10px 2px 10px, 0 0 0 0);
+		box-shadow: $box-shadow;
+		&:focus {
+			outline: none;
+			color: $color-shadow;
+		}
+		&::-webkit-input-placeholder { 
+			color: $color-shadow;
+			text-transform: uppercase;
+			@include fontSize(9);
+		}
+	}
