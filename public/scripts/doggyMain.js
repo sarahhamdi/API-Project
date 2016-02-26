@@ -9,7 +9,11 @@ doggy.apiToken = "8463c41dbe3965fc6b42c2794511969d";
 doggy.doggyUrl = "http://api.petfinder.com/pet.find";
 
 doggy.form = function () {
+
 	$('#dogForm').on('submit', function (e) {
+		doggy.originaldogLocationsArray = [];
+		doggy.latArray = [];
+		doggy.lngArray = [];
 		e.preventDefault();
 		doggy.userLocation = $('.currentLocation').val();
 		var sizeOfDog = $('#dogSize option:selected').val();
@@ -18,6 +22,7 @@ doggy.form = function () {
 		doggy.customerLocation(doggy.userLocation);
 		console.log(doggy.userLocation);
 		// doggy.getCurrentLocation(userLocation);
+		doggy.customerLocation(doggy.userLocation);
 	});
 };
 
@@ -37,7 +42,13 @@ doggy.doggyAjax = function (userLocation, sizeOfDog) {
 			age: 'Senior',
 			status: 'A'
 		}
+<<<<<<< HEAD
 	}).then(function (results) {
+=======
+	}). // count: 10
+	then(function (results) {
+		// console.log(results);
+>>>>>>> a8833ad531b9bdfa964038041b2edcf06a3bf652
 		doggy.printDogsToPage(results);
 		doggy.dogLocationsForMap(results);
 	});
@@ -65,32 +76,72 @@ doggy.customerLocation = function (userLocation) {
 	});
 };
 
+// +++++++++ ON SUBMIT - CONVERTS USER LOCATION TO LAT LANG +++++++++++++ //
+
+doggy.lat = {};
+doggy.lng = {};
+doggy.latLng = {};
+
+doggy.customerLocation = function (userLocation) {
+	$.ajax({
+		url: "https://maps.googleapis.com/maps/api/geocode/json",
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			address: userLocation
+		}
+	}).then(function (result) {
+		console.log('hey');
+		doggy.lat = result.results[0].geometry.location.lat;
+		doggy.lng = result.results[0].geometry.location.lng;
+		doggy.latLng = doggy.lat + "," + doggy.lng;
+		// console.log(doggy.latLng);
+		// // doggy.getEvent(latLng, userPrice,foodChoice);
+
+		doggy.myLatLng = { lat: doggy.lat, lng: doggy.lng };
+		console.log(doggy.myLatLng);
+		doggy.plotOnMap(doggy.myLatLng);
+	});
+};
+
 // +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
 doggy.printDogsToPage = function (filteredDogResults) {
 
-	var cleanup = function cleanup(string) {
-		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
-	};
+	// var cleanup = function(string) {
+	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
+	// 	}
 
 	var pets = filteredDogResults.petfinder.pets.pet;
 	for (var i = 0; i < pets.length; i++) {
+<<<<<<< HEAD
 		$('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t'] + pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
+=======
+		// $('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
+>>>>>>> a8833ad531b9bdfa964038041b2edcf06a3bf652
 		// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
 	}
 };
 
+doggy.originaldogLocationsArray = [];
+
 // +++++++++ AFTER PETFINDER AJAX CALL, SAVES DOG POSTAL CODES ++++++++++++++++++++++++++++++ //
 doggy.dogLocationsForMap = function (filteredDogResults) {
 	var pets = filteredDogResults.petfinder.pets.pet;
-	var dogLocationsArray = [];
+
 	for (var i = 0; i < pets.length; i++) {
-		dogLocationsArray.push(pets[i].contact.zip['$t']);
+		doggy.originaldogLocationsArray.push(pets[i].contact.zip['$t']);
 	};
-	var newdogLocationsArray = dogLocationsArray.join('|');
+	var newdogLocationsArray = doggy.originaldogLocationsArray.join('|');
 	doggy.getCurrentLocation(doggy.userLocation, newdogLocationsArray);
+<<<<<<< HEAD
 	doggy.convertLatLng(dogLocationsArray);
 	// console.log(newdogLocationsArray);
 	// console.log(dogLocationsArray);
+=======
+	doggy.convertLatLng(doggy.originaldogLocationsArray);
+	console.log(newdogLocationsArray);
+	console.log(doggy.originaldogLocationsArray);
+>>>>>>> a8833ad531b9bdfa964038041b2edcf06a3bf652
 	// doggy.getCurrentLocation(dogLocationsArray);
 };
 
@@ -108,13 +159,14 @@ doggy.getCurrentLocation = function (userLocation, newdogLocationsArray) {
 			origins: userLocation,
 			destinations: newdogLocationsArray,
 			reqUrl: doggy.googleAPI
+
 		}
 	}).then(function (result) {
 		// console.log(result)
 	});
 };
 
-// +++++++++ GOOGLE MAPS - PLACES MAP ON PAGE +++++++++++++++++++++++++++++++++++ //
+// +++++++++++ GOOGLE MAPS - TO DISPLAY THE ACTUAL MAP ON THE PAGE +++++++++++++
 // doggy.map;
 // function initMap() {
 //   doggy.map = new google.maps.Map(document.getElementById('map'), {
@@ -131,14 +183,19 @@ doggy.getCurrentLocation = function (userLocation, newdogLocationsArray) {
 doggy.lngArray = [];
 doggy.latArray = [];
 
-// +++++++++++ TO DISPLAY THE ACTUAL MAP ON THE PAGE +++++++++++++
-
 // +++++++++++ TO CONVERT POSTAL CODES INTO LAT/LNG +++++++
-doggy.convertLatLng = function (dogLocationsArray) {
+doggy.convertLatLng = function (originaldogLocationsArray) {
+
 	var counter = 0;
+<<<<<<< HEAD
 	for (var i = 0; i < dogLocationsArray.length; i++) {
 		var dogLocationsArray2 = dogLocationsArray[i];
 		// console.log(dogLocationsArray2);
+=======
+	for (var i = 0; i < originaldogLocationsArray.length; i++) {
+		var dogLocationsArray2 = originaldogLocationsArray[i];
+		console.log(dogLocationsArray2);
+>>>>>>> a8833ad531b9bdfa964038041b2edcf06a3bf652
 		$.ajax({
 			url: "https://maps.googleapis.com/maps/api/geocode/json",
 			method: 'GET',
@@ -151,10 +208,17 @@ doggy.convertLatLng = function (dogLocationsArray) {
 			doggy.lngArray.push(result.results[0].geometry.location.lng);
 			counter++;
 
+<<<<<<< HEAD
 			// console.log(counter)
 			if (counter === dogLocationsArray.length) {
 				// console.log(doggy.lngArray);
 				// console.log(doggy.latArray);
+=======
+			console.log(counter);
+			if (counter === originaldogLocationsArray.length) {
+				console.log(doggy.lngArray);
+				console.log(doggy.latArray);
+>>>>>>> a8833ad531b9bdfa964038041b2edcf06a3bf652
 				// call function that plots things out here
 				doggy.plotOnMap(doggy.latArray, doggy.lngArray);
 			}
@@ -163,14 +227,22 @@ doggy.convertLatLng = function (dogLocationsArray) {
 };
 
 // +++++++++++ PLOTS THE ICONS ON THE MAP BASED ON LNG/LAT ++++++++
-doggy.plotOnMap = function (latArray, lngArray) {
+doggy.plotOnMap = function (latArray, lngArray, myLatLng) {
 
+<<<<<<< HEAD
 	for (var i = 0; i < doggy.dogLocationsArray.length; i++) {
 		var singleLat = latArray[i];
 		var singleLng = lngArray[i];
 		// doggy.myLatLng = latLng;
 		// console.log(doggy.myLatLng)
 		// doggy.map.setCenter(doggy.myLatLng);
+=======
+	for (var i = 0; i < doggy.originaldogLocationsArray.length; i++) {
+		var singleLat = latArray[i];
+		var singleLng = lngArray[i];
+		// doggy.myLatLng = {lng: 43.7921395, lat: -79.386151};
+		doggy.map.setCenter(doggy.myLatLng);
+>>>>>>> a8833ad531b9bdfa964038041b2edcf06a3bf652
 		var image = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
 		var marker = new google.maps.Marker({
 			position: {
@@ -197,7 +269,7 @@ doggy.map;
 function initMap() {
 	doggy.map = new google.maps.Map(document.getElementById('map'), {
 		center: { lat: 43.7, lng: -79.4 },
-		zoom: 10
+		zoom: 7
 	});
 	var marker = new google.maps.Marker({
 		position: doggy.myLatLng,
