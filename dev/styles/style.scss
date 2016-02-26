@@ -25,11 +25,6 @@ header {
 	}
 }
 
-#map {
-	height: 500px;
-	width: 50%;
-	float: right;
-}
 
 h1,
 h2 {
@@ -40,11 +35,7 @@ h2 {
 }
 
 h1 {
-<<<<<<< HEAD
-	color: blue;
-	color: yellow; 
-}
-=======
+
 	@include fontSize(34);
 }
 
@@ -99,4 +90,4 @@ li {
 		}
 	}
 }
->>>>>>> 0aaf7103eade085d314b90714166aaccf5498ee6
+

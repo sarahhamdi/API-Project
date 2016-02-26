@@ -207,6 +207,7 @@ doggy.convertLatLng = function (originaldogLocationsArray) {
 
 // +++++++++++ PLOTS THE ICONS ON THE MAP BASED ON LNG/LAT ++++++++
 doggy.plotOnMap = function (latArray, lngArray, myLatLng) {
+	var markers = [];
 
 	for (var i = 0; i < doggy.originaldogLocationsArray.length; i++) {
 		var singleLat = latArray[i];
@@ -222,8 +223,10 @@ doggy.plotOnMap = function (latArray, lngArray, myLatLng) {
 			map: doggy.map,
 			label: labels[i]
 		});
+		markers.push(marker);
 		// console.log(marker.label);
 	}
+	var markerCluster = new MarkerClusterer(doggy.map, markers);
 	// google.maps.event.trigger(doggy.map, 'resize');
 	// ++++++++ POTENTIAL USE LATER - MARKERS FOR DOG LOCATIONS
 	// var infowindow = new google.maps.InfoWindow({
@@ -235,7 +238,9 @@ doggy.plotOnMap = function (latArray, lngArray, myLatLng) {
 };
 
 // ++++++ THE ACTUAL MAP ++++++++++
-// doggy.map;
+
+// +++++++++++ TO DISPLAY THE ACTUAL MAP ON THE PAGE +++++++++++++
+doggy.map;
 function initMap() {
 	doggy.map = new google.maps.Map(document.getElementById('map'), {
 		center: { lat: 43.7, lng: -79.4 },
@@ -299,8 +304,6 @@ function initMap() {
 	//   title: 'Hello World!'
 	// });
 };
-
-// +++++++++++ TO DISPLAY THE ACTUAL MAP ON THE PAGE +++++++++++++
 
 doggy.init = function () {
 	doggy.form();
