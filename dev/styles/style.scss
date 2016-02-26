@@ -5,23 +5,64 @@
 
 
 body {
-	@include colors ($color-accent-light, $color-primary)
-	@include padding-margin (0, 0)
+	@include colors ($color-accent-light, $color-primary);
+	@include padding-margin (0, 0);
 	font-family: $font-family--primary;
 }
 
 .siteWrapper {
-	padding: 5%;
+	padding: 0 5%;
 	max-width: 1080px;
 	margin: 0 auto;
 }
 
 header {
-	@include padding-margin (0, 20px 0 0 0); 
+	@include padding-margin (0, 100px 0 0 0); 
 	text-align: center;
 	svg {
 		fill: $color-primary;
 		width: 200px;
+	}
+	.homepage-hero-module {
+    border-right: none;
+    border-left: none;
+    position: relative;
+	}
+	.no-video .video-container video,
+	.touch .video-container video {
+	    display: none;
+	}
+	.no-video .video-container .poster,
+	.touch .video-container .poster {
+	    display: block !important;
+	}
+	.video-container {
+	    position: relative;
+	    bottom: 0%;
+	    left: 0%;
+	    height: 100%;
+	    width: 100%;
+	    overflow: hidden;
+	    background: #000;
+	}
+	.video-container .poster img {
+	    width: 100%;
+	    bottom: 0;
+	    position: absolute;
+	}
+	.video-container .filter {
+	    z-index: 100;
+	    position: absolute;
+	    background: rgba(0, 0, 0, 0.4);
+	    width: 100%;
+	}
+	.video-container video {
+	    position: absolute;
+	    z-index: 0;
+	    bottom: 0;
+	}
+	.video-container video.fillWidth {
+	    width: 100%;
 	}
 }
 
@@ -75,7 +116,8 @@ li {
 	justify-content: space-between;
 	align-content: center;
 	width: 100%;
-	padding-top: 40px;
+	// padding-top: 40px;
+	padding-bottom: 50px;
 
 	aside.results {
 		width: 49%;
@@ -98,4 +140,42 @@ li {
 			// display: block;
 		}
 	}
+}
+
+footer  {
+	@include colors ($color-secondary, $color-accent-light)
+	@include padding-margin (25px 0, 0); 
+	text-transform: uppercase;
+	div.siteWrapper {
+		@include flex (row wrap, space-between, center);
+		display: flex;
+		align-items: center;
+
+	}
+	
+}
+
+.footerInfo {
+	display: flex;
+	flex-direction: column;
+	p {
+		@include padding-margin (5px, 0); 
+		@include fontSize(10);
+		// width: 50%;
+		display: inline-block;
+		&:last-child{
+			text-transform: none;
+			@include fontSize(9);
+		}
+	}
+	a {
+		// text-decoration: none;
+		color: $color-accent-light;
+		&:hover {
+			color: $color-primary;
+		}
+	}
+}
+.social img {
+	padding-left: 10px;
 }
