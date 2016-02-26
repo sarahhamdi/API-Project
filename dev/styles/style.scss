@@ -48,11 +48,11 @@ h3 {
 	@include fontSize(20);
 	color: $purple;
 	font-family: $mont;
-	font-weight: $weightBold;
+	font-weight: $font-weight--bold;
 }
 h4 {
 	@include fontSize(16);
-	font-weight: $weightBold;
+	font-weight: $font-weight--bold;
 }
 
 p {
