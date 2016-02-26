@@ -16,20 +16,23 @@ doggy.form = function() {
 		doggy.lngArray = [];
 		e.preventDefault();
 		 doggy.userLocation = $('.currentLocation').val();
+		 doggy.province = $('#province option:selected').val();
+		 doggy.userFullLocation = doggy.userLocation + "," + doggy.province;
+		 console.log(doggy.userFullLocation)
 		 var sizeOfDog = $('#dogSize option:selected').val();
 		// console.log(userLocation, sizeOfDog);
-		doggy.doggyAjax(doggy.userLocation, sizeOfDog);
-		doggy.customerLocation(doggy.userLocation);
-		console.log(doggy.userLocation)
+		doggy.doggyAjax(doggy.userFullLocation, sizeOfDog);
+		doggy.customerLocation(doggy.userFullLocation);
+		// console.log(doggy.userLocation)
 		// doggy.getCurrentLocation(userLocation);
-		doggy.customerLocation(doggy.userLocation)
+		doggy.customerLocation(doggy.userFullLocation)
 	});
 
 };
 
 
 // +++++++++ PETFINDER AJAX CALL - FINDS DOGS +++++++++++++++++++++++++++++++++++ //
-doggy.doggyAjax = function(userLocation, sizeOfDog) {
+doggy.doggyAjax = function(userFullLocation, sizeOfDog) {
 	// console.log(userLocation);
 	$.ajax({
 		url: doggy.doggyUrl,
@@ -37,7 +40,7 @@ doggy.doggyAjax = function(userLocation, sizeOfDog) {
 		dataType: 'jsonp',
 		data : {
 			key: doggy.apiKey,
-			location: userLocation,
+			location: userFullLocation,
 			animal: 'dog',
 			format: 'json',
 			size: sizeOfDog,
@@ -58,13 +61,13 @@ doggy.lat = {};
 doggy.lng = {};
 doggy.latLng = {};
 
-doggy.customerLocation = function(userLocation) {
+doggy.customerLocation = function(userFullLocation) {
 	$.ajax({
 		url: "https://maps.googleapis.com/maps/api/geocode/json",
 		method: 'GET',
 		dataType: 'json',
 		data: {
-			address: userLocation
+			address: userFullLocation
 		}
 	}).then(function(result){
 		console.log('hey');
@@ -85,13 +88,13 @@ doggy.customerLocation = function(userLocation) {
  var lng ;
 var latLng;
 
-doggy.customerLocation = function(userLocation) {
+doggy.customerLocation = function(userFullLocation) {
 	$.ajax({
 		url: "https://maps.googleapis.com/maps/api/geocode/json",
 		method: 'GET',
 		dataType: 'json',
 		data: {
-			address: userLocation
+			address: userFullLocation
 		}
 	}).then(function(result){
 		lat = (result.results[0].geometry.location.lat);
@@ -132,7 +135,7 @@ doggy.dogLocationsForMap = function(filteredDogResults) {
 		doggy.originaldogLocationsArray.push(pets[i].contact.zip['$t'])
 	}; 
 	var newdogLocationsArray = doggy.originaldogLocationsArray.join('|');
-	doggy.getCurrentLocation(doggy.userLocation, newdogLocationsArray);
+	doggy.getCurrentLocation(doggy.userFullLocation, newdogLocationsArray);
 	doggy.convertLatLng(doggy.originaldogLocationsArray);
 	console.log(newdogLocationsArray);
 	console.log(doggy.originaldogLocationsArray);
@@ -145,14 +148,14 @@ doggy.dogLocationsForMap = function(filteredDogResults) {
 doggy.googleAPI = "https://maps.googleapis.com/maps/api/distancematrix/json";
 doggy.googleKEY = "AIzaSyDNFi-ralR7UhZuTx56jU0FEqxa50uxK6U";
 
-doggy.getCurrentLocation = function(userLocation, newdogLocationsArray) {
+doggy.getCurrentLocation = function(userFullLocation, newdogLocationsArray) {
 		$.ajax({
 			url: "http://proxy.hackeryou.com",
 			method: 'GET',
 			dataType: 'json',
 			data: {
 				key: doggy.googleKEY,
-				origins: userLocation,
+				origins: userFullLocation,
 				destinations: newdogLocationsArray,
 				reqUrl: doggy.googleAPI
 
@@ -249,7 +252,7 @@ doggy.getCurrentLocation = function(userLocation, newdogLocationsArray) {
  	function initMap() {
  	  doggy.map = new google.maps.Map(document.getElementById('map'), {
  	    center: {lat: 43.7, lng: -79.4},
- 	    zoom: 7
+ 	    zoom: 8
  	  });
  	  var marker = new google.maps.Marker({
       position: doggy.myLatLng,
