@@ -102,25 +102,24 @@ doggy.customerLocation = function (userFullLocation) {
 	});
 };
 
-// // +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
-// // doggy.printDogsToPage = function (filteredDogResults) {
+// +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
+doggy.printDogsToPage = function (filteredDogResults) {
 
+	// var cleanup = function(string) {
+	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
+	// 	}
 
-// // 	var cleanup = function cleanup(string) {
-// // 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
-// // 	};
+	// var cleanup = function(string) {
+	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
+	// 	}
 
-// // 	// var cleanup = function(string) {
-// // 	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
-// // 	// 	}
-
-// }
 	var pets = filteredDogResults.petfinder.pets.pet;
 	for (var i = 0; i < pets.length; i++) {
 
 		// $('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
 		// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
 	}
+};
 
 doggy.originaldogLocationsArray = [];
 
@@ -292,7 +291,9 @@ function initMap() {
 			"featureType": "water",
 			"elementType": "geometry.fill",
 			"stylers": [{
-				"color": "#cccccc"
+				"lightness": "-5"
+			}, {
+				"color": "#98d5ea"
 			}]
 		}]
 	});

@@ -330,7 +330,10 @@ doggy.getCurrentLocation = function(userFullLocation, newdogLocationsArray) {
         "elementType": "geometry.fill",
         "stylers": [
             {
-                "color": "#cccccc"
+                "lightness": "-5"
+            },
+            {
+                "color": "#98d5ea"
             }
         ]
     }
