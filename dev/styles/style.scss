@@ -25,11 +25,6 @@ header {
 	}
 }
 
-#map {
-	height: 500px;
-	width: 50%;
-	float: right;
-}
 
 h1,
 h2 {
@@ -40,6 +35,7 @@ h2 {
 }
 
 h1 {
+
 	@include fontSize(34);
 }
 
@@ -123,3 +119,4 @@ ul {
 		}
 	}
 }
+
