@@ -33,7 +33,7 @@ header {
 
 h1,
 h2 {
-	@include font-properties ($font-family--primary, $font-weight--bold , center);
+	@include font-properties ($font-family--primary, $weightBold , center);
 	text-transform: uppercase;
 	@include padding-margin (0, 10px 0 0 0); 
 	
@@ -47,7 +47,7 @@ h1 {
 h3 {
 	@include fontSize(20);
 	color: $purple;
-	font-family: $mont;
+	font-family: $weightBold;
 	font-weight: $weightBold;
 }
 h4 {
