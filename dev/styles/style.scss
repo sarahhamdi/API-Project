@@ -1,66 +1,48 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
-$mont: "Montserrat", sans-serif;
-// $font-family--secondary	: "Roboto", sans-serif;
+@import "setup";
+@import "branding";
+@import "forms";
 
-// Font Weights
-$weightMedium 	: 300;
-$weightBold 		: 700;
-
-// Color Variables
-$purple			: rgba(118, 0, 225, 1);
-$white			: rgba(253, 253, 253, 1);
-$beige			: rgba(237, 227, 222, 1);
-$grey			: rgba(204, 204, 204, 1);
-$black			: rgba(0, 0, 0, 1);
-
-// Mixins 
-@mixin fontSize($sizeValue){
-    font-size: $sizeValue * 1px;
-    font-size: ($sizeValue/10) * 1rem;
-}
-
-@mixin font-properties ($family, $weight, $align) {
-	font-family: $family;
-	font-weight: $weight;
-	text-align: $align;
-}
-
-@mixin padding-margin ($padding, $margin) {
-	padding: $padding;
-	margin: $margin;
-}
-
-@mixin colors ($background, $color) {
-	background: $background;
-	color: $color;
-}
-
-@mixin flex ($flexflow, $justify-content, $align-content) {
-	flex-flow: $flexflow;
-	justify-content: $justify-content;
-	align-content: $align-content
-}
-
-html {
-	font-size: 62.5%
-}
 
 body {
-	background: $white;
+	@include colors ($color-accent-light, $color-primary)
+	@include padding-margin (0, 0)
+	font-family: $font-family--primary;
 }
+
 .siteWrapper {
 	padding: 5%;
 	max-width: 1080px;
 	margin: 0 auto;
 }
-h1, h2, h3, h4, h5, p {
-	font-family: $mont;
+
+header {
+	@include padding-margin (0, 75px 0 0 0); 
+	text-align: center;
+	svg {
+		fill: $color-primary;
+		width: 200px;
+	}
+}
+
+#map {
+	height: 500px;
+	width: 50%;
+	float: right;
+}
+
+h1,
+h2 {
+	@include font-properties ($font-family--primary, $font-weight--bold , center);
+	text-transform: uppercase;
+	@include padding-margin (0, 10px 0 0 0); 
+	
 }
 
 h1 {
-	color:$purple;
+	@include fontSize(34);
 }
+
 
 h3 {
 	@include fontSize(20);
@@ -76,9 +58,11 @@ h4 {
 p {
 	@include fontSize(14);
 }
+
 ul {
 	padding-left: 0;
 }
+
 li {
 	@include fontSize(14);
 	list-style-type: none;
@@ -115,4 +99,3 @@ li {
 		}
 	}
 }
-
