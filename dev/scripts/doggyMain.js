@@ -20,6 +20,7 @@ doggy.form = function() {
 		// console.log(userLocation, sizeOfDog);
 		doggy.doggyAjax(doggy.userLocation, sizeOfDog);
 		// doggy.getCurrentLocation(userLocation);
+		doggy.customerLocation(doggy.userLocation)
 	});
 
 };
@@ -39,29 +40,68 @@ doggy.doggyAjax = function(userLocation, sizeOfDog) {
 			size: sizeOfDog,
 			age: 'Senior',
 			status: 'A',
-			count: 10
+			// count: 10
 		}  
 	}).then(function(results){
 		// console.log(results);
 		doggy.printDogsToPage(results);
 		doggy.dogLocationsForMap(results);
+
 	});
+};
+
+// +++++++++ ON SUBMIT - CONVERTS USER LOCATION TO LAT LANG +++++++++++++ //
+
+doggy.lat = {};
+doggy.lng = {};
+doggy.latLng = {};
+
+doggy.customerLocation = function(userLocation) {
+	$.ajax({
+		url: "https://maps.googleapis.com/maps/api/geocode/json",
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			address: userLocation
+		}
+	}).then(function(result){
+		console.log('hey');
+		doggy.lat = (result.results[0].geometry.location.lat);
+		doggy.lng = (result.results[0].geometry.location.lng);
+		doggy.latLng = doggy.lat + "," + doggy.lng;
+		// console.log(doggy.latLng);
+		// // doggy.getEvent(latLng, userPrice,foodChoice);
+
+		doggy.myLatLng = {lat: doggy.lat, lng: doggy.lng};
+		console.log(doggy.myLatLng)
+		doggy.plotOnMap(doggy.myLatLng)
+
+	});
+		
 };
 
 // +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
 doggy.printDogsToPage = function(filteredDogResults) {
 
+<<<<<<< HEAD
 	var cleanup = function(string) { 
 			return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
 		}
+=======
+	// var cleanup = function(string) { 
+	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
+	// 	}
+
+>>>>>>> a8833ad531b9bdfa964038041b2edcf06a3bf652
 	var pets = filteredDogResults.petfinder.pets.pet;
 	for (var i = 0; i < pets.length; i++) {
-		$('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
-		console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
+		// $('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
+		// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
 	}
 };
 
 doggy.originaldogLocationsArray = [];
+
 // +++++++++ AFTER PETFINDER AJAX CALL, SAVES DOG POSTAL CODES ++++++++++++++++++++++++++++++ //
 doggy.dogLocationsForMap = function(filteredDogResults) {
 	var pets = filteredDogResults.petfinder.pets.pet;
@@ -104,7 +144,8 @@ doggy.getCurrentLocation = function(userLocation, newdogLocationsArray) {
 		});
 };
 
-// +++++++++ GOOGLE MAPS - PLACES MAP ON PAGE +++++++++++++++++++++++++++++++++++ //
+
+// +++++++++++ GOOGLE MAPS - TO DISPLAY THE ACTUAL MAP ON THE PAGE +++++++++++++
 // doggy.map;
 // function initMap() {
 //   doggy.map = new google.maps.Map(document.getElementById('map'), {
@@ -118,13 +159,8 @@ doggy.getCurrentLocation = function(userLocation, newdogLocationsArray) {
   //     title: 'Hello World!'
   //   });
 
-	// var doggy = {}
-	// dogLocationsArray = ['M2K 2K7','M3A 2S1', 'M3A 2S2']
 	doggy.lngArray = [];
 	doggy.latArray = [];
-
-	// +++++++++++ TO DISPLAY THE ACTUAL MAP ON THE PAGE +++++++++++++
-
 
 	// +++++++++++ TO CONVERT POSTAL CODES INTO LAT/LNG +++++++
 	doggy.convertLatLng = function(originaldogLocationsArray) {
@@ -159,13 +195,13 @@ doggy.getCurrentLocation = function(userLocation, newdogLocationsArray) {
 	};
 
  	// +++++++++++ PLOTS THE ICONS ON THE MAP BASED ON LNG/LAT ++++++++
- 	doggy.plotOnMap = function(latArray, lngArray){
+ 	doggy.plotOnMap = function(latArray, lngArray, myLatLng){
 
- 		for (let i = 0; i < originaldogLocationsArray.length; i++) {
+ 		for (let i = 0; i < doggy.originaldogLocationsArray.length; i++) {
  			var singleLat = latArray[i]
  			var singleLng = lngArray[i]
- 			doggy.myLatLng = {lng: 43.7921395, lat: -79.386151};
-	 		// doggy.map.setCenter(doggy.myLatLng);
+ 			// doggy.myLatLng = {lng: 43.7921395, lat: -79.386151};
+	 		doggy.map.setCenter(doggy.myLatLng);
 	 		var image = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
 			var marker = new google.maps.Marker({
 			   position: {
@@ -193,7 +229,7 @@ doggy.getCurrentLocation = function(userLocation, newdogLocationsArray) {
  	function initMap() {
  	  doggy.map = new google.maps.Map(document.getElementById('map'), {
  	    center: {lat: 43.7, lng: -79.4},
- 	    zoom: 10
+ 	    zoom: 7
  	  });
 
  	};
