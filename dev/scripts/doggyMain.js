@@ -26,10 +26,17 @@ doggy.form = function() {
 		 // 	})
 		 // },500)
 		 // $('.flexContainer').addClass('flexHeight');
+
 		 $('video').hide();
-		 $('header').addClass('headerHeight');
-		 $('footer').addClass('footerPosition');
+		 $('div.overlay').removeClass('overlay');
+		 // $('header').addClass('headerHeight');
+		 $('footer').addClass('footerPosition').css('max-width', '1080px').css('margin', '0 auto');
 		 $('body').addClass('bodyBackground');
+		 $('.wrapper').css('background', 'white').css('padding-top', '50px');
+		 $('.siteWrapper').css('background', 'white').css('padding-top', '50px').css('margin-top', '0px')
+		 $('aside').css('background-color', 'white');
+		 $('header').css('padding-top', '0').css('height', '400px')
+		 // $('header').css('background-color', 'white');
 		// console.log(userLocation, sizeOfDog);
 		doggy.doggyAjax(doggy.userFullLocation, doggy.sizeOfDog);
 		doggy.customerLocation(doggy.userFullLocation);
@@ -57,9 +64,14 @@ doggy.doggyAjax = function(userFullLocation, sizeOfDog) {
 			// count: 10
 		}  
 	}).then(function(results){
-		doggy.printDogsToPage(results);
+		// doggy.printDogsToPage(results);
 		doggy.dogLocationsForMap(results);
-		console.log(results)
+
+		var resultsForDogToPage = results.petfinder.pets.pet
+
+		doggy.displayDogInfo(resultsForDogToPage);
+
+		console.log(results);
 
 	});
 };
@@ -118,25 +130,12 @@ doggy.customerLocation = function(userFullLocation) {
 };
 
 
-
-// +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
-doggy.printDogsToPage = function(filteredDogResults) {
-
-
-	// var cleanup = function(string) { 
-	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
-	// 	}
-
-	// var cleanup = function(string) { 
-	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
-	// 	}
-
-
-	var pets = filteredDogResults.petfinder.pets.pet;
-	for (var i = 0; i < pets.length; i++) {
-
-		// $('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
-		// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
+doggy.displayDogInfo = function(results) {
+	for (var i = 0; i < results.length; i++) {
+		var dogName = results[i].name['$t']
+		console.log(dogName);
+		var dogImage = results[i].media.photos.photo[3]['$t'];
+		console.log(dogImage);
 	};
 	$('.flexContainer').show();
 	google.maps.event.trigger(document.getElementById('map'), 'resize');
@@ -146,6 +145,33 @@ doggy.printDogsToPage = function(filteredDogResults) {
 
 	  	});
 };
+
+
+// // +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
+// doggy.printDogsToPage = function(filteredDogResults) {
+
+
+// 	// var cleanup = function(string) { 
+// 	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
+// 	// 	}
+
+// 	// var cleanup = function(string) { 
+// 	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
+// 	// 	}
+
+
+
+// 	var pets = filteredDogResults.petfinder.pets.pet;
+// 	for (var i = 0; i < pets.length; i++) {
+
+// 		// $('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
+// 		// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
+// 	}
+// };
+
+		// $('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
+		// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
+	
 
 doggy.originaldogLocationsArray = [];
 
@@ -259,8 +285,33 @@ doggy.getCurrentLocation = function(userFullLocation, newdogLocationsArray) {
 			 });
 			markers.push(marker);
 			// console.log(marker.label);
+
+			// var finalLatLng = latlng;
+
+			// if (allMarkers.length != 0) {
+			//     for (i=0; i < allMarkers.length; i++) {
+			//         var existingMarker = allMarkers[i];
+			//         var pos = existingMarker.getPosition();
+
+			//         //if a marker already exists in the same position as this marker
+			//         if (latlng.equals(pos)) {
+			//             //update the position of the coincident marker by applying a small multipler to its coordinates
+			//             var newLat = latlng.lat() + (Math.random() -.5) / 1500;// * (Math.random() * (max - min) + min);
+			//             var newLng = latlng.lng() + (Math.random() -.5) / 1500;// * (Math.random() * (max - min) + min);
+			//             finalLatLng = new google.maps.LatLng(newLat,newLng);
+			//         }
+			//     }
+			// }
  		}
+
+
+
+
+
+
  		var markerCluster = new MarkerClusterer(doggy.map, markers);
+		var minClusterZoom = 10;
+		markerCluster.setMaxZoom(minClusterZoom);
  		// google.maps.event.trigger(doggy.map, 'resize');
 		// ++++++++ POTENTIAL USE LATER - MARKERS FOR DOG LOCATIONS
  		// var infowindow = new google.maps.InfoWindow({
