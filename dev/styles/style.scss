@@ -10,61 +10,59 @@ body {
 	font-family: $font-family--primary;
 }
 
-.siteWrapper {
+.bodyBackground {
+	background-image: url(../assets/backgroundtile.jpg);
+}
+
+.siteWrapper, .wrapper {
 	padding: 0 5%;
 	max-width: 1080px;
 	margin: 0 auto;
 }
 
 header {
-	@include padding-margin (0, 100px 0 0 0); 
+	// @include padding-margin (0, 100px 0 0 0); 
 	text-align: center;
+	position: relative;
+	height: 100vh;
+	padding-top: 100px;
 	svg {
 		fill: $color-primary;
 		width: 200px;
 	}
-	.homepage-hero-module {
-    border-right: none;
-    border-left: none;
-    position: relative;
+	video {
+		z-index: -1;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 100vh;
+		width: 100%;
+		object-fit:cover;
+		background-size: contain;
+		-webkit-filter:blur(3px);
+	
 	}
-	.no-video .video-container video,
-	.touch .video-container video {
-	    display: none;
+	.wrapper {
+		position: relative;
 	}
-	.no-video .video-container .poster,
-	.touch .video-container .poster {
-	    display: block !important;
-	}
-	.video-container {
-	    position: relative;
-	    bottom: 0%;
-	    left: 0%;
-	    height: 100%;
-	    width: 100%;
-	    overflow: hidden;
-	    background: #000;
-	}
-	.video-container .poster img {
-	    width: 100%;
-	    bottom: 0;
-	    position: absolute;
-	}
-	.video-container .filter {
-	    z-index: 100;
-	    position: absolute;
-	    background: rgba(0, 0, 0, 0.4);
-	    width: 100%;
-	}
-	.video-container video {
-	    position: absolute;
-	    z-index: 0;
-	    bottom: 0;
-	}
-	.video-container video.fillWidth {
-	    width: 100%;
+	.overlay {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: rgba(255,255,255,0.5);
 	}
 }
+
+.headerHeight {
+	height: 60vh;
+	padding-top: 20px;
+}
+
+
 
 h1,
 h2 {
@@ -112,37 +110,49 @@ li {
 	align-content: center;
 	width: 100%;
 	// padding-top: 40px;
-	padding-bottom: 50px;
+	padding-bottom: 70px;
 
 	aside.results {
 		width: 49%;
-		height: 500px;
+		height: 70vh;
 		// display: block;
 		overflow: auto;
 	}
 	.mapContainer {
 		width: 49%;
-		height: 100vh;
+		height: 70vh;
 		// display: block;
 		#map {
-			height: 100vh;
+			height: 70vh;
 			width: 100%;
 			// display: block;
 		}
 	}
 }
 
+.flexHeight {
+	height: 80vh;
+}
+
 footer  {
-	@include colors ($color-secondary, $color-accent-light)
+	@include colors ($color-shadow2, $color-accent-light)
 	@include padding-margin (25px 0, 0); 
 	text-transform: uppercase;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	left: 0;
 	div.siteWrapper {
 		@include flex (row wrap, space-between, center);
 		display: flex;
 		align-items: center;
-
 	}
 	
+}
+
+.footerPosition {
+	position: static;
+	background-color: $color-secondary;
 }
 
 .footerInfo {
