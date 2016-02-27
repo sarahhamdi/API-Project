@@ -26,10 +26,17 @@ doggy.form = function () {
 		// 	})
 		// },500)
 		// $('.flexContainer').addClass('flexHeight');
+
 		$('video').hide();
-		$('header').addClass('headerHeight');
-		$('footer').addClass('footerPosition');
+		$('div.overlay').removeClass('overlay');
+		// $('header').addClass('headerHeight');
+		$('footer').addClass('footerPosition').css('max-width', '1080px').css('margin', '0 auto');
 		$('body').addClass('bodyBackground');
+		$('.wrapper').css('background', 'white').css('padding-top', '50px');
+		$('.siteWrapper').css('background', 'white').css('padding-top', '50px').css('margin-top', '0px');
+		$('aside').css('background-color', 'white');
+		$('header').css('padding-top', '0').css('height', '400px');
+		// $('header').css('background-color', 'white');
 		// console.log(userLocation, sizeOfDog);
 		doggy.doggyAjax(doggy.userFullLocation, doggy.sizeOfDog);
 		doggy.customerLocation(doggy.userFullLocation);
@@ -122,6 +129,12 @@ doggy.displayDogInfo = function (results) {
 		var dogImage = results[i].media.photos.photo[3]['$t'];
 		console.log(dogImage);
 	};
+	$('.flexContainer').show();
+	google.maps.event.trigger(document.getElementById('map'), 'resize');
+	google.maps.event.addListenerOnce(map, 'idle', function () {
+		google.maps.event.trigger(map, 'resize');
+		map.setCenter({ lat: app.bandsIn2Lat, lng: app.bandsIn2Long });
+	});
 };
 
 // // +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
@@ -135,7 +148,6 @@ doggy.displayDogInfo = function (results) {
 // 	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
 // 	// 	}
 
-<<<<<<< HEAD
 // 	var pets = filteredDogResults.petfinder.pets.pet;
 // 	for (var i = 0; i < pets.length; i++) {
 
@@ -143,18 +155,9 @@ doggy.displayDogInfo = function (results) {
 // 		// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
 // 	}
 // };
-=======
-		// $('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
-		// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
-	};
-	$('.flexContainer').show();
-	google.maps.event.trigger(document.getElementById('map'), 'resize');
-	google.maps.event.addListenerOnce(map, 'idle', function () {
-		google.maps.event.trigger(map, 'resize');
-		map.setCenter({ lat: app.bandsIn2Lat, lng: app.bandsIn2Long });
-	});
-};
->>>>>>> 329a625d791926482e35ee457327d07347b04698
+
+// $('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
+// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
 
 doggy.originaldogLocationsArray = [];
 
@@ -369,9 +372,6 @@ doggy.init = function () {
 
 $(document).ready(function () {
 	doggy.init();
-<<<<<<< HEAD
-});
-=======
 	$('.flexContainer').hide();
 });
 
@@ -408,4 +408,3 @@ $(document).ready(function () {
 // EXCLUDE (in an if/else statement):
 // if no zip code (undefined)
 // if animal is adopted (regex /adopted/ in 'petfinder.pets.pet[name]' field)
->>>>>>> 329a625d791926482e35ee457327d07347b04698

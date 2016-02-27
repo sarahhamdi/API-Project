@@ -14,7 +14,9 @@ body {
 	background-image: url(../assets/backgroundtile.jpg);
 }
 
-.siteWrapper, .wrapper {
+.siteWrapper, 
+.wrapper,
+.footerWrapper {
 	padding: 0 5%;
 	max-width: 1080px;
 	margin: 0 auto;
@@ -41,7 +43,7 @@ header {
 		width: 100%;
 		object-fit:cover;
 		background-size: contain;
-		-webkit-filter:blur(3px);
+		-webkit-filter:blur(5px);
 	
 	}
 	.wrapper {
@@ -53,7 +55,7 @@ header {
 		bottom: 0;
 		left: 0;
 		right: 0;
-		background-color: rgba(255,255,255,0.5);
+		background-color: rgba(255,255,255,0.6);
 	}
 }
 
@@ -103,18 +105,22 @@ li {
 
 }
 
+
 .flexContainer {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-between;
 	align-content: center;
 	width: 100%;
+	margin-top: 50px;
+
 	// padding-top: 40px;
 	padding-bottom: 70px;
 
 	aside.results {
 		width: 49%;
 		height: 70vh;
+
 		// display: block;
 		overflow: auto;
 	}
@@ -123,7 +129,7 @@ li {
 		height: 70vh;
 		// display: block;
 		#map {
-			height: 70vh;
+			height: 75vh;
 			width: 100%;
 			// display: block;
 		}
@@ -135,14 +141,15 @@ li {
 }
 
 footer  {
-	@include colors ($color-shadow2, $color-accent-light)
-	@include padding-margin (25px 0, 0); 
+	@include colors ($color-accent, rgba(95, 104, 108, 1))
+	@include padding-margin (20px 0 20px 0, 0); 
 	text-transform: uppercase;
 	position: fixed;
 	bottom: 0;
 	right: 0;
 	left: 0;
-	div.siteWrapper {
+	// border-top: 1px solid white;
+	div.footerWrapper {
 		@include flex (row wrap, space-between, center);
 		display: flex;
 		align-items: center;
@@ -170,9 +177,9 @@ footer  {
 	}
 	a {
 		// text-decoration: none;
-		color: $color-accent-light;
+		color: rgba(95, 104, 108, 1);
 		&:hover {
-			color: $color-primary;
+			color: $color-accent-light;
 		}
 	}
 }
