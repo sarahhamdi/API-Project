@@ -20,6 +20,20 @@ doggy.form = function() {
 		 doggy.userFullLocation = doggy.userLocation + "," + doggy.province;
 		 console.log(doggy.userFullLocation)
 		 doggy.sizeOfDog = $('#dogSize option:selected').val();
+		 // $('#submit').on('click', function (){
+		 // 	$('html, body').animate ({
+		 // 		scrollTop: $(".flexContainer").offset().top
+		 // 	})
+		 // });
+		 // window.setTimeout(function(){
+		 // $('header').animate({
+		 // 	scrollTop: $(".flexContainer").offset().top
+		 // 	})
+		 // },500)
+		 // $('.flexContainer').addClass('flexHeight');
+		 $('video').hide();
+		 $('header').addClass('headerHeight');
+		 $('footer').addClass('footerPosition');
 		// console.log(userLocation, sizeOfDog);
 		doggy.doggyAjax(doggy.userFullLocation, doggy.sizeOfDog);
 		doggy.customerLocation(doggy.userFullLocation);
@@ -127,7 +141,14 @@ doggy.printDogsToPage = function(filteredDogResults) {
 
 		// $('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
 		// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
-	}
+	};
+	$('.flexContainer').show();
+	google.maps.event.trigger(document.getElementById('map'), 'resize');
+	google.maps.event.addListenerOnce(map, 'idle', function() {
+	       google.maps.event.trigger(map, 'resize');
+	       map.setCenter({lat:app.bandsIn2Lat,lng:app.bandsIn2Long});
+
+	  	});
 };
 
 doggy.originaldogLocationsArray = [];
@@ -254,6 +275,7 @@ doggy.getCurrentLocation = function(userFullLocation, newdogLocationsArray) {
 		// infowindow.open(doggy.map, marker);
  	};
 
+
  	// ++++++ THE ACTUAL MAP ++++++++++
  	
 
@@ -359,6 +381,7 @@ doggy.init = function(){
 
 $(document).ready(function() {
 	doggy.init();
+	$('.flexContainer').hide();
 });
 
 
