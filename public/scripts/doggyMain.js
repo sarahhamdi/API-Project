@@ -20,11 +20,6 @@ doggy.form = function () {
 		doggy.userFullLocation = doggy.userLocation + "," + doggy.province;
 		console.log(doggy.userFullLocation);
 		doggy.sizeOfDog = $('#dogSize option:selected').val();
-		// $('#submit').on('click', function (){
-		// 	$('html, body').animate ({
-		// 		scrollTop: $(".flexContainer").offset().top
-		// 	})
-		// });
 		// window.setTimeout(function(){
 		// $('header').animate({
 		// 	scrollTop: $(".flexContainer").offset().top
@@ -34,6 +29,7 @@ doggy.form = function () {
 		$('video').hide();
 		$('header').addClass('headerHeight');
 		$('footer').addClass('footerPosition');
+		$('body').addClass('bodyBackground');
 		// console.log(userLocation, sizeOfDog);
 		doggy.doggyAjax(doggy.userFullLocation, doggy.sizeOfDog);
 		doggy.customerLocation(doggy.userFullLocation);
@@ -266,6 +262,7 @@ function initMap() {
 		center: { lat: 43.7, lng: -79.4 },
 		zoom: 8,
 		sensor: false,
+		scrollwheel: false,
 		styles: [{
 			"featureType": "all",
 			"elementType": "geometry.fill",

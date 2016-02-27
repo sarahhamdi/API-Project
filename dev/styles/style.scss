@@ -10,6 +10,10 @@ body {
 	font-family: $font-family--primary;
 }
 
+.bodyBackground {
+	background-image: url(../assets/backgroundtile.jpg);
+}
+
 .siteWrapper, .wrapper {
 	padding: 0 5%;
 	max-width: 1080px;
@@ -106,17 +110,17 @@ li {
 	align-content: center;
 	width: 100%;
 	// padding-top: 40px;
-	padding-bottom: 50px;
+	padding-bottom: 70px;
 
 	aside.results {
 		width: 49%;
-		height: 500px;
+		height: 70vh;
 		// display: block;
 		overflow: auto;
 	}
 	.mapContainer {
 		width: 49%;
-		height: 80vh;
+		height: 70vh;
 		// display: block;
 		#map {
 			height: 70vh;
