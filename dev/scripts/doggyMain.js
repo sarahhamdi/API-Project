@@ -20,6 +20,16 @@ doggy.form = function() {
 		 doggy.userFullLocation = doggy.userLocation + "," + doggy.province;
 		 console.log(doggy.userFullLocation)
 		 doggy.sizeOfDog = $('#dogSize option:selected').val();
+		 // window.setTimeout(function(){
+		 // $('header').animate({
+		 // 	scrollTop: $(".flexContainer").offset().top
+		 // 	})
+		 // },500)
+		 // $('.flexContainer').addClass('flexHeight');
+		 $('video').hide();
+		 $('header').addClass('headerHeight');
+		 $('footer').addClass('footerPosition');
+		 $('body').addClass('bodyBackground');
 		// console.log(userLocation, sizeOfDog);
 		doggy.doggyAjax(doggy.userFullLocation, doggy.sizeOfDog);
 		doggy.customerLocation(doggy.userFullLocation);
@@ -136,6 +146,7 @@ doggy.displayDogInfo = function(results) {
 // 	// 	}
 
 
+
 // 	var pets = filteredDogResults.petfinder.pets.pet;
 // 	for (var i = 0; i < pets.length; i++) {
 
@@ -143,6 +154,19 @@ doggy.displayDogInfo = function(results) {
 // 		// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
 // 	}
 // };
+
+		// $('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
+		// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
+	};
+	$('.flexContainer').show();
+	google.maps.event.trigger(document.getElementById('map'), 'resize');
+	google.maps.event.addListenerOnce(map, 'idle', function() {
+	       google.maps.event.trigger(map, 'resize');
+	       map.setCenter({lat:app.bandsIn2Lat,lng:app.bandsIn2Long});
+
+	  	});
+};
+>>>>>>> 329a625d791926482e35ee457327d07347b04698
 
 doggy.originaldogLocationsArray = [];
 
@@ -293,6 +317,7 @@ doggy.getCurrentLocation = function(userFullLocation, newdogLocationsArray) {
 		// infowindow.open(doggy.map, marker);
  	};
 
+
  	// ++++++ THE ACTUAL MAP ++++++++++
  	
 
@@ -303,6 +328,7 @@ doggy.map;
  	    center: {lat: 43.7, lng: -79.4},
  	    zoom: 8,
  	    sensor: false,
+ 	    scrollwheel: false,
  	    styles: [
     {
         "featureType": "all",
@@ -398,4 +424,42 @@ doggy.init = function(){
 
 $(document).ready(function() {
 	doggy.init();
+	$('.flexContainer').hide();
 });
+
+
+
+// get user information (location + breeds)
+// on submit, push info to Petfinder to find dogs (requires location field to work)
+// get results from Petfinder on dogs
+// see exclusions below
+// filter postal code from dogs
+
+// ********POSSIBLE Filter Function: NEEDS TO BE LOOKED OVER? *********
+
+// doggy.filterdoggy = function(AJAXresults) {
+//  var displayDogs = [];
+//  for (i = 0; i < AJAXresults.petfinder.pets.pet.length; i += 1;) {
+// 		var checkPostal = AJAXresults.petfinder.pets.pet[i].contact
+// 		if (checkPostal = 'undefined') {
+
+// 			console.log('no postal');
+// 		} else {
+// 		displayDogs.push(AJAX.petfinder.pets.pet[i]);
+// 		}
+// 		console.log(displayDogs)
+// 		***then use the "filtered" array in next function****
+// 	}
+// }
+// ********************************************************************
+
+// plot location of dogs on google maps based on postal code
+// display Pic, Name, Location, Description of dog
+
+// REQUIRED: 
+// key, location, animal, format (json), age (senior)
+
+// EXCLUDE (in an if/else statement):
+// if no zip code (undefined)
+// if animal is adopted (regex /adopted/ in 'petfinder.pets.pet[name]' field)
+>>>>>>> 329a625d791926482e35ee457327d07347b04698
