@@ -9,12 +9,11 @@
 		
 	</div>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkB9y214WJgC8b0Y01ABS1jNOx4elPeeE&callback=initMap"></script>
-	<script src="js-marker-clusterer-gh-pages/js-marker-clusterer-gh-pages/src/markerclusterer_compiled.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
 	<script>
 	'use strict'
 	var searchApp = {}
-	searchApp.postal = ['M2K 2K7','M3A 2S1', 'M3A 2S2', 'M3A 2S2', 'M3A 2S2']
+	searchApp.postal = ['M2K 2K7','M3A 2S1', 'M3A 2S2','M3A 2S1','M3A 2S1']
 	searchApp.lngArray = [];
 	searchApp.latArray = [];
 
@@ -55,8 +54,6 @@
  	// +++++++++++ PLOTS THE ICONS ON THE MAP BASED ON LNG/LAT ++++++++
  	searchApp.plotOnMap = function(latArray, lngArray){
  			// searchApp.dogLatLng = [];
- 			var markers = [];
-
  		for (let i = 0; i < searchApp.postal.length; i++) {
  			
  			var singleLat = latArray[i]
@@ -78,12 +75,13 @@
 			   map: searchApp.map,
 			   label: labels[i]
 			 });
-			markers.push(marker);
-
  		}
- 		var markerCluster = new MarkerClusterer(searchApp.map, markers);
 
  	};
+
+
+
+
 			// var marker2 = new google.maps.Marker({
 			//   position: {lat: 43.7, lng: -79.4},
 			//   label: searchApp.labels[searchApp.labelIndex++ % searchApp.labels.length],
@@ -102,16 +100,42 @@
 
 
  
-  //     searchApp.newMarkers = function (){
-		// searchApp.map;
-		// initMap();
-	 	function initMap() {
-	 	  searchApp.map = new google.maps.Map(document.getElementById('map'), {
-	 	    center: {lat: 43.7, lng: -79.4},
-	 	    zoom: 10
-	 	  });
+searchApp.newMarkers = function (){
+		searchApp.map;
+		initMap();
+	 // 	function initMap() {
+	 // 	  searchApp.map = new google.maps.Map(document.getElementById('map'), {
+	 // 	    center: {lat: 43.7, lng: -79.4},
+	 // 	    zoom: 10
+	 // 	  });
+	 function initMap() {
+        searchApp.map = new google.maps.LatLng(43.7, -79.4);
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: searchApp.map,
+      });
+        };
+ 
+      //   var markers = [];
+      //   for (var i = 0; i < 100; i++) {
+      //     var dataPhoto = data.photos[i];
+      //     var latLng = new google.maps.LatLng(dataPhoto.latitude,
+      //         dataPhoto.longitude);
+      //     var marker = new google.maps.Marker({
+      //       position: latLng
+      //     });
+      //     markers.push(marker);
+      //   }
+      //   var markerCluster = new MarkerClusterer(map, markers);
+      // }
+      google.maps.event.addDomListener(window, 'load', initMap);
+
 	 	 };
 
+
+
+	 	
        // function initialize() {
        //   var bangalore = { lat: 12.97, lng: 77.59 };
        //   var map = new google.maps.Map(document.getElementById('map'), {
@@ -144,8 +168,8 @@
 
 
 	$(document).ready(function() {
-		initMap();
-		// searchApp.newMarkers();
+		// initMap();
+		searchApp.newMarkers();
 		searchApp.getCurrentLocation();
 	});
 

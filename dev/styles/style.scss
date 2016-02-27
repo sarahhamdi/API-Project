@@ -66,12 +66,6 @@ header {
 	}
 }
 
-// #map {
-// 	height: 500px;
-// 	width: 50%;
-// 	float: right;
-// }
-
 h1,
 h2 {
 	@include font-properties ($font-family--primary, $weightBold , center);
@@ -81,6 +75,7 @@ h2 {
 }
 
 h1 {
+
 	@include fontSize(34);
 }
 
@@ -88,8 +83,8 @@ h1 {
 h3 {
 	@include fontSize(20);
 	color: $purple;
-	font-family: $weightBold;
 	font-weight: $weightBold;
+
 }
 h4 {
 	@include fontSize(16);
@@ -124,11 +119,6 @@ li {
 		height: 500px;
 		// display: block;
 		overflow: auto;
-	}
-	.dogListItem {
-		.summaryContainer {
-			
-		}
 	}
 	.mapContainer {
 		width: 49%;
