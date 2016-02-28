@@ -139,31 +139,52 @@ doggy.displayDogInfo = function (results) {
 		// stores dog description
 		var dogDescription = result.description['$t'];
 		// stores dog breed
-		var dogBreed = result.breeds.breed['$t'];
-		console.log(dogDescription);
+		// Need to add if else conditions incase breed is an array
+		var descriptionHeader = $('<h4>').addClass('descriptionHeader').text('description');
 
-		console.log(dogImage);
-		// wraps the doggy data in html elements to be placed on page
-		var dogImageToPage = $('<img>').attr('src', dogImage);
-		var dogNameToPage = $('<h3>').addClass('dogName').text(dogName);
-		var dogBreedToPage = $('<h4>').addClass('dogBreed').text(dogBreed);
-		var dogDescriptionToPage = $('<p>').addClass('dogDescription').append(dogDescription);
-		// creates the list Item html structure and elements where the doggy data will be placed
-		var summaryImageContainer = $('<div>').addClass('summaryImageContainer').css('background-color', '$purple;').append(dogImageToPage);
+		if (Object.prototype.toString.call(result.breeds.breed) === '[object Array]') {
 
-		var summaryTextContainer = $('<div>').addClass('summaryTextContainer').append(dogNameToPage).append(dogBreedToPage);
+			var dogBreedArray = result.breeds.breed[0]['$t'];
 
-		var summaryContainer = $('<div>').addClass('summaryContainer clearfix').append(summaryImageContainer).append(summaryTextContainer);
+			var dogBreedArrayToPage = $('<h4>').addClass('dogBreed').text(dogBreedArray + ' mix');
+			console.log(dogBreedArray);
 
-		var summary = $('<summary>').append(summaryContainer);
+			var summaryTextContainer = $('<div>').addClass('summaryTextContainer').append(dogNameToPage).append(dogBreedArrayToPage).append(descriptionHeader);
 
-		var details = $('<details>').append(summary).append(dogDescriptionToPage);
+			var summaryContainer = $('<div>').addClass('summaryContainer clearfix').append(summaryImageContainer).append(summaryTextContainer);
 
-		var dogListItem = $('<li>').addClass('dogListItem').append(details);
+			var summary = $('<summary>').append(summaryContainer);
 
-		console.log(dogName);
-		// puts each of the list items in the <ul>
-		$('.resultsList').append(dogListItem);
+			var details = $('<details>').append(summary).append(dogDescriptionToPage);
+
+			var dogListItem = $('<li>').addClass('dogListItem').append(details);
+		} else {
+			var dogBreed = result.breeds.breed['$t'];
+
+			var dogImageToPage = $('<img>').attr('src', dogImage);
+			var dogNameToPage = $('<h3>').addClass('dogName').text(dogName);
+			var dogBreedToPage = $('<h4>').addClass('dogBreed').text(dogBreed);
+
+			console.log(dogImage);
+
+			// wraps the doggy data in html elements to be placed on page
+			var dogDescriptionToPage = $('<p>').addClass('dogDescription').append(dogDescription);
+			// creates the list Item html structure and elements where the doggy data will be placed
+			var summaryImageContainer = $('<div>').addClass('summaryImageContainer').css('background-color', '$purple;').append(dogImageToPage);
+
+			var summaryTextContainer = $('<div>').addClass('summaryTextContainer').append(dogNameToPage).append(dogBreedToPage).append(descriptionHeader);
+
+			var summaryContainer = $('<div>').addClass('summaryContainer clearfix').append(summaryImageContainer).append(summaryTextContainer);
+
+			var summary = $('<summary>').append(summaryContainer);
+
+			var details = $('<details>').append(summary).append(dogDescriptionToPage);
+
+			var dogListItem = $('<li>').addClass('dogListItem').append(details);
+
+			// puts each of the list items in the <ul>
+			$('.resultsList').append(dogListItem);
+		}
 	});
 };
 
@@ -241,7 +262,7 @@ doggy.getCurrentLocation = function (userFullLocation, newdogLocationsArray) {
 
 		}
 	}).then(function (result) {
-		// console.log(result)
+		console.log(result);
 	});
 };
 
