@@ -4,7 +4,7 @@ var doggy = {};
 var google = {};
 
 // +++++++++ ON SUBMIT +++++++++++++++++++++++++++++++++++ //
-doggy.apiKey = "290f422c91ecdc030991bbc422712f64";
+doggy.apiKey = "541cb1a0e5adaea84a99c1940f7fc56b";
 doggy.apiToken = "8463c41dbe3965fc6b42c2794511969d";
 doggy.doggyUrl = "http://api.petfinder.com/pet.find";
 
@@ -57,10 +57,10 @@ doggy.doggyAjax = function (userFullLocation, sizeOfDog) {
 			format: 'json',
 			size: sizeOfDog,
 			age: 'Senior',
-			status: 'A'
+			status: 'A',
+			count: 8
 		}
-	}). // count: 10
-	then(function (results) {
+	}).then(function (results) {
 		// doggy.printDogsToPage(results);
 		doggy.dogLocationsForMap(results);
 
@@ -87,7 +87,6 @@ doggy.customerLocation = function (userFullLocation) {
 			address: userFullLocation
 		}
 	}).then(function (result) {
-		console.log('hey');
 		doggy.lat = result.results[0].geometry.location.lat;
 		doggy.lng = result.results[0].geometry.location.lng;
 		doggy.latLng = doggy.lat + "," + doggy.lng;
@@ -99,30 +98,9 @@ doggy.customerLocation = function (userFullLocation) {
 		doggy.plotOnMap(doggy.myLatLng);
 	});
 };
-var lat;
-var lng;
-var latLng;
+// ++++++++++++++++++END OF CONVERT USER LOCATION TO LAT LANG++++++++
 
-// doggy.customerLocation = function(userFullLocation) {
-// 	$.ajax({
-// 		url: "https://maps.googleapis.com/maps/api/geocode/json",
-// 		method: 'GET',
-// 		dataType: 'json',
-// 		data: {
-// 			address: userFullLocation
-// 		}
-// 	}).then(function(result){
-// 		lat = (result.results[0].geometry.location.lat);
-// 		lng= (result.results[0].geometry.location.lng);
-// 		latLng = lat + "," + lng;
-// 		console.log(latLng)
-// 		// // doggy.getEvent(latLng, userPrice,foodChoice);
-
-// 		doggy.myLatLng = {lat: lat, lng: lng}
-// 	});
-
-// };
-
+// +++++++++++++++DISPLAY DOG CONTENT ON PAGE++++++++++++++++++++++++
 doggy.displayDogInfo = function (results) {
 	$('.flexContainer').show();
 	google.maps.event.trigger(document.getElementById('map'), 'resize');
@@ -155,17 +133,15 @@ doggy.displayDogInfo = function (results) {
 
 			var summary = $('<summary>').append(summaryContainer);
 
-			var details = $('<details>').append(summary).append(dogDescriptionToPage);
+			var details = $('<details>').addClass('clearfix').append(summary).append(dogDescriptionToPage);
 
-			var dogListItem = $('<li>').addClass('dogListItem').append(details);
+			var dogListItem = $('<li>').addClass('dogListItem clearfix').append(details);
 		} else {
 			var dogBreed = result.breeds.breed['$t'];
 
 			var dogImageToPage = $('<img>').attr('src', dogImage);
 			var dogNameToPage = $('<h3>').addClass('dogName').text(dogName);
 			var dogBreedToPage = $('<h4>').addClass('dogBreed').text(dogBreed);
-
-			console.log(dogImage);
 
 			// wraps the doggy data in html elements to be placed on page
 			var dogDescriptionToPage = $('<p>').addClass('dogDescription').append(dogDescription);
@@ -180,13 +156,15 @@ doggy.displayDogInfo = function (results) {
 
 			var details = $('<details>').append(summary).append(dogDescriptionToPage);
 
-			var dogListItem = $('<li>').addClass('dogListItem').append(details);
-
+			var dogListItem = $('<li>').addClass('dogListItem clearfix').addClass("dogNum" + i).append(details);
+			console.log(dogListItem);
 			// puts each of the list items in the <ul>
 			$('.resultsList').append(dogListItem);
 		}
 	});
 };
+
+// +++++++++++++++++++++++END OF DISPLAY DOG INFO TO PAGE +++++++++++++++++++++++++++++++++++
 
 // // +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
 // doggy.printDogsToPage = function(filteredDogResults) {
@@ -199,18 +177,7 @@ doggy.displayDogInfo = function (results) {
 // 	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
 // 	// 	}
 
-// 	var pets = filteredDogResults.petfinder.pets.pet;
-// 	for (var i = 0; i < pets.length; i++) {
-
-// 		// $('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
-// 		// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
-// 	}
-// };
-
-// $('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
-// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
-
-// // +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
+// +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
 // doggy.printDogsToPage = function(filteredDogResults) {
 
 // 	// var cleanup = function(string) {
@@ -267,23 +234,11 @@ doggy.getCurrentLocation = function (userFullLocation, newdogLocationsArray) {
 };
 
 // +++++++++++ GOOGLE MAPS - TO DISPLAY THE ACTUAL MAP ON THE PAGE +++++++++++++
-// doggy.map;
-// function initMap() {
-//   doggy.map = new google.maps.Map(document.getElementById('map'), {
-//     center: {lat: 43.7, lng: -79.4},
-//     zoom: 10
-//   });
-
-// var marker = new google.maps.Marker({
-//     position: myLatLng,
-//     map: map,
-//     title: 'Hello World!'
-//   });
+// +++++++++++ TO CONVERT POSTAL CODES INTO LAT/LNG +++++++
 
 doggy.lngArray = [];
 doggy.latArray = [];
 
-// +++++++++++ TO CONVERT POSTAL CODES INTO LAT/LNG +++++++
 doggy.convertLatLng = function (originaldogLocationsArray) {
 
 	var counter = 0;
@@ -334,7 +289,7 @@ doggy.plotOnMap = function (latArray, lngArray, myLatLng) {
 			label: labels[i]
 		});
 		markers.push(marker);
-		// console.log(marker.label);
+		console.log(marker.label);
 
 		// var finalLatLng = latlng;
 
@@ -352,7 +307,15 @@ doggy.plotOnMap = function (latArray, lngArray, myLatLng) {
 		//         }
 		//     }
 		// }
-	}
+	};
+	$.each(markers, function (i, marker) {
+		var markerLetter = marker.label;
+		console.log(markerLetter);
+		var markerIcon = $('<h2>').addClass('markerLetter').text(markerLetter);
+		var mapMarkerCirlce = $('<div>').addClass('mapMarkerCirlce').append(markerIcon);
+		var mapMarkerIconContainer = $('<div>').addClass('mapMarkerIconContainer').append(mapMarkerCirlce);
+		$('.dogNum' + i).append(mapMarkerIconContainer);
+	});
 
 	var markerCluster = new MarkerClusterer(doggy.map, markers);
 	var minClusterZoom = 10;
