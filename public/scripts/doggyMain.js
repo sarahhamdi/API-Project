@@ -11,6 +11,8 @@ doggy.doggyUrl = "http://api.petfinder.com/pet.find";
 doggy.form = function () {
 
 	$('#dogForm').on('submit', function (e) {
+
+		$('.resultsList').empty();
 		doggy.originaldogLocationsArray = [];
 		doggy.latArray = [];
 		doggy.lngArray = [];
@@ -333,6 +335,7 @@ doggy.plotOnMap = function (latArray, lngArray, myLatLng) {
 			map: doggy.map,
 			label: labels[i]
 		});
+		// icon: iconBase + 'assets/mapicon.png'
 		markers.push(marker);
 		// console.log(marker.label);
 
