@@ -109,25 +109,25 @@ doggy.customerLocation = function(userFullLocation) {
  var lng ;
 var latLng;
 
-doggy.customerLocation = function(userFullLocation) {
-	$.ajax({
-		url: "https://maps.googleapis.com/maps/api/geocode/json",
-		method: 'GET',
-		dataType: 'json',
-		data: {
-			address: userFullLocation
-		}
-	}).then(function(result){
-		lat = (result.results[0].geometry.location.lat);
-		lng= (result.results[0].geometry.location.lng);
-		latLng = lat + "," + lng;
-		console.log(latLng)
-		// // doggy.getEvent(latLng, userPrice,foodChoice);
+// doggy.customerLocation = function(userFullLocation) {
+// 	$.ajax({
+// 		url: "https://maps.googleapis.com/maps/api/geocode/json",
+// 		method: 'GET',
+// 		dataType: 'json',
+// 		data: {
+// 			address: userFullLocation
+// 		}
+// 	}).then(function(result){
+// 		lat = (result.results[0].geometry.location.lat);
+// 		lng= (result.results[0].geometry.location.lng);
+// 		latLng = lat + "," + lng;
+// 		console.log(latLng)
+// 		// // doggy.getEvent(latLng, userPrice,foodChoice);
 
-		doggy.myLatLng = {lat: lat, lng: lng}
-	});
+// 		doggy.myLatLng = {lat: lat, lng: lng}
+// 	});
 		
-};
+// };
 
 
 doggy.displayDogInfo = function(results) {
