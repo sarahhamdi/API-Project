@@ -20,6 +20,23 @@ doggy.form = function() {
 		 doggy.userFullLocation = doggy.userLocation + "," + doggy.province;
 		 console.log(doggy.userFullLocation)
 		 doggy.sizeOfDog = $('#dogSize option:selected').val();
+		 // window.setTimeout(function(){
+		 // $('header').animate({
+		 // 	scrollTop: $(".flexContainer").offset().top
+		 // 	})
+		 // },500)
+		 // $('.flexContainer').addClass('flexHeight');
+
+		 $('video').hide();
+		 $('div.overlay').removeClass('overlay');
+		 // $('header').addClass('headerHeight');
+		 $('footer').addClass('footerPosition').css('max-width', '1080px').css('margin', '0 auto');
+		 $('body').addClass('bodyBackground');
+		 $('.wrapper').css('background', 'white').css('padding-top', '50px');
+		 $('.siteWrapper').css('background', 'white').css('padding-top', '50px').css('margin-top', '0px')
+		 $('aside').css('background-color', 'white');
+		 $('header').css('padding-top', '0').css('height', '400px')
+		 // $('header').css('background-color', 'white');
 		// console.log(userLocation, sizeOfDog);
 		doggy.doggyAjax(doggy.userFullLocation, doggy.sizeOfDog);
 		doggy.customerLocation(doggy.userFullLocation);
@@ -114,20 +131,31 @@ doggy.customerLocation = function(userFullLocation) {
 
 
 doggy.displayDogInfo = function(results) {
+	$('.flexContainer').show();
+	google.maps.event.trigger(document.getElementById('map'), 'resize');
+	google.maps.event.addListenerOnce(map, 'idle', function() {
+		google.maps.event.trigger(map, 'resize');
+		map.setCenter({lat:app.bandsIn2Lat,lng:app.bandsIn2Long});
+	});
+
 	$.each(results, function(i, result) {
+		// stores dog name
 		var dogName = result.name['$t'];
-		console.log(dogName);
+		// stores dog image
 		var dogImage = result.media.photos.photo[3]['$t'];
+		// stores dog description
 		var dogDescription = result.description['$t'];
+		// stores dog breed
 		var dogBreed = result.breeds.breed['$t'];
 		console.log(dogDescription);
 
 		console.log(dogImage);
+		// wraps the doggy data in html elements to be placed on page
 		var dogImageToPage = $('<img>').attr('src', dogImage);
 		var dogNameToPage = $('<h3>').addClass('dogName').text(dogName);
 		var dogBreedToPage = $('<h4>').addClass('dogBreed').text(dogBreed);
 		var dogDescriptionToPage = $('<p>').addClass('dogDescription').append(dogDescription);
-
+		// creates the list Item html structure and elements where the doggy data will be placed 
 		var summaryImageContainer =	$('<div>').addClass('summaryImageContainer').css('background-color', '$purple;').append(dogImageToPage);
 
 		var summaryTextContainer = $('<div>').addClass('summaryTextContainer').append(dogNameToPage).append(dogBreedToPage);
@@ -140,12 +168,39 @@ doggy.displayDogInfo = function(results) {
 
 		var dogListItem = $('<li>').addClass('dogListItem').append(details);
 
-		console.log(dogName);	
+		console.log(dogName);
+		// puts each of the list items in the <ul>
 		$('.resultsList').append(dogListItem);
 
-	});		
+	});
 };
 
+
+// // +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
+// doggy.printDogsToPage = function(filteredDogResults) {
+
+
+// 	// var cleanup = function(string) { 
+// 	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
+// 	// 	}
+
+// 	// var cleanup = function(string) { 
+// 	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
+// 	// 	}
+
+
+
+// 	var pets = filteredDogResults.petfinder.pets.pet;
+// 	for (var i = 0; i < pets.length; i++) {
+
+// 		// $('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
+// 		// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
+// 	}
+// };
+
+		// $('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
+		// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
+	
 
 // // +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
 // doggy.printDogsToPage = function(filteredDogResults) {
@@ -280,8 +335,33 @@ doggy.getCurrentLocation = function(userFullLocation, newdogLocationsArray) {
 			 });
 			markers.push(marker);
 			// console.log(marker.label);
+
+			// var finalLatLng = latlng;
+
+			// if (allMarkers.length != 0) {
+			//     for (i=0; i < allMarkers.length; i++) {
+			//         var existingMarker = allMarkers[i];
+			//         var pos = existingMarker.getPosition();
+
+			//         //if a marker already exists in the same position as this marker
+			//         if (latlng.equals(pos)) {
+			//             //update the position of the coincident marker by applying a small multipler to its coordinates
+			//             var newLat = latlng.lat() + (Math.random() -.5) / 1500;// * (Math.random() * (max - min) + min);
+			//             var newLng = latlng.lng() + (Math.random() -.5) / 1500;// * (Math.random() * (max - min) + min);
+			//             finalLatLng = new google.maps.LatLng(newLat,newLng);
+			//         }
+			//     }
+			// }
  		}
+
+
+
+
+
+
  		var markerCluster = new MarkerClusterer(doggy.map, markers);
+		var minClusterZoom = 10;
+		markerCluster.setMaxZoom(minClusterZoom);
  		// google.maps.event.trigger(doggy.map, 'resize');
 		// ++++++++ POTENTIAL USE LATER - MARKERS FOR DOG LOCATIONS
  		// var infowindow = new google.maps.InfoWindow({
@@ -291,6 +371,7 @@ doggy.getCurrentLocation = function(userFullLocation, newdogLocationsArray) {
 		// marker.addListener('click', function() {
 		// infowindow.open(doggy.map, marker);
  	};
+
 
  	// ++++++ THE ACTUAL MAP ++++++++++
  	
@@ -302,6 +383,7 @@ doggy.map;
  	    center: {lat: 43.7, lng: -79.4},
  	    zoom: 8,
  	    sensor: false,
+ 	    scrollwheel: false,
  	    styles: [
     {
         "featureType": "all",
@@ -397,6 +479,7 @@ doggy.init = function(){
 
 $(document).ready(function() {
 	doggy.init();
+	$('.flexContainer').hide();
 });
 
 

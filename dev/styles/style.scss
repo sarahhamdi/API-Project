@@ -5,25 +5,65 @@
 
 
 body {
-	@include colors ($color-accent-light, $color-primary)
-	@include padding-margin (0, 0)
+	@include colors ($color-accent-light, $color-primary);
+	@include padding-margin (0, 0);
 	font-family: $font-family--primary;
 }
 
-.siteWrapper {
-	padding: 5%;
+.bodyBackground {
+	background-image: url(../assets/backgroundtile.jpg);
+}
+
+.siteWrapper, 
+.wrapper,
+.footerWrapper {
+	padding: 0 5%;
 	max-width: 1080px;
 	margin: 0 auto;
 }
 
 header {
-	@include padding-margin (0, 75px 0 0 0); 
+	// @include padding-margin (0, 100px 0 0 0); 
 	text-align: center;
+	position: relative;
+	height: 100vh;
+	padding-top: 100px;
 	svg {
 		fill: $color-primary;
 		width: 200px;
 	}
+	video {
+		z-index: -1;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 100vh;
+		width: 100%;
+		object-fit:cover;
+		background-size: contain;
+		-webkit-filter:blur(5px);
+	
+	}
+	.wrapper {
+		position: relative;
+	}
+	.overlay {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: rgba(255,255,255,0.6);
+	}
 }
+
+.headerHeight {
+	height: 60vh;
+	padding-top: 20px;
+}
+
 
 
 h1,
@@ -61,18 +101,23 @@ ul {
 }
 
 
+
 .flexContainer {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-between;
 	align-content: center;
 	width: 100%;
-	padding-top: 40px;
+	margin-top: 50px;
+
+	// padding-top: 40px;
+	padding-bottom: 70px;
 
 
 	aside.results {
 		width: 49%;
-		height: 500px;
+		height: 70vh;
+
 		// display: block;
 		overflow: auto;
 	}
@@ -114,13 +159,63 @@ ul {
 
 	.mapContainer {
 		width: 49%;
-		height: 500px;
+		height: 70vh;
 		// display: block;
 		#map {
-			height: 500px;
+			height: 75vh;
 			width: 100%;
 			// display: block;
 		}
 	}
 }
 
+.flexHeight {
+	height: 80vh;
+}
+
+footer  {
+	@include colors ($color-accent, rgba(95, 104, 108, 1))
+	@include padding-margin (20px 0 20px 0, 0); 
+	text-transform: uppercase;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	// border-top: 1px solid white;
+	div.footerWrapper {
+		@include flex (row wrap, space-between, center);
+		display: flex;
+		align-items: center;
+	}
+	
+}
+
+.footerPosition {
+	position: static;
+	background-color: $color-secondary;
+}
+
+.footerInfo {
+	display: flex;
+	flex-direction: column;
+	p {
+		@include padding-margin (5px, 0); 
+		@include fontSize(10);
+		// width: 50%;
+		display: inline-block;
+		&:last-child{
+			text-transform: none;
+			@include fontSize(9);
+		}
+	}
+	a {
+		// text-decoration: none;
+		color: rgba(95, 104, 108, 1);
+		&:hover {
+			color: $color-accent-light;
+		}
+	}
+}
+.social img {
+	padding-left: 10px;
+}

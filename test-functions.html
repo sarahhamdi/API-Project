@@ -10,6 +10,7 @@
 	</div>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkB9y214WJgC8b0Y01ABS1jNOx4elPeeE&callback=initMap"></script>
 	<script src="js-marker-clusterer-gh-pages/js-marker-clusterer-gh-pages/src/markerclusterer_compiled.js"></script>
+	<script async defer src="scripts/oms.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
 	<script>
 	'use strict'
@@ -82,6 +83,28 @@
 
  		}
  		var markerCluster = new MarkerClusterer(searchApp.map, markers);
+ 		 		var minClusterZoom = 10;
+ 				markerCluster.setMaxZoom(minClusterZoom)
+ 		var oms = new OverlappingMarkerSpiderfier(searchApp.map);
+ 		var iw = new gm.InfoWindow();
+ 		oms.addListener('click', function(marker, event) {
+ 		  iw.setContent(marker.desc);
+ 		  iw.open(searchApp.map, marker);
+ 		});
+ 		oms.addListener('spiderfy', function(markers) {
+ 		  iw.close();
+ 		});
+ 		for (var i = 0; i < window.mapData.length; i ++) {
+ 		  var datum = window.mapData[i];
+ 		  var loc = new gm.LatLng(datum.lat, datum.lon);
+ 		  var marker = new gm.Marker({
+ 		    position: loc,
+ 		    title: datum.h,
+ 		    map: searchApp.map
+ 		  });
+ 		  marker.desc = datum.d;
+ 		  oms.addMarker(marker);  // <-- here
+ 		}
 
  	};
 			// var marker2 = new google.maps.Marker({
@@ -110,6 +133,9 @@
 	 	    center: {lat: 43.7, lng: -79.4},
 	 	    zoom: 10
 	 	  });
+
+	 	 
+
 	 	 };
 
        // function initialize() {
