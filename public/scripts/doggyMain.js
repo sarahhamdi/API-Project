@@ -123,17 +123,46 @@ doggy.customerLocation = function (userFullLocation) {
 };
 
 doggy.displayDogInfo = function (results) {
-	for (var i = 0; i < results.length; i++) {
-		var dogName = results[i].name['$t'];
-		console.log(dogName);
-		var dogImage = results[i].media.photos.photo[3]['$t'];
-		console.log(dogImage);
-	};
 	$('.flexContainer').show();
 	google.maps.event.trigger(document.getElementById('map'), 'resize');
 	google.maps.event.addListenerOnce(map, 'idle', function () {
 		google.maps.event.trigger(map, 'resize');
 		map.setCenter({ lat: app.bandsIn2Lat, lng: app.bandsIn2Long });
+	});
+
+	$.each(results, function (i, result) {
+		// stores dog name
+		var dogName = result.name['$t'];
+		// stores dog image
+		var dogImage = result.media.photos.photo[3]['$t'];
+		// stores dog description
+		var dogDescription = result.description['$t'];
+		// stores dog breed
+		var dogBreed = result.breeds.breed['$t'];
+		console.log(dogDescription);
+
+		console.log(dogImage);
+		// wraps the doggy data in html elements to be placed on page
+		var dogImageToPage = $('<img>').attr('src', dogImage);
+		var dogNameToPage = $('<h3>').addClass('dogName').text(dogName);
+		var dogBreedToPage = $('<h4>').addClass('dogBreed').text(dogBreed);
+		var dogDescriptionToPage = $('<p>').addClass('dogDescription').append(dogDescription);
+		// creates the list Item html structure and elements where the doggy data will be placed
+		var summaryImageContainer = $('<div>').addClass('summaryImageContainer').css('background-color', '$purple;').append(dogImageToPage);
+
+		var summaryTextContainer = $('<div>').addClass('summaryTextContainer').append(dogNameToPage).append(dogBreedToPage);
+
+		var summaryContainer = $('<div>').addClass('summaryContainer clearfix').append(summaryImageContainer).append(summaryTextContainer);
+
+		var summary = $('<summary>').append(summaryContainer);
+
+		var details = $('<details>').append(summary).append(dogDescriptionToPage);
+
+		var dogListItem = $('<li>').addClass('dogListItem').append(details);
+
+		console.log(dogName);
+		// puts each of the list items in the <ul>
+		$('.resultsList').append(dogListItem);
 	});
 };
 
@@ -158,6 +187,25 @@ doggy.displayDogInfo = function (results) {
 
 // $('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
 // console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
+
+// // +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
+// doggy.printDogsToPage = function(filteredDogResults) {
+
+// 	// var cleanup = function(string) {
+// 	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
+// 	// 	}
+
+// 	// var cleanup = function(string) {
+// 	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
+// 	// 	}
+
+// 	var pets = filteredDogResults.petfinder.pets.pet;
+// 	for (var i = 0; i < pets.length; i++) {
+
+// 		// $('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
+// 		// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
+// 	}
+// };
 
 doggy.originaldogLocationsArray = [];
 
