@@ -37,8 +37,9 @@ doggy.form = function () {
 		$('body').addClass('bodyBackground');
 		$('.wrapper').css('background', 'white').css('padding-top', '50px');
 		$('.siteWrapper').css('background', 'white').css('padding-top', '50px').css('margin-top', '0px');
+		$('.titleContainer').addClass('loadTitle');
 		$('aside').css('background-color', 'white');
-		$('header').css('padding-top', '0').css('height', '400px');
+		$('header').css('padding-top', '0').css('height', '283px');
 		// $('header').css('background-color', 'white');
 		// console.log(userLocation, sizeOfDog);
 		doggy.doggyAjax(doggy.userFullLocation, doggy.sizeOfDog);
@@ -291,9 +292,9 @@ doggy.plotOnMap = function (latArray, lngArray, myLatLng) {
 			map: doggy.map,
 			label: labels[i]
 		});
+
 		// icon: iconBase + 'assets/mapicon.png'
 		markers.push(marker);
-		console.log(marker.label);
 
 		// var finalLatLng = latlng;
 
