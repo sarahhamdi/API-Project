@@ -53,6 +53,7 @@ h4 {
 
 p {
 	@include fontSize(10);
+	color: $black;
 }
 
 ul {
@@ -77,6 +78,7 @@ ul {
 	}
 
 	.dogListItem {
+		margin: 5px 0;	
 		summary::-webkit-details-marker {
 		  display: none;
 		}
@@ -87,6 +89,8 @@ ul {
 			.summaryImageContainer {
 				float: left;
 				width: 50%;
+				height: 175px;
+				overflow: hidden;
 				img {
 					width: 100%;
 				}
@@ -98,7 +102,7 @@ ul {
 					margin-top: 0;
 					text-transform: uppercase;
 				}
-				h4.dogDistance, h4.dogAge {
+				h4.dogBreed, h4.dogAge {
 					color: $black;
 				}
 				img {

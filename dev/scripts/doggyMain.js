@@ -47,9 +47,14 @@ doggy.doggyAjax = function(userFullLocation, sizeOfDog) {
 			// count: 10
 		}  
 	}).then(function(results){
-		doggy.printDogsToPage(results);
+		// doggy.printDogsToPage(results);
 		doggy.dogLocationsForMap(results);
-		console.log(results)
+
+		var resultsForDogToPage = results.petfinder.pets.pet
+
+		doggy.displayDogInfo(resultsForDogToPage);
+
+		console.log(results);
 
 	});
 };
@@ -108,27 +113,60 @@ doggy.customerLocation = function(userFullLocation) {
 };
 
 
+doggy.displayDogInfo = function(results) {
+	$.each(results, function(i, result) {
+		var dogName = result.name['$t'];
+		console.log(dogName);
+		var dogImage = result.media.photos.photo[3]['$t'];
+		var dogDescription = result.description['$t'];
+		var dogBreed = result.breeds.breed['$t'];
+		console.log(dogDescription);
 
-// +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
-doggy.printDogsToPage = function(filteredDogResults) {
+		console.log(dogImage);
+		var dogImageToPage = $('<img>').attr('src', dogImage);
+		var dogNameToPage = $('<h3>').addClass('dogName').text(dogName);
+		var dogBreedToPage = $('<h4>').addClass('dogBreed').text(dogBreed);
+		var dogDescriptionToPage = $('<p>').addClass('dogDescription').append(dogDescription);
 
+		var summaryImageContainer =	$('<div>').addClass('summaryImageContainer').css('background-color', '$purple;').append(dogImageToPage);
 
-	// var cleanup = function(string) { 
-	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
-	// 	}
+		var summaryTextContainer = $('<div>').addClass('summaryTextContainer').append(dogNameToPage).append(dogBreedToPage);
 
-	// var cleanup = function(string) { 
-	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
-	// 	}
+		var summaryContainer = $('<div>').addClass('summaryContainer clearfix').append(summaryImageContainer).append(summaryTextContainer);
 
+		var summary = $('<summary>').append(summaryContainer);
 
-	var pets = filteredDogResults.petfinder.pets.pet;
-	for (var i = 0; i < pets.length; i++) {
+		var details = $('<details>').append(summary).append(dogDescriptionToPage);
 
-		// $('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
-		// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
-	}
+		var dogListItem = $('<li>').addClass('dogListItem').append(details);
+
+		console.log(dogName);	
+		$('.resultsList').append(dogListItem);
+
+	});		
 };
+
+
+// // +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
+// doggy.printDogsToPage = function(filteredDogResults) {
+
+
+// 	// var cleanup = function(string) { 
+// 	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
+// 	// 	}
+
+// 	// var cleanup = function(string) { 
+// 	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
+// 	// 	}
+
+
+// 	var pets = filteredDogResults.petfinder.pets.pet;
+// 	for (var i = 0; i < pets.length; i++) {
+
+// 		// $('main.results').append('<p>' + pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + cleanup(pets[i].description['$t']) + '</p>');
+// 		// console.log(pets[i].name['$t'] + pets[i].age['$t'] + pets[i].size['$t']+ pets[i].contact.zip['$t'] + pets[i].description['$t'])
+// 	}
+// };
 
 doggy.originaldogLocationsArray = [];
 
