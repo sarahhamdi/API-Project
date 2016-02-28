@@ -121,10 +121,17 @@ ul {
 	align-content: center;
 	width: 100%;
 	margin-top: 60px;
-
 	// padding-top: 40px;
 	padding-bottom: 70px;
 
+	.loadTitleContainer {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		svg {
+			width: 70px;
+		}
+	}
 
 	aside.results {
 		width: 49%;
@@ -173,6 +180,7 @@ ul {
 				overflow: hidden;
 				border-radius: 5px;
 				img {
+					border-radius: 5px;
 					width: 100%;
 				}
 			}

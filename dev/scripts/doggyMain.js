@@ -32,13 +32,14 @@ doggy.form = function() {
 		 $('video').hide();
 		 $('div.overlay').removeClass('overlay');
 		 // $('header').addClass('headerHeight');
+		 $('.titleContainer').addClass('loadTitleContainer');
 		 $('footer').addClass('footerPosition').css('max-width', '1080px').css('margin', '0 auto');
 		 $('.flexContainer').slideDown('slow');
 		 $('body').addClass('bodyBackground');
 		 $('.wrapper').css('background', 'white').css('padding-top', '50px');
 		 $('.siteWrapper').css('background', 'white').css('padding-top', '50px').css('margin-top', '0px')
 		 $('aside').css('background-color', 'white');
-		 $('header').css('padding-top', '0').css('height', '400px')
+		 $('header').css('padding-top', '0').css('height', '350px')
 		 // $('header').css('background-color', 'white');
 		// console.log(userLocation, sizeOfDog);
 		doggy.doggyAjax(doggy.userFullLocation, doggy.sizeOfDog);
