@@ -66,6 +66,15 @@ header {
 	transition-delay: 5s;
 }
 
+.loadTitle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 50px;
+	svg {
+		width: 70px;
+	}
+}
 
 
 h1, h2 {
