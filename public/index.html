@@ -9,11 +9,11 @@
 
 
 <header>
-<!-- add loop -->
-<video src="assets/slow-dog.mp4" autoplay> 
-  Your browser does not support the <code>video</code> element.
-</video>
-<div class="overlay"></div>
+	<!-- add loop -->
+	<video src="assets/slow-dog.mp4" autoplay> 
+	  Your browser does not support the <code>video</code> element.
+	</video>
+	<div class="overlay"></div>
 	<div class="siteWrapper wrapper">
 	<svg viewBox="0 0 100 90">
 	        <g id="doge">
@@ -54,35 +54,27 @@
 </header>
 	
 <div class="siteWrapper">
-	
-	<aside class="results">
-		<ul class="resultsList">
-
-		</ul>
-
 	<div class="flexContainer">
 		<aside class="results">
 			<ul class="resultsList">	
-				<li class="dogListItem">
-					<div class="summaryContainer">
-						<div class="summaryImageContainer">
-							<img src="assets/twitter.svg" alt="">
-						</div>
-						<div class="summaryTextContainer">
-							<h3>Doge</h3>
-							<h4>Age: 100</h4>
-							<h4>How Far Away?</h4> 
-						</div>
-					</div>
-					<div class="detailsContainer">
-						<details>
-							<summary>
-								<h4>Description</h4>
-							</summary>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse beatae sit excepturi nulla obcaecati totam debitis, ipsam tenetur deleniti eveniet.</p>
-						</details>
-					</div>
-				</li>
+				<!-- <li class="dogListItem">
+					<details>
+						<summary>
+							<div class="summaryContainer clearfix">
+								<div class="summaryImageContainer">
+									<img src="../assets/doge.png" alt="">
+								</div>
+								<div class="summaryTextContainer">
+									<h3 class ="dogName"></h3>
+									<h4 class ="dogAge"></h4>
+								</div>
+							</div>
+						</summary>
+							<div class="detailsContainer">
+								<p class= "dogDescription"></p>
+							</div>
+					</details>
+				</li> -->
 			</ul>
 		</aside>
 		<div class="mapContainer">
@@ -108,6 +100,4 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="scripts/markercluster.js"></script>
  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkB9y214WJgC8b0Y01ABS1jNOx4elPeeE&callback=initMap"></script>
-<script src="scripts/doggyMain.js"></script>
-
 </html>
