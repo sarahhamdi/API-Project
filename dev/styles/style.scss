@@ -116,17 +116,29 @@ ul {
 
 	aside.results {
 		width: 49%;
-		height: 70vh;
+		height: 75vh;
 
 		// display: block;
 		overflow: auto;
+		ul.resultsList {
+			margin-top: 0
+		}
 	}
-
+	
+	li.dogListItem {
+		&:first-of-type {
+			padding-top: 0;
+		}
+		&:last-of-type {
+			border-bottom: none;
+		}
+	}
 	.dogListItem {
 		// margin: 5px 0;
 		margin: 0;
 		padding: 15px 0;
 		border-bottom: 1px dotted $color-shadow2;	
+		
 		summary::-webkit-details-marker {
 		  display: none;
 		}
@@ -141,6 +153,7 @@ ul {
 				width: calc(60% - 15px);
 				height: 175px;
 				overflow: hidden;
+				border-radius: 5px;
 				img {
 					width: 100%;
 				}
@@ -156,12 +169,16 @@ ul {
 				h4.dogBreed, h4.descriptionHeader {
 					@include fontSize(8);
 					color: grey;
+					font-weight: 400;
 				}
 				h4.descriptionHeader {
+					text-transform: uppercase;
+					color: $color-primary;
+					@include fontSize(7);
 					&::after {
 						content: "";
-						width: 11px;
-						height: 15px;
+						width: 10px;
+						height: 14px;
 						background: url(../assets/arrow.png);
 						background-repeat: no-repeat;
 						background-size: contain;
@@ -190,10 +207,13 @@ details {
 	.mapContainer {
 		width: 49%;
 		height: 70vh;
+		// padding-top: 20px;
+
 		// display: block;
 		#map {
 			height: 75vh;
 			width: 100%;
+			border-radius: 3px;
 			// display: block;
 		}
 	}
