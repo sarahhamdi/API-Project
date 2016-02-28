@@ -124,14 +124,14 @@ doggy.displayDogInfo = function(results) {
 		var dogDescription = result.description['$t'];
 		// stores dog breed
 		// Need to add if else conditions incase breed is an array
-		var descriptionHeader = $('<h4>').addClass('descriptionHeader').text('description')
+		var descriptionHeader = $('<h4>').addClass('descriptionHeader').text('Description')
 
 
 		if (Object.prototype.toString.call(result.breeds.breed) === '[object Array]') {
 
 			var dogBreedArray = result.breeds.breed[0]['$t'];
 
-			var dogBreedArrayToPage = $('<h4>').addClass('dogBreed').text(dogBreedArray + ' mix');
+			var dogBreedArrayToPage = $('<h4>').addClass('dogBreed').append(dogBreedArray);
 			console.log(dogBreedArray);
 
 			var summaryTextContainer = $('<div>').addClass('summaryTextContainer').append(dogNameToPage).append(dogBreedArrayToPage).append(descriptionHeader);
