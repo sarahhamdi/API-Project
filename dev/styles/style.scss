@@ -66,8 +66,7 @@ header {
 
 
 
-h1,
-h2 {
+h1, h2 {
 	@include font-properties ($font-family--primary, $weightBold , center);
 	text-transform: uppercase;
 	@include padding-margin (0, 10px 0 0 0); 
@@ -100,6 +99,17 @@ ul {
 	padding-left: 0;
 }
 
+.mapMarkerIconContainer {
+	width: 20%;
+	float: left;
+	.mapMarkerCircle {
+		@include aspect-ratio(1, 1);
+		background-color: $purple;
+		.markerLetter{
+			color: white;
+		}
+	}
+}
 
 
 .flexContainer {
@@ -137,8 +147,13 @@ ul {
 		// margin: 5px 0;
 		margin: 0;
 		padding: 15px 0;
-		border-bottom: 1px dotted $color-shadow2;	
+		border-bottom: 1px dotted $color-shadow2;
+
 		
+		details {
+			float: right;
+			width: 80%;
+		}
 		summary::-webkit-details-marker {
 		  display: none;
 		}
@@ -147,6 +162,7 @@ ul {
 			cursor: pointer;
 		}
 		.summaryContainer {
+			padding-right: 15px; 
 			.summaryImageContainer {
 				float: left;
 				margin-right: 15px;
@@ -199,6 +215,7 @@ details {
 	.dogDescription {
 	    @include fontSize(8);
 	    font-weight: lighter;
+	    padding-right: 15px;
 	    color: grey;
 	    margin-bottom: 0;
 	    line-height: 1rem;
