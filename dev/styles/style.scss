@@ -123,7 +123,10 @@ ul {
 	}
 
 	.dogListItem {
-		margin: 5px 0;	
+		// margin: 5px 0;
+		margin: 0;
+		padding: 15px 0;
+		border-bottom: 1px dotted $color-shadow2;	
 		summary::-webkit-details-marker {
 		  display: none;
 		}
@@ -134,7 +137,8 @@ ul {
 		.summaryContainer {
 			.summaryImageContainer {
 				float: left;
-				width: 50%;
+				margin-right: 15px;
+				width: calc(60% - 15px);
 				height: 175px;
 				overflow: hidden;
 				img {
@@ -143,13 +147,15 @@ ul {
 			}
 			.summaryTextContainer {
 				float: left;
-				width: 50%;
+				width: 40%;
 				h3 {
 					margin-top: 0;
+					@include fontSize(10);
 					text-transform: uppercase;
 				}
 				h4.dogBreed, h4.descriptionHeader {
-					color: $black;
+					@include fontSize(8);
+					color: grey;
 				}
 				h4.descriptionHeader {
 					&::after {
@@ -172,6 +178,15 @@ ul {
 		}
 	}
 
+details {
+	.dogDescription {
+	    @include fontSize(8);
+	    font-weight: lighter;
+	    color: grey;
+	    margin-bottom: 0;
+	    line-height: 1rem;
+	}
+}
 	.mapContainer {
 		width: 49%;
 		height: 70vh;
@@ -217,6 +232,7 @@ footer  {
 		@include padding-margin (5px, 0); 
 		@include fontSize(10);
 		// width: 50%;
+		color: rgba(95, 104, 108, 1);
 		display: inline-block;
 		&:last-child{
 			text-transform: none;
