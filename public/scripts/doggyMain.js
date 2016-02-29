@@ -409,7 +409,7 @@ function initMap() {
 			}]
 		}]
 	});
-}
+};
 
 doggy.init = function () {
 	doggy.form();
