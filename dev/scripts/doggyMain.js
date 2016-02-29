@@ -40,6 +40,7 @@ doggy.form = function() {
 		 $('video').hide();
 		 $('div.overlay').removeClass('overlay');
 		 // $('header').addClass('headerHeight');
+		 $('.titleContainer').addClass('loadTitleContainer');
 		 $('footer').addClass('footerPosition').css('max-width', '1080px').css('margin', '0 auto');
 		 $('.flexContainer').slideDown('slow');
 		 $('body').addClass('bodyBackground');
@@ -73,7 +74,7 @@ doggy.doggyAjax = function(userFullLocation, sizeOfDog) {
 			size: sizeOfDog,
 			age: 'Senior',
 			status: 'A',
-			count: 8	,
+			count: 15	,
 		}  
 	}).then(function(results){
 		// doggy.printDogsToPage(results);
