@@ -20,14 +20,17 @@
 		text-align: center;
 		@include flex (column wrap, center, center);
 
-		.social {
-			margin-top: 10px;
+		.social svg {
+			margin-top: 20px;
+			width: 35px;
+			float: none;
 		}
 	}
 
 	div.flexContainer {
 		margin-top: 120px;
 	}
+
 }
 
 @media (max-width: 570px) {
@@ -49,7 +52,7 @@
 		@include flex (column wrap, space-between, center);
 
 		aside.results {
-			width: 90%;
+			width: 95%;
 			margin-bottom: 20px;
 			// overflow: visible;
 			ul {
@@ -75,6 +78,9 @@
 		video {
 			width: 30%;
 		}
+	}
+	aside {
+		margin-top: 50px;
 	}
 	form{
 		// @include flex (row wrap, space-around, flex-start);
@@ -103,5 +109,20 @@
 	}
 	footer {
 		position: relative;
+	}
+}
+
+@media (max-width: 480px) {
+	.flexContainer .dogListItem .summaryContainer .summaryImageContainer {
+		float: none;
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	.flexContainer .dogListItem .summaryContainer .summaryTextContainer {
+		width: 100%;
+		h3,
+		h4 {
+			margin: 5px 0;
+		}
 	}
 }

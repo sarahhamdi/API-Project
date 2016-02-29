@@ -1,5 +1,13 @@
 'use strict'
 
+// +++++++++++ REMOVES VIDEO WHEN IMAGE IS RESIZED +++++++++++++
+ $(window).resize(function(){
+ 	if ($(window).width() <= 570){	
+ 		$('video').attr('src', '');
+ 		$('header div.overlay').removeClass('overlay');
+ 	}	
+ });
+
 var doggy = {};
 var google = {};
 
@@ -36,7 +44,7 @@ doggy.form = function() {
 		 $('.flexContainer').slideDown('slow');
 		 $('body').addClass('bodyBackground');
 		 $('.wrapper').css('background', 'white').css('padding-top', '50px');
-		 $('.siteWrapper').css('background', 'white').css('padding-top', '50px').css('margin-top', '0px')
+		 $('.siteWrapper').css('background', 'white').css('padding-top', '20px').css('margin-top', '0px')
 		 $('.titleContainer').addClass('loadTitle');
 		 $('aside').css('background-color', 'white');
 		 $('header').css('padding-top', '0').css('height', '283px')
@@ -125,7 +133,7 @@ doggy.displayDogInfo = function(results) {
 		// stores dog image
 		var dogImage = result.media.photos.photo[3]['$t'];
 		// stores dog description
-		var dogDescription = result.description['$t'];
+		var dogDescription = '<a href="mailto:' + result.contact.email['$t'] + '">Contact owner for adoption</a>' + '<p class="dogDescription">' + result.description['$t'] ;
 		// stores dog breed
 		// Need to add if else conditions incase breed is an array
 		var descriptionHeader = $('<h4>').addClass('descriptionHeader').text('Description')
@@ -136,6 +144,7 @@ doggy.displayDogInfo = function(results) {
 			var dogBreedArray = result.breeds.breed[0]['$t'];
 
 			var dogBreedArrayToPage = $('<h4>').addClass('dogBreed').append(dogBreedArray);
+			
 			console.log(dogBreedArray);
 
 			var summaryTextContainer = $('<div>').addClass('summaryTextContainer').append(dogNameToPage).append(dogBreedArrayToPage).append(descriptionHeader);
@@ -453,8 +462,6 @@ doggy.map;
     //   title: 'Hello World!'
     // });
  };
-
-
 
 
 doggy.init = function(){
