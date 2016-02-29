@@ -190,20 +190,6 @@ doggy.displayDogInfo = function(results) {
 // +++++++++++++++++++++++END OF DISPLAY DOG INFO TO PAGE +++++++++++++++++++++++++++++++++++
 
 
-// // +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
-// doggy.printDogsToPage = function(filteredDogResults) {
-
-
-// 	// var cleanup = function(string) { 
-// 	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
-// 	// 	}
-
-// 	// var cleanup = function(string) { 
-// 	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
-// 	// 	}
-
-
-
 // +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
 // doggy.printDogsToPage = function(filteredDogResults) {
 
@@ -225,9 +211,11 @@ doggy.displayDogInfo = function(results) {
 // 	}
 // };
 
-doggy.originaldogLocationsArray = [];
 
 // +++++++++ AFTER PETFINDER AJAX CALL, SAVES DOG POSTAL CODES ++++++++++++++++++++++++++++++ //
+
+doggy.originaldogLocationsArray = [];
+
 doggy.dogLocationsForMap = function(filteredDogResults) {
 	var pets = filteredDogResults.petfinder.pets.pet;
 	
@@ -458,7 +446,73 @@ doggy.map;
 		    }
 			]
  	  });
- };
+ 	  var infoWindow = new google.maps.InfoWindow();
+ 	  var Spider = new OverLappingMarkerSpiderfier(map, {markersWontMove: true, markersWontHide: true});
+
+ 	  var spiderfiedColor = 'ffee22';
+ 	  var iconWithColor = function(color) {
+ 	  	return 'http://chart.googleapis.com/chart?chst=d_map_xpin_letter&chld=pin|+|' +
+          color + '|000000|ffff00';
+ 	  }
+ 	  var shadow = new google.maps.MarkerImage(
+ 	  	'https://www.google.com/intl/en_ALL/mapfiles/shadow50.png',
+ 	  	new google.maps.Size(37, 34),
+ 	  	new google.maps.Point(0,0),
+ 	  	new google.maps.Point(10, 34)
+ 	  	);	  
+ 	  Spider.addListener('click', function(marker) {
+ 	  	infoWindow.setContent(marker.desc);
+ 	  	infoWindow.open(map, marker);
+ 	  });
+ 	  Spider.addListener('spiderfy', function(markers) {
+ 	  	for (var i = 0; i < markers.length; i++) {
+ 	  		markers[i].setIcon(iconWithColor(spiderfiedColor));
+ 	  		markers[i].setShadow(null);
+ 	  	}
+ 	  	infoWindow.close();
+ 	  });
+ 	  Spider.addListener('unspiderfy', function(markers) {
+        for(var i = 0; i < markers.length; i ++) {
+          markers[i].setIcon(iconWithColor(usualColor));
+          markers[i].setShadow(shadow);
+        }
+    });
+
+ 	  var bounds = new google.maps.LatLngBounds();
+      for (var i = 0; i < window.mapData.length; i ++) {
+        var datum = window.mapData[i];
+        var loc = new google.maps.LatLng(datum.lat, datum.lon);
+        bounds.extend(loc);
+        var marker = new google.maps.Marker({
+          position: loc,
+          title: datum.h,
+          map: map,
+          icon: iconWithColor(usualColor),
+          shadow: shadow
+        });
+        marker.desc = datum.d;
+        Spider.addMarker(marker);
+      }
+      map.fitBounds(bounds);
+	};
+
+	var baseJitter = 2.5;
+  var clusterJitterMax = 0.1;
+  var rnd = Math.random;
+  var data = [];
+  var clusterSizes = [1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2,2, 3, 3, 4, 5, 6, 7, 8, 9, 12, 18, 24];
+  for (var i = 0; i < clusterSizes.length; i++) {
+    var baseLon = -1 - baseJitter / 2 + rnd() * baseJitter;
+    var baseLat = 52 - baseJitter / 2 + rnd() * baseJitter;
+    var clusterJitter = clusterJitterMax * rnd();
+    for (var j = 0; j < clusterSizes[i]; j ++) data.push({
+      lon: baseLon - clusterJitter + rnd() * clusterJitter,
+      lat: baseLat - clusterJitter + rnd() * clusterJitter,
+      h:   new Date(1E12 + rnd() * 1E11).toString(),
+      d:   Math.round(rnd() * 100) + '% happy'
+    });
+  }
+
 
 
 doggy.init = function(){
