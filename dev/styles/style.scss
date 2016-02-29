@@ -27,7 +27,7 @@ header {
 	// @include padding-margin (0, 100px 0 0 0); 
 	text-align: center;
 	position: relative;
-	height: 100vh;
+	height: 85vh;
 	padding-top: 100px;
 	svg {
 		fill: $color-primary;
@@ -113,13 +113,6 @@ ul {
 .mapMarkerIconContainer {
 	width: 20%;
 	float: left;
-	.mapMarkerCircle {
-		@include aspect-ratio(1, 1);
-		background-color: $purple;
-		.markerLetter{
-			color: white;
-		}
-	}
 }
 
 
@@ -145,7 +138,22 @@ ul {
 	aside.results {
 		width: 49%;
 		height: 75vh;
+		border-radius: 3px;
+		box-shadow: $box-shadow;
+		&::-webkit-scrollbar {
+    	width: 12px;
+		}
 
+		&::-webkit-scrollbar-track {
+	    -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.2); 
+	    border-radius: 3px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+    	border-radius: 3px;
+    	-webkit-box-shadow: inset 0 0 6px $purple;
+    	background-color: $purple;
+		}
 		// display: block;
 		overflow: auto;
 		ul.resultsList {
@@ -263,7 +271,8 @@ footer  {
 	@include colors ($color-accent, rgba(95, 104, 108, 1))
 	@include padding-margin (20px 0 20px 0, 0); 
 	text-transform: uppercase;
-	position: fixed;
+	height: 15vh;
+	
 	bottom: 0;
 	right: 0;
 	left: 0;

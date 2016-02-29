@@ -40,11 +40,7 @@ doggy.form = function () {
 		$('.siteWrapper').css('background', 'white').css('padding-top', '50px').css('margin-top', '0px');
 		$('.titleContainer').addClass('loadTitle');
 		$('aside').css('background-color', 'white');
-<<<<<<< HEAD
-		$('header').css('padding-top', '0').css('height', '350px');
-=======
 		$('header').css('padding-top', '0').css('height', '283px');
->>>>>>> 96c01e573e90904b19f36e560188e3d7cb643ff9
 		// $('header').css('background-color', 'white');
 		// console.log(userLocation, sizeOfDog);
 		doggy.doggyAjax(doggy.userFullLocation, doggy.sizeOfDog);
@@ -67,7 +63,7 @@ doggy.doggyAjax = function (userFullLocation, sizeOfDog) {
 			size: sizeOfDog,
 			age: 'Senior',
 			status: 'A',
-			count: 8
+			count: 15
 		}
 	}).then(function (results) {
 		// doggy.printDogsToPage(results);

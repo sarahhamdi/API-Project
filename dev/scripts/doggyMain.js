@@ -66,7 +66,7 @@ doggy.doggyAjax = function(userFullLocation, sizeOfDog) {
 			size: sizeOfDog,
 			age: 'Senior',
 			status: 'A',
-			count: 8	,
+			count: 15	,
 		}  
 	}).then(function(results){
 		// doggy.printDogsToPage(results);
