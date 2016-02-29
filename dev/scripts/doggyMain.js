@@ -320,6 +320,7 @@ doggy.getCurrentLocation = function(userFullLocation, newdogLocationsArray) {
 	 		 		lng: singleLng
 	 		 	},
 			   map: doggy.map,
+			   icon: '../assets/mapicon.png',
 			   label: labels[i],
 			   // icon: iconBase + 'assets/mapicon.png'
 			 });
