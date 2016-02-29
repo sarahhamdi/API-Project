@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="map" style="height: 500px">
+		
+	</div>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkB9y214WJgC8b0Y01ABS1jNOx4elPeeE&callback=initMap"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+	<script>
+	'use strict'
+	var searchApp = {}
+	searchApp.postal = ['M2K 2K7','M3A 2S1', 'M3A 2S2','M3A 2S1','M3A 2S1']
+	searchApp.lngArray = [];
+	searchApp.latArray = [];
+
+	// +++++++++++ TO DISPLAY THE ACTUAL MAP ON THE PAGE +++++++++++++
+
+
+	// +++++++++++ TO CONVERT POSTAL CODES INTO LAT/LNG +++++++
+	searchApp.getCurrentLocation = function(postal) {
+		var counter = 0;
+		for (let i = 0; i < searchApp.postal.length; i++) {
+			var postal2 = searchApp.postal[i];
+			// console.log(postal2);
+			$.ajax({
+				url: "https://maps.googleapis.com/maps/api/geocode/json",
+				method: 'GET',
+				dataType: 'json',
+				data: {
+					address: postal2
+				}
+			}).then(function(result){
+				searchApp.latArray.push(result.results[0].geometry.location.lat)
+				searchApp.lngArray.push(result.results[0].geometry.location.lng)
+				counter++;
+
+				console.log(counter)
+				if (counter === searchApp.postal.length) {
+					console.log(searchApp.lngArray);
+					console.log(searchApp.latArray);
+					// call function that plots things out here
+					 searchApp.plotOnMap(searchApp.latArray, searchApp.lngArray);
+					
+				}
+			});
+		}
+	};
+
+
+ 	// +++++++++++ PLOTS THE ICONS ON THE MAP BASED ON LNG/LAT ++++++++
+ 	searchApp.plotOnMap = function(latArray, lngArray){
+ 			// searchApp.dogLatLng = [];
+ 		for (let i = 0; i < searchApp.postal.length; i++) {
+ 			
+ 			var singleLat = latArray[i]
+ 			var singleLng = lngArray[i]
+ 			var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+ 			// var dogLocation = {
+ 			// 	lat: singleLat,
+ 			// 	lng: singleLng 
+ 			// }
+ 			// searchApp.dogLatLng.push(dogLocation)
+ 			// searchApp.myLatLng = {lng: 43.7921395, lat: -79.386151};
+	 		// searchApp.map.setCenter(searchApp.myLatLng);
+	 	
+			var marker = new google.maps.Marker({
+			   position: {
+	 		 		lat: singleLat,
+	 		 		lng: singleLng
+	 		 	},
+			   map: searchApp.map,
+			   label: labels[i]
+			 });
+ 		}
+
+ 	};
+
+
+
+
+			// var marker2 = new google.maps.Marker({
+			//   position: {lat: 43.7, lng: -79.4},
+			//   label: searchApp.labels[searchApp.labelIndex++ % searchApp.labels.length],
+			//   map: searchApp.map
+			// });
+			// console.log(marker);
+ 			console.log(searchApp.dogLatLng)
+ 		// google.maps.event.trigger(searchApp.map, 'resize');
+		// ++++++++ POTENTIAL USE LATER - MARKERS FOR DOG LOCATIONS
+ 		// var infowindow = new google.maps.InfoWindow({
+ 		//     content: '<h2>'+ title.text() +'</h2>' + '<h4>' + location.text() + '</h4>' + '<h5>' + website.text() + '</h5>'
+ 		// });
+
+		// marker.addListener('click', function() {
+		// infowindow.open(searchApp.map, marker);
+
+
+ 
+searchApp.newMarkers = function (){
+		searchApp.map;
+		initMap();
+	 // 	function initMap() {
+	 // 	  searchApp.map = new google.maps.Map(document.getElementById('map'), {
+	 // 	    center: {lat: 43.7, lng: -79.4},
+	 // 	    zoom: 10
+	 // 	  });
+	 function initMap() {
+        searchApp.map = new google.maps.LatLng(43.7, -79.4);
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: searchApp.map,
+      });
+        };
+ 
+      //   var markers = [];
+      //   for (var i = 0; i < 100; i++) {
+      //     var dataPhoto = data.photos[i];
+      //     var latLng = new google.maps.LatLng(dataPhoto.latitude,
+      //         dataPhoto.longitude);
+      //     var marker = new google.maps.Marker({
+      //       position: latLng
+      //     });
+      //     markers.push(marker);
+      //   }
+      //   var markerCluster = new MarkerClusterer(map, markers);
+      // }
+      google.maps.event.addDomListener(window, 'load', initMap);
+
+	 	 };
+
+
+
+	 	
+       // function initialize() {
+       //   var bangalore = { lat: 12.97, lng: 77.59 };
+       //   var map = new google.maps.Map(document.getElementById('map'), {
+//        //     zoom: 12,
+//        //     center: bangalore
+//        //   });
+
+//          google.maps.event.addListener(map, 'click', function(event) {
+//            addMarker(event.latLng, map);
+//          });
+
+// ///adding dog location markers 
+//        function addMarker(dogLatLng) {
+//        	// for (var i = 0, i < searchApp.dogLatLng, i++){
+//        	// 	console.log(i)
+//        	console.log(dogLatLng)
+
+//          // var marker = new google.maps.Marker({
+//          //   position: searchApp.dogLatLng,
+//          //   label: searchApp.labels[searchApp.labelIndex++ % searchApp.labels.length],
+//          //   map: searchApp.map
+//          // });
+//          	// console.log(marker)
+//        }
+//  	 addMarker(searchApp.dogLatLng);
+         
+
+       // google.maps.event.addDomListener(window, 'load', initialize);
+	// }
+
+
+	$(document).ready(function() {
+		// initMap();
+		searchApp.newMarkers();
+		searchApp.getCurrentLocation();
+	});
+
+	</script>
+</body>
+</html>

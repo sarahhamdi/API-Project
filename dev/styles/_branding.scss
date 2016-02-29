@@ -1,0 +1,82 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+$font-family--primary	: "Montserrat", sans-serif;
+// $font-family--secondary	: "Roboto", sans-serif;
+
+// Font Weights
+// $font-weight--medium 	: 300;
+// $font-weight--bold 		: 700;
+
+$weightMedium 		: 300;
+$weightBold 		: 700;
+
+// Descriptive Base Colours
+
+$purple			: rgba(118, 0, 225, 1);
+$white			: rgba(253, 253, 253, 1);
+$beige			: rgba(237, 227, 222, 1);
+$grey			: rgba(204, 204, 204, 1);
+$black			: rgba(0, 0, 0, 1);
+
+// Color Usage
+
+$color-primary		: $purple;
+$color-secondary	: $beige;
+$color-accent		: $black;
+$color-accent-light	: $white;
+$color-shadow		: rgba(0, 0, 0, .4);
+$color-shadow2		: $grey;
+
+
+// Mixins
+
+$box-shadow 	: -7px 7px 25px -12px $color-shadow;
+
+@mixin fontSize($sizeValue){
+    font-size: $sizeValue * 1px;
+    font-size: ($sizeValue/10) * 1rem;
+}
+
+@mixin font-properties ($family, $weight, $align) {
+	font-family: $family;
+	font-weight: $weight;
+	text-align: $align;
+}
+
+@mixin padding-margin ($padding, $margin) {
+	padding: $padding;
+	margin: $margin;
+}
+
+@mixin colors ($background, $color) {
+	background: $background;
+	color: $color;
+}
+
+@mixin flex ($flexflow, $justify-content, $align-content) {
+	flex-flow: $flexflow;
+	justify-content: $justify-content;
+	align-content: $align-content
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+
+
+
+
