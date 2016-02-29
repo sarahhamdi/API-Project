@@ -381,88 +381,83 @@ doggy.map;
  	    sensor: false,
  	    scrollwheel: false,
  	    styles: [
-    {
-        "featureType": "all",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#ede3de"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#252628"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": "58"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#7426d9"
-            },
-            {
-                "lightness": "58"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "geometry.stroke",
-        "stylers": [
-            {
-                "color": "#cccccc"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "hue": "#6f00ff"
-            },
-            {
-                "lightness": "43"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "lightness": "-5"
-            },
-            {
-                "color": "#98d5ea"
-            }
-        ]
-    }
-]
+	    		{
+	        "featureType": "all",
+	        "elementType": "geometry.fill",
+	        "stylers": [
+	          {
+	            "color": "#ede3de"
+	          }
+	        ]
+	    	},
+		    {
+		      "featureType": "poi.park",
+		      "elementType": "labels.text.fill",
+		      "stylers": [
+	          {
+	              "color": "#252628"
+	          }
+		      ]
+		    },
+		    {
+		      "featureType": "road.highway",
+		      "elementType": "geometry",
+		      "stylers": [
+	          {
+	              "lightness": "58"
+	          }
+		      ]
+		    },
+		    {
+	        "featureType": "road.highway",
+	        "elementType": "geometry.fill",
+	        "stylers": [
+	          {
+	            "color": "#7426d9"
+	          },
+	          {
+	            "lightness": "58"
+	          }
+	        ]
+		    },
+		    {
+		        "featureType": "road.highway",
+		        "elementType": "geometry.stroke",
+		        "stylers": [
+		            {
+		                "color": "#cccccc"
+		            }
+		        ]
+		    },
+		    {
+		        "featureType": "road.highway",
+		        "elementType": "labels",
+		        "stylers": [
+		            {
+		                "visibility": "on"
+		            },
+		            {
+		                "hue": "#6f00ff"
+		            },
+		            {
+		                "lightness": "43"
+		            }
+		        ]
+		    },
+		    {
+		      "featureType": "water",
+		      "elementType": "geometry.fill",
+		      "stylers": [
+	          {
+	            "lightness": "-5"
+	          },
+	          {
+	            "color": "#98d5ea"
+	          }
+		      ]
+		    }
+			]
  	  });
- 	  // var marker = new google.maps.Marker({
-    //   position: doggy.myLatLng,
-    //   map: map,
-    //   title: 'Hello World!'
-    // });
  };
 
 
@@ -475,8 +470,6 @@ $(document).ready(function() {
 	doggy.init();
 	$('.flexContainer').hide();
 });
-
-
 
 // get user information (location + breeds)
 // on submit, push info to Petfinder to find dogs (requires location field to work)

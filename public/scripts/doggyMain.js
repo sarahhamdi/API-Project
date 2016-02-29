@@ -409,11 +409,6 @@ function initMap() {
 			}]
 		}]
 	});
-	// var marker = new google.maps.Marker({
-	//   position: doggy.myLatLng,
-	//   map: map,
-	//   title: 'Hello World!'
-	// });
 };
 
 doggy.init = function () {
