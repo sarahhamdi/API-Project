@@ -190,20 +190,6 @@ doggy.displayDogInfo = function(results) {
 // +++++++++++++++++++++++END OF DISPLAY DOG INFO TO PAGE +++++++++++++++++++++++++++++++++++
 
 
-// // +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
-// doggy.printDogsToPage = function(filteredDogResults) {
-
-
-// 	// var cleanup = function(string) { 
-// 	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
-// 	// 	}
-
-// 	// var cleanup = function(string) { 
-// 	// 		return string.replace(/&lt;\/*[a-z]*&gt;/g, " ").replace(/&amp;/g, "&").replace(/â/g, "'");
-// 	// 	}
-
-
-
 // +++++++++ AFTER PETFINDER AJAX CALL, PRINTS DOG RESULTS TO PAGE ++++++++++++++++++ //
 // doggy.printDogsToPage = function(filteredDogResults) {
 
@@ -225,9 +211,11 @@ doggy.displayDogInfo = function(results) {
 // 	}
 // };
 
-doggy.originaldogLocationsArray = [];
 
 // +++++++++ AFTER PETFINDER AJAX CALL, SAVES DOG POSTAL CODES ++++++++++++++++++++++++++++++ //
+
+doggy.originaldogLocationsArray = [];
+
 doggy.dogLocationsForMap = function(filteredDogResults) {
 	var pets = filteredDogResults.petfinder.pets.pet;
 	
@@ -458,7 +446,8 @@ doggy.map;
 		    }
 			]
  	  });
- };
+ 	};
+
 
 
 doggy.init = function(){
