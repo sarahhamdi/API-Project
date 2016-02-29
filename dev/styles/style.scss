@@ -113,6 +113,16 @@ ul {
 .mapMarkerIconContainer {
 	width: 20%;
 	float: left;
+	h2 {
+		@include fontSize(12);
+		color: white;
+		font-weight: 400;
+	    background: $purple;
+	    border-radius: 50%;
+	    padding: 7px;
+	    width: 40px;
+	    height: 40px;
+	}
 }
 
 
@@ -199,6 +209,7 @@ ul {
 				img {
 					border-radius: 5px;
 					width: 100%;
+					border-radius: 5px;
 				}
 			}
 			.summaryTextContainer {
@@ -251,6 +262,7 @@ details {
 	.mapContainer {
 		width: 49%;
 		height: 70vh;
+		border-radius: 3px;
 		// padding-top: 20px;
 
 		// display: block;
@@ -259,6 +271,9 @@ details {
 			width: 100%;
 			border-radius: 3px;
 			// display: block;
+			div.gm-style {
+				border-radius: 3px;
+			}
 		}
 	}
 }
