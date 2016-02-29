@@ -368,8 +368,8 @@ ul {
     width: 49%;
     height: 75vh;
     border-radius: 3px;
-    overflow-x: none;
-    overflow-y: auto; }
+    box-shadow: -7px 7px 25px -12px rgba(0, 0, 0, 0.4);
+    overflow: auto; }
     .flexContainer aside.results::-webkit-scrollbar {
       width: 12px; }
     .flexContainer aside.results::-webkit-scrollbar-track {
@@ -584,7 +584,7 @@ footer {
         -ms-flex-line-pack: center;
             align-content: center; }
     div.flexContainer aside.results {
-      width: 100%;
+      width: 95%;
       margin-bottom: 20px; }
       div.flexContainer aside.results ul {
         list-style: none; }
