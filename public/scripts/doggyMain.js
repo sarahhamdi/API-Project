@@ -301,6 +301,7 @@ doggy.plotOnMap = function (latArray, lngArray, myLatLng) {
 				lng: singleLng
 			},
 			map: doggy.map,
+			icon: '../assets/mapicon.png',
 			label: labels[i]
 		});
 
