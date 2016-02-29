@@ -19,7 +19,6 @@
 	footer div.footerWrapper {
 		text-align: center;
 		@include flex (column wrap, center, center);
-		// height: auto;
 
 		.social svg {
 			margin-top: 20px;
@@ -53,7 +52,7 @@
 		@include flex (column wrap, space-between, center);
 
 		aside.results {
-			width: 100%;
+			width: 95%;
 			margin-bottom: 20px;
 			// overflow: visible;
 			ul {
