@@ -248,8 +248,8 @@ doggy.convertLatLng = function (originaldogLocationsArray) {
 
 	var counter = 0;
 
-	for (var _i = 0; _i < originaldogLocationsArray.length; _i++) {
-		var dogLocationsArray2 = originaldogLocationsArray[_i];
+	for (var i = 0; i < originaldogLocationsArray.length; i++) {
+		var dogLocationsArray2 = originaldogLocationsArray[i];
 		console.log(dogLocationsArray2);
 		$.ajax({
 			url: "https://maps.googleapis.com/maps/api/geocode/json",
@@ -279,9 +279,9 @@ doggy.convertLatLng = function (originaldogLocationsArray) {
 doggy.plotOnMap = function (latArray, lngArray, myLatLng) {
 	var markers = [];
 
-	for (var _i2 = 0; _i2 < doggy.originaldogLocationsArray.length; _i2++) {
-		var singleLat = latArray[_i2];
-		var singleLng = lngArray[_i2];
+	for (var i = 0; i < doggy.originaldogLocationsArray.length; i++) {
+		var singleLat = latArray[i];
+		var singleLng = lngArray[i];
 		var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		// doggy.myLatLng = {lng: 43.7921395, lat: -79.386151};
 		doggy.map.setCenter(doggy.myLatLng);
@@ -292,7 +292,7 @@ doggy.plotOnMap = function (latArray, lngArray, myLatLng) {
 			},
 			map: doggy.map,
 			icon: '../assets/mapicon.png',
-			label: labels[_i2]
+			label: labels[i]
 		});
 
 		// icon: iconBase + 'assets/mapicon.png'
@@ -399,68 +399,7 @@ function initMap() {
 			}]
 		}]
 	});
-	var infoWindow = new google.maps.InfoWindow();
-	var Spider = new OverLappingMarkerSpiderfier(map, { markersWontMove: true, markersWontHide: true });
-
-	var spiderfiedColor = 'ffee22';
-	var iconWithColor = function iconWithColor(color) {
-		return 'http://chart.googleapis.com/chart?chst=d_map_xpin_letter&chld=pin|+|' + color + '|000000|ffff00';
-	};
-	var shadow = new google.maps.MarkerImage('https://www.google.com/intl/en_ALL/mapfiles/shadow50.png', new google.maps.Size(37, 34), new google.maps.Point(0, 0), new google.maps.Point(10, 34));
-	Spider.addListener('click', function (marker) {
-		infoWindow.setContent(marker.desc);
-		infoWindow.open(map, marker);
-	});
-	Spider.addListener('spiderfy', function (markers) {
-		for (var i = 0; i < markers.length; i++) {
-			markers[i].setIcon(iconWithColor(spiderfiedColor));
-			markers[i].setShadow(null);
-		}
-		infoWindow.close();
-	});
-	Spider.addListener('unspiderfy', function (markers) {
-		for (var i = 0; i < markers.length; i++) {
-			markers[i].setIcon(iconWithColor(usualColor));
-			markers[i].setShadow(shadow);
-		}
-	});
-
-	var bounds = new google.maps.LatLngBounds();
-	for (var i = 0; i < window.mapData.length; i++) {
-		var datum = window.mapData[i];
-		var loc = new google.maps.LatLng(datum.lat, datum.lon);
-		bounds.extend(loc);
-		var marker = new google.maps.Marker({
-			position: loc,
-			title: datum.h,
-			map: map,
-			icon: iconWithColor(usualColor),
-			shadow: shadow
-		});
-		marker.desc = datum.d;
-		Spider.addMarker(marker);
-	}
-	map.fitBounds(bounds);
 };
-
-var baseJitter = 2.5;
-var clusterJitterMax = 0.1;
-var rnd = Math.random;
-var data = [];
-var clusterSizes = [1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 4, 5, 6, 7, 8, 9, 12, 18, 24];
-for (var i = 0; i < clusterSizes.length; i++) {
-	var baseLon = -1 - baseJitter / 2 + rnd() * baseJitter;
-	var baseLat = 52 - baseJitter / 2 + rnd() * baseJitter;
-	var clusterJitter = clusterJitterMax * rnd();
-	for (var j = 0; j < clusterSizes[i]; j++) {
-		data.push({
-			lon: baseLon - clusterJitter + rnd() * clusterJitter,
-			lat: baseLat - clusterJitter + rnd() * clusterJitter,
-			h: new Date(1E12 + rnd() * 1E11).toString(),
-			d: Math.round(rnd() * 100) + '% happy'
-		});
-	}
-}
 
 doggy.init = function () {
 	doggy.form();
