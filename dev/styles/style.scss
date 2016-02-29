@@ -152,7 +152,7 @@ ul {
 		width: 49%;
 		height: 75vh;
 		border-radius: 3px;
-		box-shadow: $box-shadow;
+		// box-shadow: $box-shadow;
 		&::-webkit-scrollbar {
     	width: 12px;
 		}
@@ -168,7 +168,8 @@ ul {
     	background-color: $purple;
 		}
 		// display: block;
-		overflow: auto;
+		overflow-x: none;
+		overflow-y: auto;
 		ul.resultsList {
 			margin-top: 0
 		}
